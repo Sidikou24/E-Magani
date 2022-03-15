@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -28,6 +30,21 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+        //j'ai implementé la fonction redirectTo pour la redirection des utilisateurs authentifié
+
+        protected function redirectTo(){
+            //Selon la valeur de l'utilisateur authentifié, on le redirige vers sa page
+            if( Auth()->user()->fonction == "administrateur" ){
+                return route('admin.dashboard');
+            }
+            elseif( Auth()->user()->fonction == "pharmacien" ){
+                return route('pharmacien.dashboard');
+            }
+            elseif( Auth()->user()->fonction == "employé" ){
+                return route('employe.dashboard');
+            }
+        }
+
     /**
      * Create a new controller instance.
      *
@@ -36,5 +53,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    //j'ai creé la fonction login
+    public function login(Request $request){
+        $input = $request->all();
+        $this->validate($request,[
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        //Verifions le mot de passe et l'email saisi
+        if( auth()->attempt(array('email' => $input['email'] , 'password' => $input['password'])) ){
+            if( auth()->user()->fonction == 'administrateur' ){
+                return redirect()->route('admin.dashboard');
+            }
+            elseif( auth()->user()->fonction == "pharmacien" ){
+                return redirect()->route('pharmacien.dashboard');
+            }
+            elseif( auth()->user()->fonction == 'employé' ){
+                return redirect()->route('employe.dashboard');
+            }
+        }
+        else{
+            return redirect()->route('login')->with('error', 'Email et Mot de passe incorrect');
+        }
     }
 }
