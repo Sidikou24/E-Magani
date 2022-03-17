@@ -73,7 +73,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-<<<<<<< HEAD
     // protected function create(array $data)
     // {
     //     return User::create([
@@ -90,21 +89,21 @@ class RegisterController extends Controller
     //         'sexe' => $data['sexe'],
     //         'password' => Hash::make($data['password']),
     //     ]);
-    // }
+   // }
     function register(Request $request){
             $request->validate([
-                'name' => $data['name'],
-                'prenom' => $data['prenom'],
-                'email' => $data['email'],
-                'fonction' => $data['fonction'],
-                'num_reference' => $data['num_reference'],
-                'dateNaiss' => $data['dateNaiss'],
-                'pays' => $data['pays'],
-                'ville' => $data['ville'],
-                'codePostal' => $data['codePostal'],
-                'numTel' => $data['numTel'],
-                'sexe' => $data['sexe'],
-                'password' => Hash::make($data['password']),
+            'name' => ['required', 'string', 'max:255'],
+            'prenom' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'fonction' => ['required', 'string', 'max:255'],
+            'num_reference' => 'required',
+            'dateNaiss' => 'required',
+            'pays' => 'required',
+            'ville' => 'required',
+            'codePostal' => 'required',
+            'numTel' => 'required',
+            'sexe' => 'required',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
             $user= new User();
             $user->name = $request->name;
@@ -124,23 +123,5 @@ class RegisterController extends Controller
             }else {
                 return redirect()->back()->with('error','l\'enregistrement a echouée');
             }
-=======
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'prenom' => $data['prenom'],
-            'email' => $data['email'],
-            'fonction' => $data['fonction'],
-            'num_reference' => $data['num_reference'],
-            'dateNaiss' => $data['dateNaiss'],
-            'pays' => $data['pays'],
-            'ville' => $data['ville'],
-            'codePostal' => $data['codePostal'],
-            'numTel' => $data['numTel'],
-            'sexe' => $data['sexe'],
-            'password' => Hash::make($data['password']),
-        ]);
->>>>>>> 7f0f29330d6f4d21b64bd893dab6bb472b5d4995
-    }
+}
 }

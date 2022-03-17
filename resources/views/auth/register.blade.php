@@ -105,6 +105,8 @@
                     </div>
                     @endif -->
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        @csrf
+
                             @if(Session::get('success'))
                                 <<div class="alert alert-success">
                                     {{Session::get('success')}}
@@ -161,22 +163,15 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-<<<<<<< HEAD
-                            <label for="num_R" class="col-sm-3 offset-sm-1 col-form-label">Numero de Reference *</label>
+                            <label for="num_reference" class="col-sm-3 offset-sm-1 col-form-label">Numero de Reference *</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="num_R" name="num_R" value="" placeholder="entrer votre Numero de Reference">
-=======
-                            <label for="num_reference" class="col-md-4 col-form-label text-md-end">{{ __('Num_reference') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="num_reference" type="text" class="form-control @error('num_reference') is-invalid @enderror" name="num_reference" value="{{ old('num_reference') }}" required  autocomplete="num_reference" autofocus>
+                                <input type="text" class="form-control" id="num_reference" name="num_reference" value="" placeholder="entrer votre Numero de Reference">
 
                                 @error('num_reference')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
->>>>>>> 7f0f29330d6f4d21b64bd893dab6bb472b5d4995
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -261,7 +256,7 @@
                         <div class="row mb-3">
                             <label for="password-confirm" class="col-sm-4 offset-sm-1 col-form-label">Confirmation mot de passe *</label>
                             <div class="col-sm-6">
-                                <input type="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" id="password-confirm-confirm" name="password-confirm-confirm" required autocomplete="new-password-confirm">
+                                <input type="password" class="form-control @error('password-confirm') is-invalid @enderror" id="password-confirm-confirm" name="password_confirmation" required autocomplete="new-password-confirm">
                                 @error('password-confirm')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
