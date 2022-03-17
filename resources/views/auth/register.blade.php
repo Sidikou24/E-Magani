@@ -73,7 +73,7 @@
                             <label for="num_reference" class="col-md-4 col-form-label text-md-end">{{ __('Num_reference') }}</label>
 
                             <div class="col-md-6">
-                                <input id="num_reference" type="text" class="form-control @error('num_reference') is-invalid @enderror" name="num_reference" value="{{ old('num_reference') }}" required autocomplete="num_reference" autofocus>
+                                <input id="num_reference" type="text" class="form-control @error('num_reference') is-invalid @enderror" name="num_reference" value="{{ old('num_reference') }}" required  autocomplete="num_reference" autofocus>
 
                                 @error('num_reference')
                                     <span class="invalid-feedback" role="alert">
