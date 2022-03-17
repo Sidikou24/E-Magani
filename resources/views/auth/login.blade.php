@@ -42,13 +42,13 @@
 
 <header role="banner">
     <!-- Top Bar -->
-    <div class="top-bar background-white">
+    <!-- <div class="top-bar background-white">
         <div class="line">
             <div class="s-12 m-6 l-6">
                 <div class="top-bar-contact">
                     <p class="text-size-12">Contact Us: 0800 200 200 | <a class="text-orange-hover" href="mailto:admin@gmail.com">admin@gmail.com</a></p>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="s-12 m-6 l-6">
                 <div class="right">
                     <ul class="top-bar-social right">
@@ -66,7 +66,7 @@
         <nav class="background-white background-primary-hightlight">
             <div class="line">
                 <div class="s-12 l-2">
-                    <a href="index.html" class="logo"><img src="img/logo-free.png" alt=""></a>
+                    <a href="index.html" class="logo"><img src="img/logo-EMagani.jpg" alt=""></a>
                 </div>
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
