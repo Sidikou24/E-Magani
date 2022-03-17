@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -71,21 +73,55 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'prenom' => $data['prenom'],
-            'email' => $data['email'],
-            'fonction' => $data['fonction'],
-            'num_reference' => $data['num_reference'],
-            'dateNaiss' => $data['dateNaiss'],
-            'pays' => $data['pays'],
-            'ville' => $data['ville'],
-            'codePostal' => $data['numTel'],
-            'numTel' => $data['numTel'],
-            'sexe' => $data['sexe'],
-            'password' => Hash::make($data['password']),
-        ]);
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'prenom' => $data['prenom'],
+    //         'email' => $data['email'],
+    //         'fonction' => $data['fonction'],
+    //         'num_reference' => $data['num_reference'],
+    //         'dateNaiss' => $data['dateNaiss'],
+    //         'pays' => $data['pays'],
+    //         'ville' => $data['ville'],
+    //         'codePostal' => $data['numTel'],
+    //         'numTel' => $data['numTel'],
+    //         'sexe' => $data['sexe'],
+    //         'password' => Hash::make($data['password']),
+    //     ]);
+    // }
+    function register(Request $request){
+            $request->validate([
+                'name' => $data['name'],
+                'prenom' => $data['prenom'],
+                'email' => $data['email'],
+                'fonction' => $data['fonction'],
+                'num_reference' => $data['num_reference'],
+                'dateNaiss' => $data['dateNaiss'],
+                'pays' => $data['pays'],
+                'ville' => $data['ville'],
+                'codePostal' => $data['codePostal'],
+                'numTel' => $data['numTel'],
+                'sexe' => $data['sexe'],
+                'password' => Hash::make($data['password']),
+            ]);
+            $user= new User();
+            $user->name = $request->name;
+            $user->prenom = $request->prenom;
+            $user->email = $request->email;
+            $user->fonction = $request->fonction;
+            $user->num_reference = $request->num_reference;
+            $user->dateNaiss = $request->dateNaiss;
+            $user->pays = $request->pays;
+            $user->ville = $request->ville;
+            $user->codePostal = $request->codePostal;
+            $user->numTel = $request->numTel;
+            $user->sexe= $request->sexe;
+            $user->password = Hash::make($request->password );
+            if ($user->save()) {
+                return redirect()->back()->with('success','vous avez été enregistrer');
+            }else {
+                return redirect()->back()->with('error','l\'enregistrement a echouée');
+            }
     }
 }
