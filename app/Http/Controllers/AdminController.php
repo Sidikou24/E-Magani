@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    function index(){
+    function index()
+    {
         return view('dashboards.admins.index');
     }
 
-    function profile(){
+    function profile()
+    {
         return view('dashboards.admins.profile');
     }
 }
