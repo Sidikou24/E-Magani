@@ -13,5 +13,9 @@ class EmployeController extends Controller
     function profile(){
         return view('dashboards.employes.profile');
     }
+    function settings()
+    {
+        return view('dashboards.employes.settings');
+    }
 }
 

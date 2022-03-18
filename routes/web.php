@@ -34,16 +34,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin','auth', 'empecherRetourEnArriere']], function(){
     Route::get('dashboard', [AdminController::class,'index'])->name('admin.dashboard');
     Route::get('profile', [AdminController::class,'profile'])->name('admin.profile');
+    Route::get('settings', [AdminController::class,'settings'])->name('admin.settings');
 });
 
 
 Route::group(['prefix' => 'pharmacien', 'middleware' => ['isPharmacien','auth', 'empecherRetourEnArriere']], function(){
     Route::get('dashboard', [PharmacienController::class,'index'])->name('pharmacien.dashboard');
     Route::get('profile', [PharmacienController::class,'profile'])->name('pharmacien.profile');
+    Route::get('settings', [PharmacienController::class,'settings'])->name('pharmacien.settings');
 });
 
 
 Route::group(['prefix' => 'employe', 'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']], function(){
     Route::get('dashboard', [EmployeController::class,'index'])->name('employe.dashboard');
     Route::get('profile', [EmployeController::class,'profile'])->name('employe.profile');
+    Route::get('settings', [EmployeController::class,'settings'])->name('employe.settings');
 });

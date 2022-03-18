@@ -13,4 +13,8 @@ class PharmacienController extends Controller
     function profile(){
         return view('dashboards.pharmaciens.profile');
     }
+    function settings()
+    {
+        return view('dashboards.pharmaciens.settings');
+    }
 }
