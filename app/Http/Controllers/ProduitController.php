@@ -25,7 +25,7 @@ class ProduitController extends Controller
             'datePer' => 'required',
         ]);
         $produit= new Produit();
-        $produit->user_id = auth()->user()->id;
+        $produit->user_id = auth()->user()->id; 
         $produit->name = $request->name;
         $produit->num_lot = $request->num_lot;
         $produit->quantite = $request->quantite;
