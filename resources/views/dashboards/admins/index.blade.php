@@ -4,6 +4,6 @@
 
 @section('content')
 
-here------ 
+    <a href="{{ route('search_pharmacien') }}">Gerer Pharmaciens</a>
 
 @endsection
