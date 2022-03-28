@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {  
             $table->id();
+            $table->integer('pharmacien_id')->unsigned();
             $table->string('name');
             $table->string('prenom');
             $table->string('email')->unique();
@@ -26,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->string('codePostal');
             $table->string('numTel');
             $table->string('sexe');
-            $table->unsignedBigInteger('pharmacien_id');
             $table->foreign('pharmacien_id')->references('id')->on('pharmacies');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
