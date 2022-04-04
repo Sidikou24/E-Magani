@@ -32,6 +32,7 @@ class User extends Authenticatable
         'codePostal',
         'numTel',
         'sexe',
+        'image',
         'password',
     ];
 
@@ -54,10 +55,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime', 
     ];
 
+
+    public function getImageAttribute($value){
+        if($value){
+            return asset('users/images/'.$value);
+        }else{
+            return asset('users/images/no-image.png');
+        }
+    }
     public function Produits(){
         return $this->hasMany(Produit::class)->latest();
     }
     public function Pharmacies(){
         return $this->hasMany(Pharmacie::class)->latest();
+
     }
 }

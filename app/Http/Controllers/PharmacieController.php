@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pharmacie;
 use App\Models\User;
 use DB;
+use Illuminate\Http\File;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
