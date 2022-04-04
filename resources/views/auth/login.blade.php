@@ -135,12 +135,12 @@
                             <div class="offset-sm-4 col-sm-7">
                                 <button type="submit" class="submit-form button background-primary border-radius text-white">Envoyer</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="{{route('register')}}" style="color: #44bd32;text-decoration: none;">Creer UN Nouveau compte</a>
-                                @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                            </div>
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}"  style="color: #44bd32;text-decoration: none;">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif
-                            </div>
                         </div>
 
 
