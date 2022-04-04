@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                 </li>
                <li class="nav-item">
-                        <a href="{{route('admin.profile')}}" class="nav-link">
+                        <a href="{{route('employe.profile')}}" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Profile
@@ -102,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                 </li>
                 <li class="nav-item">
-                        <a href="{{route('admin.settings')}}" class="nav-link">
+                        <a href="{{route('employe.settings')}}" class="nav-link">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
                                 Settings
