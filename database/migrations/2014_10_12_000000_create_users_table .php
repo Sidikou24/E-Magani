@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {  
             $table->id();
-            $table->integer('pharmacien_id')->unsigned();
+            $table->integer('pharmacien_id')->nullable();
             $table->string('name');
             $table->string('prenom');
             $table->string('email')->unique();
@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('numTel');
             $table->string('sexe');
             $table->foreign('pharmacien_id')->references('id')->on('pharmacies');
+            $table->string('image');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

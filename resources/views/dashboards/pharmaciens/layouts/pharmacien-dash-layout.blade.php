@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-              <a href="{{route('pharmacien.dashboard')}}" class="nav-link {{ (request()->is('pharmacien/dashboard*')) ? 'active': ''}}">
+              <a href="{{route('voir_pharmacie')}}" class="nav-link {{ (request()->is('pharmacien/dashboard*')) ? 'active': ''}}">
                 <i class="nav-icon fas fa-home"></i>
                 <p>
                   Dashboard
@@ -111,32 +111,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
             </li>
-          </ul>
-               <li class="nav-item">
-                        <a href="{{route('voir_pharmacie')}}" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                </li>
-               <li class="nav-item">
-                        <a href="{{route('admin.profile')}}" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                Profile
-                            </p>
-                        </a>
-                </li>
-                <li class="nav-item">
-                        <a href="{{route('admin.settings')}}" class="nav-link">
-                            <i class="nav-icon fas fa-cog"></i>
-                            <p>
-                                Settings
-                            </p>
-                        </a>
-                </li>
-        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
