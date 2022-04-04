@@ -38,7 +38,7 @@ class LoginController extends Controller
                 return route('admin.dashboard');
             }
             elseif( Auth()->user()->fonction == "pharmacien" ){
-                return route('pharmacien.dashboard');
+                return route('voir_pharmacie');
             }
             elseif( Auth()->user()->fonction == "employé" ){
                 return route('employe.dashboard');
@@ -69,7 +69,7 @@ class LoginController extends Controller
                 return redirect()->route('admin.dashboard');
             }
             elseif( auth()->user()->fonction == "pharmacien" ){
-                return redirect()->route('pharmacien.dashboard');
+                return redirect()->route('voir_pharmacie');
             }
             elseif( auth()->user()->fonction == 'employé' ){
                 return redirect()->route('employe.dashboard');

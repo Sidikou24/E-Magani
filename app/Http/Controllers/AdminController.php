@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use DB;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,7 @@ class AdminController extends Controller
     {
         return view('dashboards.admins.settings');
     }
+
 
     function updateInfo(Request $request){
         $validator = Validator::make($request->all(),[
@@ -146,5 +148,16 @@ class AdminController extends Controller
         }
     }
 
+
+
+    
+    function recherchePharmacien(){
+        $nomSaisi = $_GET['recherche'];
+        $pharmaciens = DB::table('users')
+                                        ->where('name', 'LIKE', '%'.$nomSaisi.'%')
+                                        ->where('fonction','pharmacien')
+                                        ->get();
+        return view('dashboards.admins.gestionPharmaciens', compact('pharmaciens'));
+    }
 
 }

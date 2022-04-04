@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PharmacienController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\PharmacieController;
 use Illuminate\Support\Facades\Auth;
+use App\Produit;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,21 +41,41 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin','auth', 'empecherR
 
 
 
+
     Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
     Route::post('changer-image-profile',[AdminController::class,'updateImage'])->name('adminImageUpdate');
     Route::post('changer-password',[AdminController::class,'changepassword'])->name('adminChangePassword');
+
+    Route::get('search_pharmacien', [PharmacienController::class,'search_pharmacien'])->name('search_pharmacien');
+    Route::get('recherchePharmacien', [AdminController::class,'recherchePharmacien'])->name('recherchePharmacien');
+
 });
 
 
 Route::group(['prefix' => 'pharmacien', 'middleware' => ['isPharmacien','auth', 'empecherRetourEnArriere']], function(){
-    Route::get('dashboard', [PharmacienController::class,'index'])->name('pharmacien.dashboard');
+    Route::get('dashboard/{id}', [PharmacienController::class,'index'])->name('pharmacien.dashboard');
     Route::get('profile', [PharmacienController::class,'profile'])->name('pharmacien.profile');
     Route::get('settings', [PharmacienController::class,'settings'])->name('pharmacien.settings');
+
 
 
     Route::post('update-profile-info',[PharmacienController::class,'updateInfo'])->name('pharmacienUpdateInfo');
     Route::post('changer-image-profile',[PharmacienController::class,'updateImage'])->name('pharmacienImageUpdate');
     Route::post('changer-password',[PharmacienController::class,'changepassword'])->name('pharmacienChangePassword');
+
+    Route::get('voir_produit',[ProduitController::class,'voir_produit'])->name('voir_produit');
+    Route::get('ajouterProduit', [ProduitController::class,'ajouterProduit'])->name('ajouterProduit');
+    Route::get('voir_employe/{pharmacie_id}',[PharmacienController::class,'voir_employe'])->name('voir_employe');
+    Route::get('ajoutEmploye/{pharmacie_id}', [PharmacienController::class,'ajoutEmploye'])->name('ajoutEmploye'); //Pour afficher le formulaire pour ajouter un nouveau employé
+    Route::post('inscrireEmploye/{pharmacie_id}', [PharmacienController::class,'inscrireEmploye'])->name('inscrireEmploye');//Fonction qui fait l'enregistrement de l'employé
+    Route::get('rechercheEmploye/{id}', [PharmacienController::class,'rechercheEmploye'])->name('rechercheEmploye');
+    Route::get('supprimerEmploye/{id}', [PharmacienController::class,'supprimerEmploye'])->name('suppEmploye');
+    Route::get('voir_pharmacie',[PharmacieController::class,'voir_pharmacie'])->name('voir_pharmacie');
+    Route::get('supprimerPharmacie/{id}', [PharmacieController::class,'supprimerPharmacie'])->name('suppPharmacie');
+    Route::get('modifierPharmacie/{id}', [PharmacieController::class,'modifierPharmacie'])->name('modifierpharmacie');
+    Route::get('recherchePharmacie', [PharmacieController::class,'recherchePharmacie'])->name('recherchePharmacie');
+    Route::get('majPharmacie/{id}', [PharmacieController::class,'majPharmacie'])->name('majPharmacie');
+
 });
 
 
@@ -60,9 +83,30 @@ Route::group(['prefix' => 'employe', 'middleware' => ['isEmploye','auth', 'empec
     Route::get('dashboard', [EmployeController::class,'index'])->name('employe.dashboard');
     Route::get('profile', [EmployeController::class,'profile'])->name('employe.profile');
     Route::get('settings', [EmployeController::class,'settings'])->name('employe.settings');
+
     
 
     Route::post('update-profile-info',[EmployeController::class,'updateInfo'])->name('employeUpdateInfo');
     Route::post('changer-image-profile',[EmployeController::class,'updateImage'])->name('employeImageUpdate');
     Route::post('changer-password',[EmployeController::class,'changepassword'])->name('employeChangePassword');
 });
+
+
+Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
+    Route::get('dashboard', [ProduitController::class,'index'])->name('produit.dashboard');
+    Route::get('ajouterProduit', [ProduitController::class,'ajouterProduit'])->name('ajouterProduit');
+    Route::get('modifierProduit/{id}', [ProduitController::class,'modifierProduit'])->name('modifierProduit');
+    Route::get('majProduit/{id}', [ProduitController::class,'majProduit'])->name('majProduit');
+    Route::get('supprimerProduit/{id}', [ProduitController::class,'supprimerProduit'])->name('suppProduit');
+    Route::get('recherche', [ProduitController::class,'recherche'])->name('rechercheProduit');
+    // Route::get('NomDupharmacien', [ProduitController::class, 'user'])->name('nomdupharmacien');
+});
+
+Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
+    Route::get('dashboard', [PharmacieController::class,'index'])->name('pharmacie.dashboard');
+    Route::get('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
+});
+
+
+//Route::get('/{email}',[PharmacienController::class, 'voir']);
+

@@ -138,6 +138,10 @@
                             </div>
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}"  style="color: #44bd32;text-decoration: none;">
+                                <a href="{{route('register')}}" style="color: #44bd32;text-decoration: none;">Creer un nouveau compte</a>
+                                @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif

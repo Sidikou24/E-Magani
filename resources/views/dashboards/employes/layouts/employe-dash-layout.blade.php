@@ -89,6 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
                <li class="nav-item">
                         <a href="{{route('employe.dashboard')}}" class="nav-link {{ (request()->is('employe/dashboard*'))? 'active': ''}}">
+                        <a href="{{route('employe.dashboard')}}" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Dashboard

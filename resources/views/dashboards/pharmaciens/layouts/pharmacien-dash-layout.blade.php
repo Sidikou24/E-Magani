@@ -56,6 +56,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="{{URL::to('/')}}" class="brand-link">
       <img src="img/logo-EMagani.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">votre site</span>
+      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">E-Magani</span>
     </a>
 
     <!-- Sidebar -->
@@ -112,6 +114,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
           </ul>
+               <li class="nav-item">
+                        <a href="{{route('voir_pharmacie')}}" class="nav-link">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                </li>
+               <li class="nav-item">
+                        <a href="{{route('admin.profile')}}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Profile
+                            </p>
+                        </a>
+                </li>
+                <li class="nav-item">
+                        <a href="{{route('admin.settings')}}" class="nav-link">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                Settings
+                            </p>
+                        </a>
+                </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

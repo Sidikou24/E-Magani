@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -18,10 +19,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'pharmacien_id',
         'name',
         'prenom',
         'email',
         'fonction',
+        'pharmacie_nom',
         'num_reference',
         'dateNaiss',
         'pays',
@@ -49,8 +52,9 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime', 
     ];
+
 
     public function getImageAttribute($value){
         if($value){
@@ -58,5 +62,12 @@ class User extends Authenticatable
         }else{
             return asset('users/images/no-image.png');
         }
+    }
+    public function Produits(){
+        return $this->hasMany(Produit::class)->latest();
+    }
+    public function Pharmacies(){
+        return $this->hasMany(Pharmacie::class)->latest();
+
     }
 }
