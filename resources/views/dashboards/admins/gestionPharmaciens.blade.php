@@ -9,6 +9,10 @@
 
 <div class="container">
 <h3>Les pharmaciens:</h3>
+<form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('recherchePharmacien')}}">
+      <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher pharmacien" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+</form><br><br>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -19,6 +23,7 @@
       <th scope="col">Fonction</th>
       <th scope="col">Numéro de reférence</th>
       <th scope="col">Sexe</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +36,10 @@
       <td>{{ $pharmacien->fonction }}</td>
       <td>{{ $pharmacien->num_reference }}</td>
       <td>{{ $pharmacien->sexe }}</td>
+      <td>
+        <a href="#" class="btn btn-danger"> Bloquer </a>
+        <a href="#" class="btn btn-success">Débloquer</a>
+      </td>
     </tr>
       @endforeach
   </tbody>   

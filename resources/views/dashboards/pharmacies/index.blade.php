@@ -72,7 +72,7 @@
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="{{route ('pharmacien.dashboard')}}">Home</a></li>
+                        <li><a href="{{route ('voir_pharmacie')}}">Home</a></li>
                         <!-- <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
@@ -82,8 +82,6 @@
             </div>
         </nav>
 </header>
-
-
 
 <div class="container-fluid">
     <div class="row">
@@ -163,7 +161,7 @@
                         <div class="row mb-3">
                             <div class="offset-sm-4 col-sm-7">
                                 <button type="submit" class="btn btn-success"> Ajouter </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{route ('pharmacien.dashboard')}}" type="reset" class="btn btn-danger">Annuler</a>
+                                <a href="{{route ('voir_pharmacie')}}" type="reset" class="btn btn-danger">Annuler</a>
                             </div>
                         </div>
 

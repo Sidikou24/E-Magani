@@ -88,7 +88,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 px-3 py-3 pt-md-4 pb-md-4">
             <div class="card">
-                <div class="card-header">Ajouter un Produit dans votre Stock</div>
+                <div class="card-header">Modifier les informations d'une de vos pharmacies</div>
 
                 <div class="card-body">
                     <!-- @if(!empty($message))
@@ -98,7 +98,7 @@
                     </div>
                     @endif -->              
                         
-                    <form class="form-horizontal" method="GET" action="{{ route('ajouterProduit') }}"> 
+                    <form class="form-horizontal" method="GET" action="{{ route('majPharmacie',$pharmacie->id) }}"> 
                         {{ csrf_field() }}
                             @if(Session::get('success'))
                                 <div class="alert alert-success">
@@ -110,46 +110,45 @@
                                     {{Session::get('error')}}
                                 </div>
                             @endif
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <label for="name" class="col-sm-3 offset-sm-1 col-form-label">Nom: </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nom du produit">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') ?? $pharmacie->name }}" required autocomplete="name" autofocus placeholder="Nom de la pharmacie">
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row mb-3">
-                            <label for="num_lot" class="col-sm-3 offset-sm-1 col-form-label">Numéro de lot: </label>
+                            <label for="localite" class="col-sm-3 offset-sm-1 col-form-label">Localité: </label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control @error('num_lot') is-invalid @enderror" id="num_lot" name="num_lot" value="{{ old('num_lot') }}" required autocomplete="num_lot" autofocus placeholder="Numéro de lot">
-                                @error('num_lot')
+                                <input type="text" class="form-control @error('localite') is-invalid @enderror" id="localite" name="localite" value="{{ old('localite') ?? $pharmacie->localite }}" required autocomplete="localite" autofocus placeholder="Localité">
+                                @error('localite')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="quantite" class="col-sm-3 offset-sm-1 col-form-label">Quantité</label>
+                        <!-- <div class="row mb-3">
+                            <label for="dateCrea" class="col-sm-3 offset-sm-1 col-form-label">Date de creation:</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control @error('quantite') is-invalid @enderror" id="quantite" name="quantite" value="{{ old('quantite') }}" required autocomplete="quantite" placeholder="quantite">
-                                @error('quantite')
+                                <input type="date" class="form-control @error('dateCrea') is-invalid @enderror" id="dateCrea" name="dateCrea" value="{{ old('dateCrea') ?? $pharmacie->dateCrea }}" required autocomplete="dateCrea" placeholder="date de Creation">
+                                @error('dateCrea')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row mb-3">
-                            <label for="prix" class="col-sm-3 offset-sm-1 col-form-label">Prix: </label>
+                            <label for="nbrAgent" class="col-sm-3 offset-sm-1 col-form-label">nbrAgent: </label>
                             <div class="col-sm-7"> 
-                                <input type="text" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit">
-
-                                @error('prix')
+                                <input type="number" class="form-control" id="nbrAgent" name="nbrAgent" value="{{ old('nbrAgent') ?? $pharmacie->nbrAgent }}" placeholder="nbrAgent du pharmacie" required>
+                                @error('nbrAgent')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -158,33 +157,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="dateFab" class="col-sm-3 offset-sm-1 col-form-label">Date de Fabrication: </label>
-                            <div class="col-sm-7">
-                                <input type="date" class="form-control @error('dateFab') is-invalid @enderror" id="dateFab" name="dateFab" value="{{ old('dateFab') }}" required autocomplete="dateFab" autofocus>
-                                @error('dateFab')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="datePer" class="col-sm-3 offset-sm-1 col-form-label">Date de Péremption: </label>
-                            <div class="col-sm-7">
-                                <input type="date" class="form-control @error('datePer') is-invalid @enderror" id="datePer" name="datePer" value="{{ old('datePer') }}" required autocomplete="datePer" autofocus>
-                                @error('datePer')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
                             <div class="offset-sm-4 col-sm-7">
-                                <button type="submit" class="btn btn-success"> Ajouter </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{route('voir_produit') }}" type="reset" class="btn btn-danger">Annuler</a>
+                                <button type="submit" class="btn btn-success"> Enregistrer </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{{route('voir_pharmacie') }}" type="reset" class="btn btn-danger">Annuler</a>
                             </div>
                         </div>
                         

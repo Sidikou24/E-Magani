@@ -83,14 +83,6 @@
         </nav>
 </header>
 
-
-
-
-
-
-
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2 px-3 py-3 pt-md-4 pb-md-4">
@@ -175,7 +167,6 @@
                             <label for="num_reference" class="col-sm-3 offset-sm-1 col-form-label">Numero de Reference *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" id="num_reference" name="num_reference" value="" placeholder="entrer votre Numero de Reference">
-
                                 @error('num_reference')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

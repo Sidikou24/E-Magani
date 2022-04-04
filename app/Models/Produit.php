@@ -24,7 +24,7 @@ class Produit extends Model
         return $this->hasOne(User::class);
     }
 
-    public function pharmacie(){
+    public function pharmacies(){
         return $this->belongsTo(Pharmacie::class);
     }
 }

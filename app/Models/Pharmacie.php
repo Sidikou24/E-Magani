@@ -23,7 +23,7 @@ class Pharmacie extends Model
         return $this->hasOne('App\User');
     }
 
-     public function produit(){
-         return $this->hasMany(Produit::class);
-     }
+    public function produits(){
+         return $this->belongsToMany(Produit::class);
+    }
 }

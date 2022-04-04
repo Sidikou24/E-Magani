@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pharmacie;
+use App\Models\User;
+use DB;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -33,7 +35,36 @@ class PharmacieController extends Controller
             return redirect()->back()->with('success','pharmacie ajouté avec succés');
         }else {
             return redirect()->back()->with('error','l\'enregistrement a echouée');
-
         }
     }    
+
+    function voir_pharmacie(){
+        $pharmacien_id = auth()->user()->id;
+        $pharmacies = DB::table('pharmacies')->where('pharmacien_id',$pharmacien_id)->get(); //relation One to Many;
+        return view('dashboards.pharmacies.gestionPharmacies',compact('pharmacies'));
+    }
+
+    function supprimerPharmacie($id){
+        $pharmacie = Pharmacie::find($id);
+        $pharmacie->delete(); 
+      return redirect()->back();
+    }
+
+    function modifierPharmacie($id){
+        $pharmacie = Pharmacie::find($id);
+        return view('dashboards.pharmacies.modificationPharmacies',compact('pharmacie')); 
+    }
+
+    function majPharmacie(Request $request,$id){
+        $pharmacie = Pharmacie::find($id);
+
+        $nouvPharmacie = $request->all();
+        //$pharmacie->name = $nouvPharmacie['name'];
+        $pharmacie->localite = $nouvPharmacie['localite'];
+       // $pharmacie->dateCrea = $nouvPharmacie['dateCrea'];
+        $pharmacie->nbrAgent = $nouvPharmacie['nbrAgent'];
+        $pharmacie->save();
+        return redirect('pharmacien/voir_pharmacie');
+    }
+
 }

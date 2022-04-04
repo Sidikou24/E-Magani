@@ -72,7 +72,7 @@
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="{{ route('pharmacien.dashboard') }}">Home</a></li>
+                        <li><a href="{{ route('voir_pharmacie') }}">Home</a></li>
                         <!-- <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="gallery.html">Gallery</a></li>

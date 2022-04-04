@@ -72,7 +72,7 @@
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="{{ route('pharmacien.dashboard')}}">Home</a></li>
+                        <li><a href="{{ route('voir_pharmacie')}}">Home</a></li>
                         <!-- <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
@@ -82,14 +82,6 @@
             </div>
         </nav>
 </header>
-
-
-
-
-
-
-
-
 
 <div class="container-fluid">
     <div class="row">
@@ -104,7 +96,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif -->
-                    <form class="form-horizontal" method="POST" action="{{ route('inscrireEmploye') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('inscrireEmploye',$pharma->id) }}">
                         {{ csrf_field() }}
                             @if(Session::get('success'))
                                 <div class="alert alert-success">
@@ -154,23 +146,32 @@
                         <div class="row mb-3">
                             <label for="fonction" class="col-sm-3 offset-sm-1 col-form-label">Fonction *</label>
                             <div class="col-sm-7">
-                                <input type="text" id="fonction" class="form-control" name="fonction"  required >
+                                <input type="text" id="fonction" class="form-control" name="fonction" list="fon" required pattern="[Ee]mployé">
+                                <datalist id="fon">
+                                    <option>Employé</option>
+                                </datalist>
                             </div>
                         </div>
-                        <!-- <div class="row mb-3">
-                            <label for="num_reference" class="col-sm-3 offset-sm-1 col-form-label">Numero de Reference *</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="num_reference" name="num_reference" value="{{ old('num_reference') }}" >
 
-                                @error('num_reference')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <div class="row mb-3"> 
+                            <label for="pharmacie_nom" class="col-sm-3 offset-sm-1 col-form-label">Inscrire dans quelle pharmacie? *</label>
+                            <div class="col-sm-7">
+                                <select class="form-control @error('pharmacie_nom') is-invalid @enderror" name="pharmacie_nom" id="pharmacie_nom" required>
+                                   
+                                        <!-- <option selected disabled value="">Choisir...</option> -->
+                                        <option>{{$pharma->name}}</option>
+                                    
+                                </select>
+                                @error('pharmacie_nom')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div>
+
                         <div class="row mb-3">
-                            <label for="dateNaiss" class="col-sm-3 offset-sm-1 col-form-label">Date de Naissance</label>
+                            <label for="dateNaiss" class="col-sm-3 offset-sm-1 col-form-label">Date de Naissance *</label>
                             <div class="col-sm-7">
                                 <input type="date" class="form-control @error('dateNaiss') is-invalid @enderror" id="dateNaiss" name="dateNaiss" value="{{ old('dateNaiss') }}" required autocomplete="dateNaiss" autofocus>
                                 @error('dateNaiss')
@@ -269,7 +270,7 @@
                         <div class="row mb-3">
                             <div class="offset-sm-4 col-sm-7">
                                 <button type="submit" class="btn btn-success">Inscrire Employé</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{route ('pharmacien.dashboard')}}" type="reset" class="btn btn-danger">Annuler</a>
+                                <a href="{{route ('voir_pharmacie')}}" type="reset" class="btn btn-danger">Annuler</a>
                             </div>
                         </div>
 

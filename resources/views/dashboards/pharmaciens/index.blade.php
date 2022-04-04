@@ -9,18 +9,20 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <h4>Bienvenue Pharmacien: {{ Auth::user()->name }}</h4>
+                <h4>Bienvenue Pharmacien: {{ Auth::user()->name }} </h4>
+                <h4>dans la pharmacie: {{ $pharmacie->name }}</h4>
                 <hr>
-                <p>
-                    <a href="{{ route('pharmacie.dashboard') }}" class="btn btn-success"><h3>Gerer pharmacies</h3></a>
-                    <br><br>
-                    <a href="{{ route('ajoutEmploye') }}" ><h3 class="btn btn-success">Gerer Employés</h3></a>
+                <div>
+                
+                    <a href="{{ route('voir_employe',$pharmacie) }}"  class="btn btn-success"> Gerer Employés</a>
                     <br> <br>
-                    <a href="{{ route('voir_produit') }}" ><h3 class="btn btn-success">Gerer stock</h3></a>
+                    <a href="{{ route('voir_produit') }}"  class="btn btn-success">Gerer stock</a>
                     <br> <br>
-                    <a href="#" ><h3 class="btn btn-success">Gerer ventes</h3></a>
+                    <a href="#"  class="btn btn-success">Gerer ventes</a>
                     <br><br>
-                </p>
+                </div>
+
+                <br><br><br><br>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class AdminController extends Controller
 {
@@ -18,5 +19,14 @@ class AdminController extends Controller
     function settings()
     {
         return view('dashboards.admins.settings');
+    }
+    
+    function recherchePharmacien(){
+        $nomSaisi = $_GET['recherche'];
+        $pharmaciens = DB::table('users')
+                                        ->where('name', 'LIKE', '%'.$nomSaisi.'%')
+                                        ->where('fonction','pharmacien')
+                                        ->get();
+        return view('dashboards.admins.gestionPharmaciens', compact('pharmaciens'));
     }
 }

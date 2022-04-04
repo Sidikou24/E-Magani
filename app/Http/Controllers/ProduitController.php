@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Pharmacie;
 use DB;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -42,7 +43,8 @@ class ProduitController extends Controller
 
     function voir_produit(){
         $user_id = auth()->user()->id;
-        $produits = DB::table('produits')->where('user_id',$user_id)->get();
+        $pharmacien = auth()->user();
+        $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
         return view('dashboards.produits.gestionProduits',compact('produits'));
     }
 

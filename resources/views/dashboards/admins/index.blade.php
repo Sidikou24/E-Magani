@@ -4,6 +4,6 @@
 
 @section('content')
 
-    <a href="{{ route('search_pharmacien') }}">Gerer Pharmaciens</a>
+    <a href="{{ route('search_pharmacien') }}" class="btn btn-success"><h3>Gerer Pharmaciens</h3></a>
 
 @endsection
