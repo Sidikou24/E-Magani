@@ -114,8 +114,8 @@ class RegisterController extends Controller
              $newAvatarName =  rand(12,34353).time().'_avatar.png';
              $dest= $path.$newAvatarName;
  
-             $createAvatar = makeAvatar($fontPath,$dest,$char);
-             $picture = $createAvatar == true ? $newAvatarName : '';
+            $createAvatar = makeAvatar($fontPath,$dest,$char);
+            $picture = $createAvatar == true ? $newAvatarName : '';
 
             $user= new User();
             $user->name = $request->name;
