@@ -98,7 +98,7 @@
                     </div>
                     @endif -->              
                         
-                    <form class="form-horizontal" method="GET" action="{{ route('ajouterProduit') }}"> 
+                    <form class="form-horizontal" method="GET" action="{{ route('ajouterProduit',$pharmacie->id) }}"> 
                         {{ csrf_field() }}
                             @if(Session::get('success'))
                                 <div class="alert alert-success">
@@ -181,10 +181,25 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3"> 
+                            <label for="pharmacie_nom" class="col-sm-3 offset-sm-1 col-form-label">Pharmacie d'ajout? *</label>
+                            <div class="col-sm-7">
+                                <select class="form-control @error('pharmacie_nom') is-invalid @enderror" name="pharmacie_nom" id="pharmacie_nom" required>  
+                                        <!-- <option selected disabled value="">Choisir...</option> -->
+                                        <option>{{$pharmacie->name}}</option>
+                                </select>
+                                @error('pharmacie_nom')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <div class="offset-sm-4 col-sm-7">
                                 <button type="submit" class="btn btn-success"> Ajouter </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{route('voir_produit') }}" type="reset" class="btn btn-danger">Annuler</a>
+                                <a href="{{route('voir_produit',$pharmacie->id) }}" type="reset" class="btn btn-danger">Annuler</a>
                             </div>
                         </div>
                         

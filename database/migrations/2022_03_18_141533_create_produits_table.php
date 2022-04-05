@@ -22,6 +22,7 @@ class CreateProduitsTable extends Migration
             $table->string('prix');
             $table->date('dateFab');
             $table->date('datePer');
+            $table->string('pharmacie_nom')->nullable();
             $table->timestamps();
         });
     }
