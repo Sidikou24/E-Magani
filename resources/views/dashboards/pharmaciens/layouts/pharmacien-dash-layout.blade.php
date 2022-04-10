@@ -66,7 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <img src="{{Auth::user()->image}}" class="img-circle elevation-2 pharmacien_picture" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{route('voir_pharmacie')}}" class="d-block pharmacien_name">{{Auth::user()->name }}</a>
+          <a href="#" class="d-block pharmacien_name">{{Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -142,7 +142,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2022 <a href="#">E-Magani</a>.</strong> Tous les droits réservés.
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -241,6 +241,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           }
         });
       });
+
+
   });
 </script>
 </body>

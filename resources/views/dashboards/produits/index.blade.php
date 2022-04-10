@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>E-Magani</title>
+    <title>Mon blog</title>
     <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
 
 
@@ -98,7 +98,7 @@
                     </div>
                     @endif -->              
                         
-                    <form class="form-horizontal" method="GET" action="{{ route('ajouterProduit',$pharmacie->id) }}"> 
+                    <form class="form-horizontal" method="GET" action="{{ route('ajouterProduit') }}"> 
                         {{ csrf_field() }}
                             @if(Session::get('success'))
                                 <div class="alert alert-success">
@@ -135,7 +135,7 @@
                         <div class="row mb-3">
                             <label for="quantite" class="col-sm-3 offset-sm-1 col-form-label">Quantité</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control @error('quantite') is-invalid @enderror" id="quantite" name="quantite" value="{{ old('quantite') }}" required autocomplete="quantite" placeholder="quantite">
+                                <input type="text" class="form-control @error('quantite') is-invalid @enderror" id="quantite" name="quantite" value="{{ old('quantite') }}" required autocomplete="quantite" placeholder="quantite">
                                 @error('quantite')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -147,7 +147,7 @@
                         <div class="row mb-3">
                             <label for="prix" class="col-sm-3 offset-sm-1 col-form-label">Prix: </label>
                             <div class="col-sm-7"> 
-                                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit">
+                                <input type="text" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit">
 
                                 @error('prix')
                                     <span class="invalid-feedback" role="alert">
@@ -181,25 +181,10 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3"> 
-                            <label for="pharmacie_nom" class="col-sm-3 offset-sm-1 col-form-label">Pharmacie d'ajout? *</label>
-                            <div class="col-sm-7">
-                                <select class="form-control @error('pharmacie_nom') is-invalid @enderror" name="pharmacie_nom" id="pharmacie_nom" required>  
-                                        <!-- <option selected disabled value="">Choisir...</option> -->
-                                        <option>{{$pharmacie->name}}</option>
-                                </select>
-                                @error('pharmacie_nom')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
                         <div class="row mb-3">
                             <div class="offset-sm-4 col-sm-7">
                                 <button type="submit" class="btn btn-success"> Ajouter </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="{{route('voir_produit',$pharmacie->id) }}" type="reset" class="btn btn-danger">Annuler</a>
+                                <a href="{{route('voir_produit') }}" type="reset" class="btn btn-danger">Annuler</a>
                             </div>
                         </div>
                         

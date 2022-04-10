@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>E-Magani</title>
+    <title>Mon blog</title>
     <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
+
 
 
     <!-- Bootstrap core CSS -->
@@ -134,7 +135,7 @@
                         <div class="row mb-3">
                             <label for="quantite" class="col-sm-3 offset-sm-1 col-form-label">Quantité</label>
                             <div class="col-sm-7">
-                                <input type="bumber" class="form-control @error('quantite') is-invalid @enderror" id="quantite" name="quantite" value="{{ old('quantite') ?? $produit->quantite }}" required autocomplete="quantite" placeholder="quantite">
+                                <input type="text" class="form-control @error('quantite') is-invalid @enderror" id="quantite" name="quantite" value="{{ old('quantite') ?? $produit->quantite }}" required autocomplete="quantite" placeholder="quantite">
                                 @error('quantite')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -146,7 +147,7 @@
                         <div class="row mb-3">
                             <label for="prix" class="col-sm-3 offset-sm-1 col-form-label">Prix: </label>
                             <div class="col-sm-7"> 
-                                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') ?? $produit->prix }}" placeholder="prix du produit" required>
+                                <input type="text" class="form-control" id="prix" name="prix" value="{{ old('prix') ?? $produit->prix }}" placeholder="prix du produit" required>
 
                                 @error('prix')
                                     <span class="invalid-feedback" role="alert">

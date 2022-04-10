@@ -18,7 +18,6 @@ class Produit extends Model
         'prix',
         'dateFAb',
         'datePer',
-        'pharmacie_nom',
     ];
 
     public function user(){

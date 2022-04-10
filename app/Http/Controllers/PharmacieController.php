@@ -68,9 +68,4 @@ class PharmacieController extends Controller
         return redirect('pharmacien/voir_pharmacie');
     }
 
-    function listeDesPharmacies(){
-        $pharmacies = DB::table('pharmacies')->get();
-        return view('listePharmacie',compact('pharmacies'));
-    }
-
 }
