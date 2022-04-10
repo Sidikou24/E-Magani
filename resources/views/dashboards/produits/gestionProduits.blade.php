@@ -9,11 +9,11 @@
 
 <div class="container">
 <h3>Les produits:</h3>
-<form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('rechercheProduit')}}">
+<form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('rechercheProduit',$pharmacie->id)}}">
       <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher un produit" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
 </form><br><br>
-<a class="btn btn-success float-right mb-4" href="{{ route('produit.dashboard') }}">Ajouter Nouveau produit</a>
+<a class="btn btn-success float-right mb-4" href="{{ route('produit.dashboard',$pharmacie->id) }}">Ajouter Nouveau produit</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -23,6 +23,7 @@
       <th scope="col">prix Unitaire</th>
       <th scope="col">Numéro de lot</th>
       <th scope="col">Date de peremption</th>
+      <th scope="col">Lieu</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -35,6 +36,7 @@
       <td>{{ $produit->prix }}</td>
       <td>{{ $produit->num_lot }}</td>
       <td>{{ $produit->datePer }}</td>
+      <td>Pharmacie {{ $produit->pharmacie_nom }}</td>
       <td>
         <a href="{{ route('modifierProduit',$produit->id) }}" class="btn btn-success"> Modifier </a>
         <a href="{{ route('suppProduit', $produit->id) }}" class="btn btn-danger"> Supprimer </a>

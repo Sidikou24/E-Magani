@@ -16,7 +16,7 @@
                 
                     <a href="{{ route('voir_employe',$pharmacie) }}"  class="btn btn-success"> Gerer Employés</a>
                     <br> <br>
-                    <a href="{{ route('voir_produit') }}"  class="btn btn-success">Gerer stock</a>
+                    <a href="{{ route('voir_produit',$pharmacie) }}"  class="btn btn-success">Gerer stock</a>
                     <br> <br>
                     <a href="#"  class="btn btn-success">Gerer ventes</a>
                     <br><br>
