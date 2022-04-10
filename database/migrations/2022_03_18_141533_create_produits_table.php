@@ -18,8 +18,8 @@ class CreateProduitsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('num_lot');
-            $table->string('quantite');
-            $table->string('prix');
+            $table->integer('quantite')->unsigned();
+            $table->integer('prix')->unsigned();;
             $table->date('dateFab');
             $table->date('datePer');
             $table->string('pharmacie_nom')->nullable();

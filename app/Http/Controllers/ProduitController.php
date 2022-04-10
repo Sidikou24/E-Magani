@@ -93,4 +93,21 @@ class ProduitController extends Controller
                                         ->get();
         return view('dashboards.produits.rechercheProduit', compact('produits','pharmacie'));
     }
+
+    function clientformProduitSearch(){
+        return view('clientProduitSearch');
+    }
+
+    function clientProduitSearch(){
+        $produit1 = $_GET['produit1'];
+        $produit2 = $_GET['produit2'];
+        $produit3 = $_GET['produit3'];
+        $produit4 = $_GET['produit4'];
+
+        $produits = DB::table('produits')
+                                         ->whereIn('name',[$produit1,$produit2,$produit3,$produit4])
+                                         ->get();
+
+        return view('resultatRechercheProduit',compact('produits'));                                 
+    }
 }

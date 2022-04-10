@@ -100,11 +100,15 @@ Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'emp
     Route::get('supprimerProduit/{id}', [ProduitController::class,'supprimerProduit'])->name('suppProduit');
     Route::get('recherche/{pharmacie_id}', [ProduitController::class,'recherche'])->name('rechercheProduit');
     // Route::get('NomDupharmacien', [ProduitController::class, 'user'])->name('nomdupharmacien');
+    Route::get('clientformProduitSearch', [ProduitController::class,'clientformProduitSearch'])->name('clientformProduitSearch');
+    Route::get('clientProduitSearch', [ProduitController::class,'clientProduitSearch'])->name('clientProduitSearch');
 });
 
 Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
     Route::get('dashboard', [PharmacieController::class,'index'])->name('pharmacie.dashboard');
     Route::get('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
+    Route::get('listeDesPharmacies', [PharmacieController::class,'listeDesPharmacies'])->name('listeDesPharmacies');
+
 });
 
 

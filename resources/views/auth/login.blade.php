@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>Mon blog</title>
+    <title>E-Magani</title>
     <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
 
 
@@ -25,7 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prospera Free - New Amazing HTML5 Template</title>
+    <title>E-Magani</title>
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/responsee.css">
@@ -66,25 +66,21 @@
         <nav class="background-white background-primary-hightlight">
             <div class="line">
                 <div class="s-12 l-2">
-                    <a href="index.html" class="logo"><img src="img/logo-EMagani.jpg" alt=""></a>
+                    <a href="{{url('/')}}" class="logo"><img src="img/logo-EMagani.jpg" alt=""></a>
                 </div>
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Products</a></li>
+                        <li><a href="{{url('/')}}" >Home</a></li><br><br><br>
+                        <!-- <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li> -->
                     </ul>
                 </div>
             </div>
         </nav>
 </header>
-
-
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2 px-3 py-3 pt-md-4 pb-md-4">

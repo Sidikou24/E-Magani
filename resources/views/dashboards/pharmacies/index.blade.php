@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>Mon blog</title>
+    <title>E-Magani</title>
     <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
 
 
