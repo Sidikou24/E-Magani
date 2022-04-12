@@ -6,9 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+  
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
@@ -16,10 +18,14 @@
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
+
+    <!-- PWA  -->
+  <meta name="theme-color" content="#6777ef"/>
+  <link rel="apple-touch-icon" href="{{ asset('logoEMagani.jpg') }}">
+  <link rel="manifest" href="/manifest.json">
 
 </head>
 
@@ -81,7 +87,7 @@
           @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                        <!-- <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a> -->
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -106,38 +112,38 @@
   
 
     <div class="owl-carousel owl-single px-0">
-      <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
+      <div class="site-blocks-cover overlay" style="background-image: url('img/hero_bg_2.jpg');">
         <div class="container">
           <div class="row">
             <div class="col-lg-12 mx-auto align-self-center">
               <div class="site-block-cover-content text-center">
-                <h1 class="mb-0">E-<strong class="text-primary">Magani</strong> Ouvert H24</h1>
+                <h1 class="mb-0">Adopter<strong class="text-primary"> le bon traitement</strong></h1>
 
                 <div class="row justify-content-center mb-5">
                   <div class="col-lg-6 text-center">
-                    <p>Plusieurs pharmacies pour vous servir.</p>
+                    <p>Trouvez les produits qu'il vous faut en quelques clics.</p>
                   </div>
                 </div>
                 
-                <p><a href="{{route('listeDesPharmacies')}}" class="btn btn-primary px-5 py-3">Consulter pharmacies</a></p>
+                <p><a href="{{route('clientformProduitSearch')}}" class="btn btn-primary px-5 py-3">Chercher produits</a></p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="site-blocks-cover overlay" style="background-image: url('img/hero_bg_2.jpg');">
+      <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
         <div class="container">
           <div class="row">
             <div class="col-lg-12 mx-auto align-self-center">
               <div class="site-block-cover-content text-center">
-                <h1 class="mb-0">Adopter <strong class="text-primary">le bon traitement</strong></h1>
+                <h1 class="mb-0">E-<strong class="text-primary">Magani</strong> Ouvert H24</h1>
                 <div class="row justify-content-center mb-5">
                   <div class="col-lg-6 text-center">
-                    <p>Trouvez les produits qu'ils vous faut en quelques clics</p>
+                    <p>Plusieurs pharmacies pour vous servir.</p>
                   </div>
                 </div>
-                <p><a href="{{route('clientformProduitSearch')}}" class="btn btn-primary px-5 py-3">Chercher produits</a></p>
+                <p><a href="{{route('listeDesPharmacies')}}" class="btn btn-primary px-5 py-3">Listes des pharmacies</a></p>
               </div>
             </div>
           </div>
@@ -327,7 +333,6 @@
               <li><a href="#">Supplements</a></li>
               <li><a href="#">Vitamins</a></li>
               <li><a href="#">Nutrition</a></li>
-              <li><a href="#">Coffee</a></li>
             </ul>
           </div>
 
@@ -351,7 +356,7 @@
             <p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               Copyright &copy;
-              <script>document.write(new Date().getFullYear());</script> Tous les droits réservés | Site crée 
+              <script>document.write(new Date().getFullYear());</script> Tous droits réservés | Site crée 
                par <i class="icon-heart text-danger" aria-hidden="true"></i>  <a href="#" target="_blank"
                 class="text-primary">SidikouDari & RidouaneDoudou</a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -372,6 +377,16 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <!-- PWA JS -->
+  <script src="js/sw.js"></script>
+  <script>
+      if (!navigator.serviceWorker.controller) {
+          navigator.serviceWorker.register("/sw.js").then(function (reg) {
+              console.log("Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+  </script>
 
 </body>
 </html>

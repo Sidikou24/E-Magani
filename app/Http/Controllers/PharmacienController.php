@@ -187,6 +187,16 @@ class PharmacienController extends Controller
             'sexe' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        $path='users/images/';
+        $fontPath= public_path('fonts/cream-DEMO.ttf');
+        $char= strtoupper($request->name[0]);
+        $newAvatarName =  rand(12,34353).time().'_avatar.png';
+        $dest= $path.$newAvatarName;
+
+       $createAvatar = makeAvatar($fontPath,$dest,$char);
+       $picture = $createAvatar == true ? $newAvatarName : '';
+
         $user= new User();
         $user->pharmacien_id = auth()->user()->id;
         $user->name = $request->name;
@@ -200,6 +210,7 @@ class PharmacienController extends Controller
         $user->codePostal = $request->codePostal;
         $user->numTel = $request->numTel;
         $user->sexe= $request->sexe;
+        $user->image= $picture;
         $user->password = Hash::make($request->password );
         if ($user->save()) {
             return redirect()->back()->with('success','Employé ajouté avec succés');

@@ -147,7 +147,7 @@
                         <div class="row mb-3">
                             <label for="prix" class="col-sm-3 offset-sm-1 col-form-label">Prix: </label>
                             <div class="col-sm-7"> 
-                                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit">
+                                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" required autocomplete="prix" placeholder="prix du produit">
 
                                 @error('prix')
                                     <span class="invalid-feedback" role="alert">

@@ -102,7 +102,7 @@
                         
                         <div class="row mb-3">
                             <div class="offset-sm-4 col-sm-7">
-                                <button type="submit" class="btn btn-success">Rechercher</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            
+                                <button type="submit"  class="btn btn-success">Rechercher</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            
                             </div>
                         </div>
                     </form>

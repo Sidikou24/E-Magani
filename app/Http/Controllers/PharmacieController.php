@@ -69,8 +69,9 @@ class PharmacieController extends Controller
     }
 
     function listeDesPharmacies(){
+        $pharmaciens_nom = DB::table('users')->where('fonction','pharmacien')->get();
         $pharmacies = DB::table('pharmacies')->get();
-        return view('listePharmacie',compact('pharmacies'));
+        return view('listePharmacie',compact('pharmacies','pharmaciens_nom'));
     }
 
 }
