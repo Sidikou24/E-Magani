@@ -12,20 +12,18 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Pharmacie;
 use DB;
+use App\Models\Produit;
 
 class PharmacienController extends Controller
 {
     function index($id){
+
         $pharmacie = Pharmacie::find($id);
-        return view('dashboards.pharmaciens.index',compact('pharmacie'));
+        return view('dashboards.pharmaciens.home',compact('pharmacie'));
     }
-
-    function supprimerEmploye($id){
-        $employe = User::find($id);
-        $employe->delete(); 
-      return redirect()->back();
-    }
-
+    // function indexs(){
+    //     return view('dashboards.pharmaciens.index');
+    // }
     function profile(){
         return view('dashboards.pharmaciens.profile');
     }
@@ -172,21 +170,32 @@ class PharmacienController extends Controller
 
     function inscrireEmploye(Request $request, $pharmacie_id){
         $pharmacie = Pharmacie::find($pharmacie_id);//Récuperation de la pharmacie dans laquelle on souhaite faire l'ajout
-
+        $pharmacien_id = auth()->user()->id;
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'prenom' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'fonction' => ['required', 'string', 'max:255'],
             'pharmacie_nom' => 'required',
-            'dateNaiss' => 'required',
-            'pays' => 'required',
-            'ville' => 'required',
-            'codePostal' => 'required',
+            // 'dateNaiss' => 'required',
+            // 'pays' => 'required',
+            // 'ville' => 'required',
+            // 'codePostal' => 'required',
             'numTel' => 'required',
             'sexe' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        /**MAke avatar */
+        $path='users/images/';
+        $fontPath= public_path('fonts/cream-DEMO.ttf');
+        $char= strtoupper($request->name[0]);
+        $newAvatarName =  rand(12,34353).time().'_avatar.png';
+        $dest= $path.$newAvatarName;
+
+       $createAvatar = makeAvatar($fontPath,$dest,$char);
+       $picture = $createAvatar == true ? $newAvatarName : '';
+
         $user= new User();
         $user->pharmacien_id = auth()->user()->id;
         $user->name = $request->name;
@@ -200,6 +209,7 @@ class PharmacienController extends Controller
         $user->codePostal = $request->codePostal;
         $user->numTel = $request->numTel;
         $user->sexe= $request->sexe;
+        $user->image= $picture;
         $user->password = Hash::make($request->password );
         if ($user->save()) {
             return redirect()->back()->with('success','Employé ajouté avec succés');
@@ -207,6 +217,51 @@ class PharmacienController extends Controller
             return redirect()->back()->with('error','l\'enregistrement a echouée');
         }
     }
+
+
+// Ajouter Produit
+function ajouterProduit(Request $request, $pharmacie_id){
+    $pharmacie = Pharmacie::find($pharmacie_id);//Récuperation de la pharmacie dans laquelle on souhaite faire l'ajout
+    $pharmacien_id = auth()->user()->id;
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'num_lot' => 'required',
+        'quantite' => 'required',
+        'prix' => 'required',
+        'dateFab' => 'required',
+        'datePer' => 'required',
+    ]);
+    $produit= new Produit();
+    $produit->user_id = auth()->user()->id; 
+    $produit->name = $request->name;
+    $produit->num_lot = $request->num_lot;
+    $produit->quantite = $request->quantite;
+    $produit->prix = $request->prix;
+    $produit->dateFab = $request->dateFab;
+    $produit->datePer = $request->datePer;
+    $produit->pharmacie_nom = $pharmacie->name;
+    $produit->alert_stock = $request->alert_stock;
+    
+    if ($produit->save()) {
+        return redirect()->back()->with('success','Produit ajouté avec succés');
+    }else {
+        return redirect()->back()->with('error','l\'enregistrement a echouée');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function voir_employe($pharmacie_id){
         $user_id = auth()->user()->id;
@@ -216,8 +271,21 @@ class PharmacienController extends Controller
                                       ->where('pharmacie_nom',$pharmacie->name)
                                       ->get();
         
-        return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
+       // return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
+       return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
     }
+    function voir_produits($pharmacie_id){
+        $user_ids = auth()->user()->id;
+        $pharmacie = Pharmacie::find($pharmacie_id);
+        // $pharmacien = auth()->user();
+        // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
+        $produits = Produit::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->simplePaginate(10);
+        return view('dashboards.produits.gestionProduits',compact('produits','pharmacie'));
+    }
+
+
+
+
 
     function rechercheEmploye($pharmacie_id){
         $pharmacie = Pharmacie::find($pharmacie_id);
@@ -229,6 +297,33 @@ class PharmacienController extends Controller
                                         ->where('pharmacie_nom',$pharmacie->name)
                                         ->get();
         return view('dashboards.employes.gestionEmployes', compact('employes','pharmacie'));
+    }
+
+    public function updateE(Request $request,$id){
+        $employe= User::find($id);
+        if (!$employe) {
+           return back()->with('error','Employer introuvable');
+        }
+        $employe->update($request->all());
+        return back()->with('success','Employer Modifier');
+        
+    }
+
+    // function supprimerEmploye($id){
+    //     $employe= User::find($id);
+    //     if (!$employe) {
+    //        return back()->with('error','Employer introuvable');
+    //     }
+    //     $employe->delete();
+    //     return back()->with('success','Employer Supprimer');
+    // }
+
+
+
+    function supprimerEmploye($id){
+        $employe = User::find($id);
+        $employe->delete(); 
+        return back()->with('success','Employer Supprimer');
     }
 
 }
