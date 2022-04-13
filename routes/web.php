@@ -94,7 +94,7 @@ Route::group(['prefix' => 'employe', 'middleware' => ['isEmploye','auth', 'empec
 
 Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
     Route::get('dashboard/{pharmacie_id}', [ProduitController::class,'index'])->name('produit.dashboard');
-    Route::get('ajouterProduit/{pharmacie_id}', [ProduitController::class,'ajouterProduit'])->name('ajouterProduit');
+   // Route::get('ajouterProduit/{pharmacie_id}', [ProduitController::class,'ajouterProduit'])->name('ajouterProduit');
     Route::get('modifierProduit/{id}', [ProduitController::class,'modifierProduit'])->name('modifierProduit');
     Route::get('majProduit/{id}', [ProduitController::class,'majProduit'])->name('majProduit');
     Route::get('supprimerProduit/{id}', [ProduitController::class,'supprimerProduit'])->name('suppProduit');
