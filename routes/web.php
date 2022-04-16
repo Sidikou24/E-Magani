@@ -1,13 +1,14 @@
 <?php
 
+use App\Produit;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PharmacienController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PharmacieController;
-use Illuminate\Support\Facades\Auth;
-use App\Produit;
+use App\Http\Controllers\PharmacienController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,3 +121,9 @@ Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'e
 
 //Route::get('/{email}',[PharmacienController::class, 'voir']);
 
+
+
+// Gestions de la Ventes 
+
+Route::get('vente/{pharmacie_id}',[OrdersController::class,'index'])->name('vente');
+Route::post('orders.store/{pharmacie_id}',[OrdersController::class,'store'])->name('orders.store');

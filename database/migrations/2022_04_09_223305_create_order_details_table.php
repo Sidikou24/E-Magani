@@ -20,7 +20,9 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('quantity');
             $table->integer('unitprice');
             $table->integer('amount');
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
+            $table->string('num_lot')->nullable();
+            $table->string('pharmacie_nom')->nullable();
             $table->timestamps();
         });
     }

@@ -7,12 +7,12 @@
 @section('title','Dasboard')
 
 @section('content') 
-<div class="container">
+<div class="container-fluid">
   <div class="col-lg-12">
     <div class="row">
       <div class="col-md-9">
           <div class="card">
-          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Produit de la Pharmacie: {{ $pharmacie->name }}</marquee></h4>
+          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Produit de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
             <div class="card-header">
               <h4 style="float: left"> Ajouter Nouveau Produits</h4>
               <a href="#" style="float: right" class="btn btn-dark" 
@@ -43,9 +43,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($produits as $produit)
+                    @foreach ($produits as $key => $produit)
                                 <tr>
-                                    <th scope="row">{{ $produit->id }}</th>
+                                    <th scope="row">{{ $key +1 }}</th>
                                     <td>{{ $produit->name }}</td>
                                     <td>{{ $produit->quantite }}</td>
                                     <td>{{ number_format($produit->prix,2) }}</td>
@@ -147,9 +147,8 @@
 
 
                     @endforeach
+                    {{$produits->links()}}
                   </tbody>
-                  
-                  {!! $produits->links() !!}
               </table>
             </div>
           </div>
@@ -196,7 +195,7 @@
               </div>
               <div class="form-group">
                 <label for="prix" class="">Prix: </label>
-                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit">
+                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit" required>
               </div>
               <div class="form-group">
                 <label for="dateFab" class="">Date de Fabrication: </label>
@@ -208,7 +207,7 @@
               </div>
               <div class="form-group">
                 <label for="alert_stock" class="">Alert_Stock: </label>
-                <input type="number" class="form-control" id="alert_stock" name="alert_stock" value="{{ old('alert_stock') }}" placeholder="alert_stock du produit">
+                <input type="number" class="form-control" id="alert_stock" name="alert_stock" value="{{ old('alert_stock') }}" placeholder="alert_stock du produit" required>
               </div>
               <div class="modal-footer">
               <button class="btn btn-primary btn-block">Inscrire Produits</button>

@@ -11,5 +11,5 @@ class Transaction extends Model
     protected $fillable=['order_id', 'paid_amount',
                         'balance', 'payment_method',
                         'user_id', 'transac_date',
-                        'transac_amount'];
+                        'transac_amount','pharmacie_nom'];
 }

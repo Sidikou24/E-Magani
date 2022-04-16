@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('user_id');
             $table->date('transac_date');
             $table->integer('transac_amount');
+            $table->string('pharmacie_nom')->nullable();
             $table->timestamps();
         });
     }

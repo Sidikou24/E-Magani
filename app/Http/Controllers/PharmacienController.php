@@ -266,20 +266,23 @@ function ajouterProduit(Request $request, $pharmacie_id){
     function voir_employe($pharmacie_id){
         $user_id = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
-        $employes = DB::table('users')
-                                      ->where('pharmacien_id',$user_id)
-                                      ->where('pharmacie_nom',$pharmacie->name)
-                                      ->get();
+        $employes = User::where('pharmacien_id',$user_id AND 'pharmacie_nom',$pharmacie->name)->paginate(5);
+                                    //   ->where('pharmacie_nom',$pharmacie->name)
+                                    //   ->get();
         
        // return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
        return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
     }
+
+
+
+
     function voir_produits($pharmacie_id){
         $user_ids = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
         // $pharmacien = auth()->user();
         // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
-        $produits = Produit::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->simplePaginate(10);
+        $produits = Produit::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->paginate(5);
         return view('dashboards.produits.gestionProduits',compact('produits','pharmacie'));
     }
 

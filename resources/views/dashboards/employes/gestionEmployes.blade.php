@@ -46,12 +46,12 @@
   </tbody>   
 </table> -->
 <!-- </div> -->
-<div class="container">
+<div class="container-fluid">
   <div class="col-lg-12">
     <div class="row">
       <div class="col-md-9">
           <div class="card">
-          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Employer de la Pharmacie: {{ $pharmacie->name }}</marquee></h4>
+          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Employer de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
             <div class="card-header">
               <h4 style="float: left"> Ajouter Nouveau employe</h4>
               <a href="#" style="float: right" class="btn btn-dark" 
@@ -209,6 +209,7 @@
 
 
                     @endforeach
+                    {{$employes->links()}}
                   </tbody>   
               </table>
             </div>
