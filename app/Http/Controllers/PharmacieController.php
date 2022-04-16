@@ -73,4 +73,13 @@ class PharmacieController extends Controller
         return view('listePharmacie',compact('pharmacies'));
     }
 
+    function recherchePharmacie(){
+        
+        $pharmacieSaisi = $_GET['recherche'];
+        $pharmacies = DB::table('pharmacies')
+                                        ->where('name', 'LIKE', '%'.$pharmacieSaisi.'%')
+                                        ->where('pharmacien_id',auth()->user()->id)
+                                        ->get();
+        return view('dashboards.pharmacies.gestionpharmacies', compact('pharmacies'));
+    }
 }
