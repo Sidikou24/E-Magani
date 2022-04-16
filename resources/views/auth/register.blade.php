@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>Mon blog</title>
+    <title>E-Magani</title>
     <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
 
 
@@ -25,7 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prospera Free - New Amazing HTML5 Template</title>
+    <title>E-Magani</title>
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/responsee.css">

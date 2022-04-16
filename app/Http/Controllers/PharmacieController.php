@@ -73,4 +73,16 @@ class PharmacieController extends Controller
         return view('listePharmacie',compact('pharmacies'));
     }
 
+    function recherchepharmacie(Request $request){
+        $pharmacies = Pharmacie::all();
+
+        if($request->keyword != ''){
+            $pharmacies = Pharmacie::where('name','LIKE','%'.$request->keyword.'%')
+                                    ->where('pharmacien_id',auth()->user()->id)
+                                    ->get();
+        }
+        return response()->json([
+            'pharmacies' => $pharmacies
+        ]);
+    }
 }

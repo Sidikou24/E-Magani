@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -53,44 +56,23 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li class="active"><a href="{{url('/')}}">Home</a></li>
-                <!-- <li><a href="shop.html">Store</a></li> -->
-                <!-- <li class="has-children">
-                  <a href="#">Products</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Supplements</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamins</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Diet &amp; Nutrition</a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
-                    
-                  </ul>
-                </li> -->
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </nav>
           </div>
           <div class="icons">
-          @if (Route::has('login'))
+          
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                
+                      <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                         @endif
-                    @endauth
+
                 </div>
-            @endif
+           
 
             <!-- <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="cart.html" class="icons-btn d-inline-block bag">
@@ -118,7 +100,6 @@
                     <p>Plusieurs pharmacies pour vous servir.</p>
                   </div>
                 </div>
-                
                 <p><a href="{{route('listeDesPharmacies')}}" class="btn btn-primary px-5 py-3">Consulter pharmacies</a></p>
               </div>
             </div>
@@ -137,7 +118,7 @@
                     <p>Trouvez les produits qu'ils vous faut en quelques clics</p>
                   </div>
                 </div>
-                <p><a href="{{route('clientformProduitSearch')}}" class="btn btn-primary px-5 py-3">Chercher produits</a></p>
+                <p><a href="{{route('clientformProduitSearch')}}" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary px-5 py-3">Chercher produits</a></p>
               </div>
             </div>
           </div>
@@ -145,171 +126,61 @@
       </div>
     </div>
     @yield('contenu')
-    <!-- <div class="site-section py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="feature">
-              <span class="wrap-icon flaticon-24-hours-drugs-delivery"></span>
-              <h3><a href="#">Free Delivery</a></h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
-              <p><a href="#" class="d-flex align-items-center"><span class="mr-2">Learn more</span> <span class="icon-keyboard_arrow_right"></span></a></p>
+
+      
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Saisir le(s) produits que vous recherchez</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="feature">
-              <span class="wrap-icon flaticon-medicine"></span>
-              <h3><a href="#">New Medicine Everyday</a></h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
-              <p><a href="#" class="d-flex align-items-center"><span class="mr-2">Learn more</span> <span class="icon-keyboard_arrow_right"></span></a></p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="feature">
-              <span class="wrap-icon flaticon-test-tubes"></span>
-              <h3><a href="#">Medicines Guaranteed</a></h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
-              <p><a href="#" class="d-flex align-items-center"><span class="mr-2">Learn more</span> <span class="icon-keyboard_arrow_right"></span></a></p>
-            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="GET" action="{{route('clientProduitSearch')}}">
+                            @csrf
+                            <div class="row mb-3">
+                                <label for="produit1" class="col-sm-3 offset-sm-1 col-form-label">Produit 1:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit1') is-invalid @enderror" id="produit1" name="produit1" value="{{ old('produit1') }}"  placeholder="nom d'un médicament" autocomplete="produit1">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="produit2" class="col-sm-3 offset-sm-1 col-form-label">Produit 2:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit2') is-invalid @enderror" id="produit3" name="produit2" value="{{ old('produit2') }}"  placeholder="nom d'un médicament" autocomplete="produit2">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="produit3" class="col-sm-3 offset-sm-1 col-form-label">Produit 3:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit3') is-invalid @enderror" id="produit3" name="produit3" value="{{ old('produit3') }}"  placeholder="nom d'un médicament" autocomplete="produit3">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="produit4" class="col-sm-3 offset-sm-1 col-form-label">Produit 4:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit4') is-invalid @enderror" id="produit4" name="produit4" value="{{ old('produit4') }}"  placeholder="nom d'un médicament" autocomplete="produit4">
+                                </div>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                  <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+                </form>
           </div>
         </div>
       </div>
-    </div>
-     -->
-    
-    <!-- <div class="site-section bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="title-section text-center col-12">
-            <h2>Pharmacy <strong class="text-primary">Products</strong></h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 block-3 products-wrap">
-            <div class="nonloop-block-3 owl-carousel">
 
-              <div class="text-center item mb-4 item-v2">
-                <span class="onsale">Sale</span>
-                <a href="shop-single.html"> <img src="images/product_03.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
 
-              <div class="text-center item mb-4 item-v2">
-                <a href="shop-single.html"> <img src="images/product_01.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
 
-              <div class="text-center item mb-4 item-v2">
-                <span class="onsale">Sale</span>
-                <a href="shop-single.html"> <img src="images/product_02.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4 item-v2">
-                <a href="shop-single.html"> <img src="images/product_04.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_bg_2.jpg');">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-         <div class="col-lg-7">
-           <h3 class="text-white">Sign up for discount up to 55% OFF</h3>
-           <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam.</p>
-           <p class="mb-0"><a href="#" class="btn btn-outline-white">Sign up</a></p>
-         </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section">
-      <div class="container">
-        
-        <div class="row justify-content-between">
-          <div class="col-lg-6">
-            <div class="title-section">
-              <h2>Happy <strong class="text-primary">Customers</strong></h2>
-            </div>
-            <div class="block-3 products-wrap">
-            <div class="owl-single no-direction owl-carousel">
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_1.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat unde.&rdquo;</p>
-                </blockquote>
-
-                <p class="author">&mdash; Kelly Holmes</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p class="author">&mdash; Rebecca Morando</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_3.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p class="author">&mdash; Lucas Gallone</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_4.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p class="author">&mdash; Andrew Neel</p>
-              </div>
-        
-            </div>
-          </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="title-section">
-              <h2 class="mb-5">Why <strong class="text-primary">Us</strong></h2>
-              <div class="step-number d-flex mb-4">
-                <span>1</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore</p>
-              </div>
-
-              <div class="step-number d-flex mb-4">
-                <span>2</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore</p>
-              </div>
-
-              <div class="step-number d-flex mb-4">
-                <span>3</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <footer class="site-footer bg-light">
       <div class="container">
         <div class="row">

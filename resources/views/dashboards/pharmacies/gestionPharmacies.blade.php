@@ -9,10 +9,17 @@
 <h4>Bienvenue Pharmacien: {{ Auth::user()->name }}</h4>
 <div class="container">
 <h3>Les pharmacies:</h3>
-<form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('recherchePharmacie')}}">
+<!-- <form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('recherchePharmacie')}}">
       <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher pharmacie" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-</form><br><br>
+</form><br><br> -->
+
+<div class="row my-2 my-lg-0 float-right mb-4">
+  <div class="col-md-12 text-right ">
+  <input class="form-control mr-sm-2 " type="text" name="recherche" placeholder="Rechercher pharmacie" aria-label="Search" >
+  </div>
+</div><br><br>
+
 <a class="btn btn-success float-right mb-4" href="{{ route('pharmacie.dashboard') }}">Ajouter Nouveau pharmacie</a>
 <table class="table">
   <thead class="thead-dark">
