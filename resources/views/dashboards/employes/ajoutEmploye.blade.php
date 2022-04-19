@@ -252,7 +252,7 @@
                         <div class="row mb-3">
                             <label for="password_confirmation" class="col-sm-4 offset-sm-1 col-form-label">Confirmation mot de passe *</label>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required autocomplete="new-password-confirm">
+                                
                                 @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
