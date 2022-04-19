@@ -24,6 +24,15 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <style>
+    /* #resultP{
+      display:none;
+    } */
+    #resultPharmacie{
+      display:none;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -62,63 +71,59 @@
             </nav>
           </div>
           <div class="icons">
-          
+          @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                
-                      <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    @auth
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                         @endif
-
+                    @endauth
                 </div>
-           
-
-            <!-- <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart.html" class="icons-btn d-inline-block bag">
-              <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
-            </a>
-            <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                class="icon-menu"></span></a> -->
+            @endif
           </div>
         </div>
       </div>
     </div>
   
 
-    <div class="owl-carousel owl-single px-0">
-      <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 mx-auto align-self-center">
-              <div class="site-block-cover-content text-center">
-                <h1 class="mb-0">E-<strong class="text-primary">Magani</strong> Ouvert H24</h1>
-
-                <div class="row justify-content-center mb-5">
-                  <div class="col-lg-6 text-center">
-                    <p>Plusieurs pharmacies pour vous servir.</p>
-                  </div>
-                </div>
-                <p><a href="{{route('listeDesPharmacies')}}" class="btn btn-primary px-5 py-3">Consulter pharmacies</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div id="imgAccueil" class="owl-carousel owl-single px-0">
       <div class="site-blocks-cover overlay" style="background-image: url('img/hero_bg_2.jpg');">
         <div class="container">
           <div class="row">
             <div class="col-lg-12 mx-auto align-self-center">
               <div class="site-block-cover-content text-center">
                 <h1 class="mb-0">Adopter <strong class="text-primary">le bon traitement</strong></h1>
+
                 <div class="row justify-content-center mb-5">
                   <div class="col-lg-6 text-center">
-                    <p>Trouvez les produits qu'ils vous faut en quelques clics</p>
+                    <p>Trouvez les produits qu'ils vous faut en quelques clics!!!</p>
                   </div>
                 </div>
-                <p><a href="{{route('clientformProduitSearch')}}" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary px-5 py-3">Chercher produits</a></p>
+                
+                  <p><button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary px-5 py-3">Rechercher Produits</button></p>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 mx-auto align-self-center">
+              <div class="site-block-cover-content text-center">
+                <h1 class="mb-0">E-<strong class="text-primary">Magani </strong>Ouvert H24</h1>
+                <div class="row justify-content-center mb-5">
+                  <div class="col-lg-6 text-center">
+                    <p> Plusieurs pharmacies pour vous servir. </p>
+                  </div>
+                </div> 
+                <p><button type="submit" onclick="listePharma()"  class="btn btn-primary px-5 py-3">Liste des Pharmacie</button></p>
               </div>
             </div>
           </div>
@@ -139,8 +144,9 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-                <form class="form-horizontal" method="GET" action="{{route('clientProduitSearch')}}">
+            <div id="formProduit" class="modal-body">
+                                                  
+                <form class="form-horizontal" method="GET" action="{{route('rechercheProd')}}"> 
                             @csrf
                             <div class="row mb-3">
                                 <label for="produit1" class="col-sm-3 offset-sm-1 col-form-label">Produit 1:</label>
@@ -171,26 +177,69 @@
                             </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                  <button type="submit" class="btn btn-primary">Rechercher</button>
+                  <button type="button" id="annuler" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                  <button type="submit" onclick="affich()" class="btn btn-primary">Rechercher</button>
                 </div>
                 </form>
           </div>
         </div>
       </div>
 
+      <!-- affichage resultat aprés recherche des produits -->
+      <div  id="resultP">
+          <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Produit </th>
+              <th scope="col">Disponible </th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($produits as $produit)
+              <tr>
+              <td>{{ $produit->name }}</td>
+              <td>pharmacie {{ $produit->pharmacie_nom }}</td>
+              </tr>
+              @endforeach
+          </tbody>   
+        </table>
+      </div>
+
+      <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
+      <div id="resultPharmacie">
+          <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Pharmacie </th>
+              <th scope="col">Localité </th>
+              <th scope="col">Pharmacien responsable </th>
+              <th scope="col">Date de création </th>
+              <th scope="col">Nombre d'agent </th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($pharmacies as $pharmacie)
+              <tr>
+              <td>{{ $pharmacie->name }}</td>
+              <td> {{ $pharmacie->localite }}</td>
+              <td>Dr {{ $pharmacie->nom_proprio }}</td>
+              <td> {{ $pharmacie->dateCrea }}</td>
+              <td> {{ $pharmacie->nbrAgent }}</td>
+              </tr>
+              @endforeach
+          </tbody>   
+        </table>
+      </div>
 
 
     <footer class="site-footer bg-light">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-
             <div class="block-7">
               <h3 class="footer-heading mb-4">A propos de <strong class="text-primary">E-Magani</strong></h3>
               <p>E-Magani est une plateforme qui vous permet de trouver les produits dont vous avez besoin dans le plus bref délai.</p>
             </div>
-
           </div>
           <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
             <h3 class="footer-heading mb-4">Informez-vous</h3>
@@ -213,8 +262,6 @@
                 <li class="email">Ridouane@gmail.com</li>
               </ul>
             </div>
-
-
           </div>
         </div>
         <div class="row pt-5 mt-5 text-center">
@@ -243,6 +290,19 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <script>
+    function affich(){
+      document.getElementById("resultP").style.display = "block"; 
+      document.getElementById("formProduit").style.display = "none";
+      document.getElementById("exampleModal").style.display = "none";
+    }
+    function listePharma(){
+      document.getElementById("resultPharmacie").style.display = "block";
+      document.getElementById("resultP").style.display = "none";
+    }
+  
+  </script>
 
 </body>
 </html>

@@ -7,7 +7,10 @@ use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PharmacieController;
 use Illuminate\Support\Facades\Auth;
-use App\Produit;
+use App\Models\Produit;
+use App\Models\Pharmacie;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +23,21 @@ use App\Produit;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function (Request $request) {
+   $pharmacies = DB::table('pharmacies')->get(); //Toutes les pharmacies du sites
+    
+    $produit1 = $request->input('produit1');
+    $produit2 = $request->input('produit2');
+    $produit3 = $request->input('produit3');
+    $produit4 = $request->input('produit4');
+
+        $produits = DB::table('produits')
+                                 ->whereIn('name',[$produit1,$produit2,$produit3,$produit4])
+                                 ->get();
+       
+                                 
+    return view('welcome',compact('produits','pharmacies'));
+})->name('rechercheProd');
 
 //quand je suis authentifié en tant qu'admin et qu'on fait retour en arriére cela va nous retourner la page d'authentification 
 //il faut arranger cela en creant une route de middleware
@@ -99,15 +114,12 @@ Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'emp
     Route::get('majProduit/{id}', [ProduitController::class,'majProduit'])->name('majProduit');
     Route::get('supprimerProduit/{id}', [ProduitController::class,'supprimerProduit'])->name('suppProduit');
     Route::get('recherche/{pharmacie_id}', [ProduitController::class,'recherche'])->name('rechercheProduit');
-    // Route::get('NomDupharmacien', [ProduitController::class, 'user'])->name('nomdupharmacien');
-    Route::get('clientformProduitSearch', [ProduitController::class,'clientformProduitSearch'])->name('clientformProduitSearch');
-    Route::get('clientProduitSearch', [ProduitController::class,'clientProduitSearch'])->name('clientProduitSearch');
 });
 
 Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
     Route::get('dashboard', [PharmacieController::class,'index'])->name('pharmacie.dashboard');
     Route::get('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
-    Route::get('listeDesPharmacies', [PharmacieController::class,'listeDesPharmacies'])->name('listeDesPharmacies');
+   // Route::get('listeDesPharmacies', [PharmacieController::class,'listeDesPharmacies'])->name('listeDesPharmacies');
 
 });
 

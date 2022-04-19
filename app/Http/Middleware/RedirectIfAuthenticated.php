@@ -29,7 +29,7 @@ class RedirectIfAuthenticated
                 return redirect()->route('admin.dashboard');
             }
             elseif( Auth::guard($guard)->check() && Auth::user()->fonction == 'pharmacien' ) {
-                return redirect()->route('pharmacien.dashboard');
+                return redirect()->route('voir_pharmacie');
             }
             elseif( Auth::guard($guard)->check() && Auth::user()->fonction == 'employé' ) {
                 return redirect()->route('employe.dashboard');
