@@ -129,7 +129,7 @@ Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'e
 
 // Gestions de la Ventes 
 
-Route::get('vente/{pharmacie_id}',[OrdersController::class,'index'])->name('vente');
+Route::get('vente/{pharmacie_id}',[OrdersController::class,'index'])->name('ventes');
 Route::post('orders.store/{pharmacie_id}',[OrdersController::class,'store'])->name('orders.store');
 
 

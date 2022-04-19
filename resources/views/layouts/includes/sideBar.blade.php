@@ -6,7 +6,7 @@
         </li>
 
         <li>
-            <a href="{{ route('vente',$pharmacie)}}"><i class="fa fa-box fa-lg"></i>Orders</a>
+            <a href="{{ route('ventes',$pharmacie)}}"><i class="fa fa-box fa-lg"></i>Orders</a>
         </li>
 
         <li>

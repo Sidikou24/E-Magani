@@ -2,7 +2,7 @@
 @if(auth()->user()->fonction == 'pharmacien')
     <a href="{{ route('voir_employe',$pharmacie) }}" class="btn btn-outline rounded-pill"><i class="fa fa-user"> </i> Employer</a>
     <a href="{{ route('voir_produits',$pharmacie)}}" class="btn btn-outline rounded-pill"><i class="fa fa-box"></i>  Produits</a>
-    <a href="{{ route('vente',$pharmacie)}}" class="btn btn-outline rounded-pill"><i class="fa fa-laptop"> </i> Cashire</a>
+    <a href="{{ route('ventes',$pharmacie)}}" class="btn btn-outline rounded-pill"><i class="fa fa-laptop"> </i> Cashire</a>
     <a href="#" class="btn btn-outline rounded-pill"><i class="fa fa-file"> </i> Reports</a>
     <a href="#" class="btn btn-outline rounded-pill"><i class="fa fa-money-bill"> </i> Transactions</a>
     <a href="#" class="btn btn-outline rounded-pill"><i class="fa fa-chart"> </i> Suppliers</a>
