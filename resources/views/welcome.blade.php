@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -20,6 +23,15 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* #resultP{
+      display:none;
+    } */
+    #resultPharmacie{
+      display:none;
+    }
+  </style>
 
 </head>
 
@@ -53,30 +65,11 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li class="active"><a href="{{url('/')}}">Home</a></li>
-                <!-- <li><a href="shop.html">Store</a></li> -->
-                <!-- <li class="has-children">
-                  <a href="#">Products</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Supplements</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamins</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Diet &amp; Nutrition</a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
-                    
-                  </ul>
-                </li> -->
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -85,57 +78,46 @@
                         @endif
                     @endauth
             @endif
-                
-              </ul>
-              </nav>
-          </div>
-          <div class="icons">
-            <!-- <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart.html" class="icons-btn d-inline-block bag">
-              <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
-            </a>
-            <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                class="icon-menu"></span></a> -->
           </div>
         </div>
       </div>
     </div>
   
 
-    <div class="owl-carousel owl-single px-0">
-      <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 mx-auto align-self-center">
-              <div class="site-block-cover-content text-center">
-                <h1 class="mb-0">E-<strong class="text-primary">Magani</strong> Ouvert H24</h1>
-
-                <div class="row justify-content-center mb-5">
-                  <div class="col-lg-6 text-center">
-                    <p>Plusieurs pharmacies pour vous servir.</p>
-                  </div>
-                </div>
-                
-                <p><a href="{{route('listeDesPharmacies')}}" class="btn btn-primary px-5 py-3">Consulter pharmacies</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div id="imgAccueil" class="owl-carousel owl-single px-0">
       <div class="site-blocks-cover overlay" style="background-image: url('img/hero_bg_2.jpg');">
         <div class="container">
           <div class="row">
             <div class="col-lg-12 mx-auto align-self-center">
               <div class="site-block-cover-content text-center">
                 <h1 class="mb-0">Adopter <strong class="text-primary">le bon traitement</strong></h1>
+
                 <div class="row justify-content-center mb-5">
                   <div class="col-lg-6 text-center">
-                    <p>Trouvez les produits qu'ils vous faut en quelques clics</p>
+                    <p>Trouvez les produits qu'ils vous faut en quelques clics!!!</p>
                   </div>
                 </div>
-                <p><a href="{{route('clientformProduitSearch')}}" class="btn btn-primary px-5 py-3">Chercher produits</a></p>
+                
+                  <p><button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary px-5 py-3">Rechercher Produits</button></p>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 mx-auto align-self-center">
+              <div class="site-block-cover-content text-center">
+                <h1 class="mb-0">E-<strong class="text-primary">Magani </strong>Ouvert H24</h1>
+                <div class="row justify-content-center mb-5">
+                  <div class="col-lg-6 text-center">
+                    <p> Plusieurs pharmacies pour vous servir. </p>
+                  </div>
+                </div> 
+                <p><button type="submit" onclick="listePharma()"  class="btn btn-primary px-5 py-3">Liste des Pharmacie</button></p>
               </div>
             </div>
           </div>
@@ -143,181 +125,115 @@
       </div>
     </div>
     @yield('contenu')
-    <!-- <div class="site-section py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="feature">
-              <span class="wrap-icon flaticon-24-hours-drugs-delivery"></span>
-              <h3><a href="#">Free Delivery</a></h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
-              <p><a href="#" class="d-flex align-items-center"><span class="mr-2">Learn more</span> <span class="icon-keyboard_arrow_right"></span></a></p>
+
+      
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Saisir le(s) produits que vous recherchez</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="feature">
-              <span class="wrap-icon flaticon-medicine"></span>
-              <h3><a href="#">New Medicine Everyday</a></h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
-              <p><a href="#" class="d-flex align-items-center"><span class="mr-2">Learn more</span> <span class="icon-keyboard_arrow_right"></span></a></p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="feature">
-              <span class="wrap-icon flaticon-test-tubes"></span>
-              <h3><a href="#">Medicines Guaranteed</a></h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
-              <p><a href="#" class="d-flex align-items-center"><span class="mr-2">Learn more</span> <span class="icon-keyboard_arrow_right"></span></a></p>
-            </div>
+            <div id="formProduit" class="modal-body">
+                                                  
+                <form class="form-horizontal" method="GET" action="{{route('rechercheProd')}}"> 
+                            @csrf
+                            <div class="row mb-3">
+                                <label for="produit1" class="col-sm-3 offset-sm-1 col-form-label">Produit 1:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit1') is-invalid @enderror" id="produit1" name="produit1" value="{{ old('produit1') }}"  placeholder="nom d'un médicament" autocomplete="produit1">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="produit2" class="col-sm-3 offset-sm-1 col-form-label">Produit 2:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit2') is-invalid @enderror" id="produit3" name="produit2" value="{{ old('produit2') }}"  placeholder="nom d'un médicament" autocomplete="produit2">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="produit3" class="col-sm-3 offset-sm-1 col-form-label">Produit 3:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit3') is-invalid @enderror" id="produit3" name="produit3" value="{{ old('produit3') }}"  placeholder="nom d'un médicament" autocomplete="produit3">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="produit4" class="col-sm-3 offset-sm-1 col-form-label">Produit 4:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control @error('produit4') is-invalid @enderror" id="produit4" name="produit4" value="{{ old('produit4') }}"  placeholder="nom d'un médicament" autocomplete="produit4">
+                                </div>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="annuler" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                  <button type="submit" onclick="affich()" class="btn btn-primary">Rechercher</button>
+                </div>
+                </form>
           </div>
         </div>
       </div>
-    </div>
-     -->
-    
-    <!-- <div class="site-section bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="title-section text-center col-12">
-            <h2>Pharmacy <strong class="text-primary">Products</strong></h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 block-3 products-wrap">
-            <div class="nonloop-block-3 owl-carousel">
 
-              <div class="text-center item mb-4 item-v2">
-                <span class="onsale">Sale</span>
-                <a href="shop-single.html"> <img src="images/product_03.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4 item-v2">
-                <a href="shop-single.html"> <img src="images/product_01.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4 item-v2">
-                <span class="onsale">Sale</span>
-                <a href="shop-single.html"> <img src="images/product_02.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4 item-v2">
-                <a href="shop-single.html"> <img src="images/product_04.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-            </div>
-          </div>
-        </div>
+      <!-- affichage resultat aprés recherche des produits -->
+      <div  id="resultP">
+          <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Produit </th>
+              <th scope="col">Disponible </th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($produits as $produit)
+              <tr>
+              <td>{{ $produit->name }}</td>
+              <td>pharmacie {{ $produit->pharmacie_nom }}</td>
+              </tr>
+              @endforeach
+          </tbody>   
+        </table>
       </div>
-    </div>
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_bg_2.jpg');">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-         <div class="col-lg-7">
-           <h3 class="text-white">Sign up for discount up to 55% OFF</h3>
-           <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam.</p>
-           <p class="mb-0"><a href="#" class="btn btn-outline-white">Sign up</a></p>
-         </div>
-        </div>
+      <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
+      <div id="resultPharmacie">
+          <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Pharmacie </th>
+              <th scope="col">Localité </th>
+              <th scope="col">Pharmacien responsable </th>
+              <th scope="col">Date de création </th>
+              <th scope="col">Nombre d'agent </th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($pharmacies as $pharmacie)
+              <tr>
+              <td>{{ $pharmacie->name }}</td>
+              <td> {{ $pharmacie->localite }}</td>
+              <td>Dr {{ $pharmacie->nom_proprio }}</td>
+              <td> {{ $pharmacie->dateCrea }}</td>
+              <td> {{ $pharmacie->nbrAgent }}</td>
+              </tr>
+              @endforeach
+          </tbody>   
+        </table>
       </div>
-    </div>
 
-    <div class="site-section">
-      <div class="container">
-        
-        <div class="row justify-content-between">
-          <div class="col-lg-6">
-            <div class="title-section">
-              <h2>Happy <strong class="text-primary">Customers</strong></h2>
-            </div>
-            <div class="block-3 products-wrap">
-            <div class="owl-single no-direction owl-carousel">
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_1.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat unde.&rdquo;</p>
-                </blockquote>
 
-                <p class="author">&mdash; Kelly Holmes</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p class="author">&mdash; Rebecca Morando</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_3.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p class="author">&mdash; Lucas Gallone</p>
-              </div>
-        
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_4.jpg" alt="Image" class="img-fluid">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-              
-                <p class="author">&mdash; Andrew Neel</p>
-              </div>
-        
-            </div>
-          </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="title-section">
-              <h2 class="mb-5">Why <strong class="text-primary">Us</strong></h2>
-              <div class="step-number d-flex mb-4">
-                <span>1</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore</p>
-              </div>
-
-              <div class="step-number d-flex mb-4">
-                <span>2</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore</p>
-              </div>
-
-              <div class="step-number d-flex mb-4">
-                <span>3</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <footer class="site-footer bg-light">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-
             <div class="block-7">
               <h3 class="footer-heading mb-4">A propos de <strong class="text-primary">E-Magani</strong></h3>
               <p>E-Magani est une plateforme qui vous permet de trouver les produits dont vous avez besoin dans le plus bref délai.</p>
             </div>
-
           </div>
           <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
             <h3 class="footer-heading mb-4">Informez-vous</h3>
@@ -340,8 +256,6 @@
                 <li class="email">Ridouane@gmail.com</li>
               </ul>
             </div>
-
-
           </div>
         </div>
         <div class="row pt-5 mt-5 text-center">
@@ -370,6 +284,19 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <script>
+    function affich(){
+      document.getElementById("resultP").style.display = "block"; 
+      document.getElementById("formProduit").style.display = "none";
+      document.getElementById("exampleModal").style.display = "none";
+    }
+    function listePharma(){
+      document.getElementById("resultPharmacie").style.display = "block";
+      document.getElementById("resultP").style.display = "none";
+    }
+  
+  </script>
 
 </body>
 </html>

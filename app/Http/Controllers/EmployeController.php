@@ -42,6 +42,14 @@ class EmployeController extends Controller
         if ($validator->passes()) {
             return response()->json(['status'=>0,'error'=>$validator->errors()->toArray()]);
         } else {
+            $path='users/images/';
+             $fontPath= public_path('fonts/cream-DEMO.ttf');
+             $char= strtoupper($request->name[0]);
+             $newAvatarName =  rand(12,34353).time().'_avatar.png';
+             $dest= $path.$newAvatarName;
+ 
+            $createAvatar = makeAvatar($fontPath,$dest,$char);
+            $picture = $createAvatar == true ? $newAvatarName : '';
             $query=  User::find(Auth::user()->id)->update([
                 'name' => $request->name,
                 'prenom' => $request->prenom,

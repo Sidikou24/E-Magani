@@ -188,15 +188,14 @@ class PharmacienController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        /**MAke avatar */
         $path='users/images/';
-        $fontPath= public_path('fonts/cream-DEMO.ttf');
-        $char= strtoupper($request->name[0]);
-        $newAvatarName =  rand(12,34353).time().'_avatar.png';
-        $dest= $path.$newAvatarName;
-
-       $createAvatar = makeAvatar($fontPath,$dest,$char);
-       $picture = $createAvatar == true ? $newAvatarName : '';
+             $fontPath= public_path('fonts/cream-DEMO.ttf');
+             $char= strtoupper($request->name[0]);
+             $newAvatarName =  rand(12,34353).time().'_avatar.png';
+             $dest= $path.$newAvatarName;
+ 
+            $createAvatar = makeAvatar($fontPath,$dest,$char);
+            $picture = $createAvatar == true ? $newAvatarName : '';
 
         $user= new User();
         $user->pharmacien_id = auth()->user()->id;
