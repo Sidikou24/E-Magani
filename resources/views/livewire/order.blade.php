@@ -1,7 +1,3 @@
-
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
 @extends('layouts.app')
 
 @section('title','Dasboard')
@@ -14,23 +10,30 @@
           <div class="card">
           <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Ventes de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
             <div class="card-header">
-              <h4 style="float: left"> Faire Une Vente</h4>
-              <a href="#" style="float: right" class="btn btn-dark" 
-              data-toggle="modal" data-target="#addProduit">
-              <i class="fa fa-plus"></i> Faire Une Vente</a> </div>
+                <h4 style="float: left"> Faire Une Vente</h4>
+                <a href="#" style="float: right" class="btn btn-dark" 
+                data-toggle="modal" data-target="#addProduit">
+                <i class="fa fa-plus"></i> Faire Une Vente</a> 
+            </div>
               @if(Session::get('success'))
-                                            <div class="alert alert-success">
-                                                {{Session::get('success')}}
-                                            </div>
-                                        @endif
-                                        @if(Session::get('error'))
-                                            <<div class="alert alert-danger">
-                                                {{Session::get('error')}}
-                                            </div>
-                                        @endif
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
+              @endif
+              @if(Session::get('error'))
+                <div class="alert alert-danger">
+                    {{Session::get('error')}}
+                </div>
+              @endif
+                   
               <form action="{{ route('orders.store',$pharmacie->id)}}" method="post">
                  {{ csrf_field() }}
                     <div class="card-body">
+                       <div class="my-2">
+                         <form wire:submit.prevent="InsertoCart">
+                            <input type="text" id="" wire:model="produit_numRef" class="form-control" placeholder="entrer le numero de reference">
+                          </form>
+                        </div> 
                       <table class="table table-bordered table-left">
                           <thead>
                             <tr>
@@ -107,12 +110,12 @@
                             <table class="table table-striped">
                               <tr>
                                 <td>
-                                  <label for="">Nom Du Vendeur</label>
-                                  <input type="text" name="customer_name" readonly value="{{Auth()->user()->name}}" class="form-control">
+                                  <label for="">Nom Du client</label>
+                                  <input type="text" name="customer_name" value="" class="form-control">
                                 </td>
                                 <td>
-                                  <label for="">Numero Du Vendeur</label>
-                                  <input type="number" name="customer_phone" readonly value="{{Auth()->user()->numTel}}" class="form-control">
+                                  <label for="">Numero Du client</label>
+                                  <input type="number" name="customer_phone" value="" class="form-control">
                                 </td>
                               </tr>
                             </table>
@@ -216,6 +219,8 @@
   </div>
 </div>
 
+
+
 <div class="modal">
     <div id="print">
       @include('dashboards.reports.recu')
@@ -268,7 +273,7 @@
   /* Apres styles */
   .radio-item input[type="radio"]:checked:after{
     position: relative;
-    top: -16px;
+    top: -28px;
     left: 4px;
     display: inline-block;
     border-radius: 6px;

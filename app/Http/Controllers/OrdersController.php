@@ -61,7 +61,7 @@ class OrdersController extends Controller
      */
     public function store(Request $request,$pharmacie_id)
     {
-        return $request->all();
+        // return $request->all();
        
       DB::transaction(function() use($request,$pharmacie_id){
         $user_ids = auth()->user()->id;
@@ -85,8 +85,16 @@ class OrdersController extends Controller
             $order_details->amount = $request->total_amount[$i];
             $order_details->discount = $request->discount[$i];
             $order_details->num_lot = $request->num_lot[$i];
+            $order_details->produit_name= $request->name[$i];
             $order_details->pharmacie_nom= $pharmacie->name;
             $order_details->save();
+        }
+
+
+        for ($i=0; $i <count($request->produit_id) ; $i++) { 
+            $produits=Produit::find($request->produit_id[$i]);
+            $qty= $produits->quantite - $request->quantite[$i];
+            $produits->update(['quantite' => $qty]);
         }
 
             // 'order_id', 'paid_amount',

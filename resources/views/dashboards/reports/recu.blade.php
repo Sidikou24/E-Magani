@@ -4,7 +4,7 @@
             <div id="print_content">
 
                 <center id="top">
-                    <div class="logo">E-Magani</div>
+                    <div class="logo">{{$pharmacie->name}}</div>
                     <div class="info"></div>
                     <h2> E-Magani</h2>
                 </center>
@@ -30,13 +30,13 @@
                                 <h2>Article</h2>
                             </td>
                             <td class="Hours">
-                                <h2>Qty</h2>
+                                <h2>Prix</h2>
+                            </td>
+                            <td class="Rate">
+                                <h2> Qty</h2>
                             </td>
                             <td class="Rate">
                                 <h2>Unité</h2>
-                            </td>
-                            <td class="Rate">
-                                <h2>Monnaie</h2>
                             </td>
                             <td class="Rate">
                                 <h2>Total</h2>
@@ -45,19 +45,19 @@
                     @foreach($order_receipt as $receipt)
                         <tr class="service">
                             <td class="tableitem">
-                                <p class="itemtext"></p>
+                                <p class="itemtext">{{$receipt->produit_name}}</p>
                             </td>
                             <td class="tableitem">
-                                <p class="itemtext">{{number_format($receipt->unitprice)}}</p>
+                                <p class="itemtext">{{number_format($receipt->unitprice,2)}}</p>
                             </td>
                             <td class="tableitem">
-                                <p class="itemtext">DT 5</p>
+                                <p class="itemtext">{{$receipt->quantity}}</p>
                             </td>
                             <td class="tableitem">
-                                <p class="itemtext">0</p>
+                                <p class="itemtext">{{$receipt->discount ? ' ' : '0'}}</p>
                             </td>
                             <td class="tableitem">
-                                <p class="itemtext">DT 100</p>
+                                <p class="itemtext">{{number_format($receipt->amount,2)}}</p>
                             </td>
                         </tr>
                     @endforeach
@@ -69,7 +69,7 @@
                                 <p class="itemtext">Tax</p>
                             </td>
                             <td class="Payment">
-                                <p class="itemtext">$ 100</p>
+                                <p class="itemtext">$ </p>
                             </td>
                         </tr>
                         <tr class="tabletitle">
@@ -78,7 +78,7 @@
                             <td></td>
                             <td class="Rate">Total</td>
                             <td class="Payment">
-                                <h2>$ 100</h2>
+                                <h2>$  {{number_format($order_receipt->sum('amount'),2)}}</h2>
                             </td>
                         </tr>
                     </table>

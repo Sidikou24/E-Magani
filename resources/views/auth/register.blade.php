@@ -146,7 +146,7 @@
                         <div class="row mb-3">
                             <label for="fonction" class="col-sm-3 offset-sm-1 col-form-label">Fonction *</label>
                             <div class="col-sm-7">
-                                <input type="text" id="fonction" class="form-control" name="fonction" list="fon" required pattern="[Ee]mployé|[Pp]harmacien">
+                                <input type="text" readonly id="fonction" class="form-control" value="pharmacien" name="fonction" list="fon" required pattern="[Pp]harmacien">
                                 <datalist id="fon">
                                     <option>pharmacien</option>
                                     <option>Employé</option>
@@ -174,7 +174,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <label for="dateNaiss" class="col-sm-3 offset-sm-1 col-form-label">Date de Naissance</label>
                             <div class="col-sm-7">
                                 <input type="date" class="form-control @error('dateNaiss') is-invalid @enderror" id="dateNaiss" name="dateNaiss" value="{{ old('dateNaiss') }}" required autocomplete="dateNaiss" autofocus>
@@ -184,8 +184,8 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="row mb-3">
+                        </div> -->
+                        <!-- <div class="row mb-3">
                             <label for="pays" class="col-sm-3 offset-sm-1 col-form-label">Pays *</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control @error('pays') is-invalid @enderror" id="pays" name="pays" value="{{ old('pays') }}" required autocomplete="pays">
@@ -228,7 +228,7 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row mb-3">
                             <label for="sexe" class="col-sm-3 offset-sm-1 col-form-label">Sexe :</label>
                             <div class="col-sm-7">

@@ -12,13 +12,13 @@ class Order_details extends Model
     use HasFactory;
     protected $fillable=['order_id', 'product_id',
                         'unitprice', 'quantity',
-                        'amount', 'discount','num_lot','pharmacie_nom'];
+                        'amount', 'discount','num_lot','pharmacie_nom','produit_name'];
 
     public function produit(){
-        return $this->belongsTo('App\Models\Produit');
+        return $this->belongsToMany('App\Models\Produit');
     }
 
     public function order(){
-        return $this->belongsTo('App\Models\Orders');
+        return $this->belongsToMany('App\Models\Orders');
     }
 }

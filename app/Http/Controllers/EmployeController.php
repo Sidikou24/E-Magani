@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use DB;
 use Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Orders;
+use App\Models\Pharmacie;
+use Illuminate\Http\Request;
+use App\Models\Order_details;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EmployeController extends Controller
 {
     function index(){
-        return view('dashboards.employes.index');
+      
+        return view('dashboards.pharmaciens.home');
     }
 
     function profile(){
@@ -139,6 +144,33 @@ class EmployeController extends Controller
             }
             
         }
+    }
+
+
+
+    public function vente()
+    {
+        $user_ids = auth()->user()->pharmacien_id;
+        $pharmacie = Pharmacie::find(auth()->user()->pharmacie_id);
+        // $pharmacien = auth()->user();
+        // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
+        $orders = Orders::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->get();
+
+        $lastID= Order_details::where('pharmacie_nom',$pharmacie->name)
+                                                                    ->max('order_id');
+         // lats order details
+         $order_receipt = Order_details::where('order_id', $lastID)->get();
+        $produits = DB::table('produits')
+                                        ->where('user_id',$user_ids)
+                                        ->where('pharmacie_nom',$pharmacie->name)
+                                        ->get();
+        return view('dashboards.orders.index',[
+            'produits'=>$produits,
+            'pharmacie'=>$pharmacie,
+            'orders'=>$orders,
+            'order_receipt'=>$order_receipt,
+        ]);
+        // ,compact('produits','pharmacie','orders')
     }
 
 

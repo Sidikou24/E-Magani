@@ -131,7 +131,7 @@
                                       </div>
                                       <div class="form-group">
                                             <label for="fonction" class="">Fonction *</label>
-                                            <input type="text" id="fonction" class="form-control" name="fonction" list="fon" required pattern="[Ee]mployé" value="employé">
+                                            <input type="text" id="fonction" readonly class="form-control" name="fonction" list="fon" required pattern="[Ee]mployé" value="employé">
                                               <datalist id="fon">
                                                 <option>employé</option>
                                               </datalist>
@@ -253,7 +253,7 @@
        </div>
        <div class="form-group">
             <label for="fonction" class="">Fonction *</label>
-            <input type="text" id="fonction" class="form-control" value="employé" name="fonction" list="fon" required pattern="[Ee]mployé">
+            <input type="text" id="fonction" readonly class="form-control" value="employé" name="fonction" list="fon" required pattern="[Ee]mployé">
               <datalist id="fon">
                 <option>employé</option>
               </datalist>
@@ -262,12 +262,12 @@
           <label for="pharmacie_nom" class="">Inscrire dans quelle pharmacie? *</label>
           <select class="form-control" name="pharmacie_nom" id="pharmacie_nom" required>                          
               <!-- <option selected disabled value="">Choisir...</option> -->
-              <option>{{$pharmacie->name}}</option>                           
+              <option readonly>{{$pharmacie->name}}</option>                           
             </select>
        </div>
        <div class="form-group">
-            <label for="numTel" class="">Téléphone</label>
-            <input type="text" class="form-control" id="numTel" name="numTel" value="{{ old('numTel') }}" required autocomplete="numTel" autofocus>
+            <label for="numTel" class="">Email</label>
+            <input type="email" class="form-control" id="numTel" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
          </div>
          <div class="form-group">
             <label for="sexe" class="">Sexe :</label>

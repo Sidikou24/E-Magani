@@ -181,7 +181,7 @@ class PharmacienController extends Controller
             // 'pays' => 'required',
             // 'ville' => 'required',
             // 'codePostal' => 'required',
-            'numTel' => 'required',
+            // 'numTel' => 'required',
             'sexe' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -203,6 +203,7 @@ class PharmacienController extends Controller
         $user->email = $request->email;
         $user->fonction = $request->fonction;
         $user->pharmacie_nom = $pharmacie->name; //prend le nom de la pharmacie dans laquelle on souhaite faire l'ajout        $user->dateNaiss = $request->dateNaiss;
+        $user->pharmacie_id = $pharmacie->id;
         $user->dateNaiss = $request->dateNaiss;
         $user->pays = $request->pays;
         $user->ville = $request->ville;
@@ -266,11 +267,8 @@ function ajouterProduit(Request $request, $pharmacie_id){
     function voir_employe($pharmacie_id){
         $user_id = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
-        $employes = User::where('pharmacien_id',$user_id AND 'pharmacie_nom',$pharmacie->name)->paginate(5);
-                                    //   ->where('pharmacie_nom',$pharmacie->name)
-                                    //   ->get();
-        
-       // return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
+        $employes = DB::table('users')
+                                        ->where('pharmacien_id',$user_id)->paginate(5);
        return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
     }
 
@@ -280,9 +278,10 @@ function ajouterProduit(Request $request, $pharmacie_id){
     function voir_produits($pharmacie_id){
         $user_ids = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
-        // $pharmacien = auth()->user();
-        // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
-        $produits = Produit::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->paginate(5);
+        $produits = DB::table('produits')
+                                        ->where('user_id',$user_ids)
+                                        ->where('pharmacie_nom',$pharmacie->name)->paginate(5);
+        
         return view('dashboards.produits.gestionProduits',compact('produits','pharmacie'));
     }
 

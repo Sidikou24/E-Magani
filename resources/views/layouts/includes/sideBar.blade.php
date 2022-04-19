@@ -1,5 +1,6 @@
 <nav class="active" id="sidebar">
     <ul class="list-unstyled lead">
+    @if(auth()->user()->fonction == 'pharmacien')
         <li class="active">
             <a href=""><i class="fa fa-home fa-lg"></i> Home </a>
         </li>
@@ -11,10 +12,22 @@
         <li>
             <a href=""><i class="fa fa-money-bill fa-lg"></i>Transaction</a>
         </li>
-
         <li>
             <a href="{{ route('voir_produits',$pharmacie)}}"><i class="fa fa-truck fa-lg"></i>Produits</a>
         </li>
+    @else
+        <li class="active">
+            <a href=""><i class="fa fa-home fa-lg"></i> Home </a>
+        </li>
+
+        <li>
+            <a href="{{ route('vente')}}"><i class="fa fa-box fa-lg"></i>Orders</a>
+        </li>
+
+        <li>
+            <a href=""><i class="fa fa-money-bill fa-lg"></i>Transaction</a>
+        </li>
+    @endif
 
 
     </ul>

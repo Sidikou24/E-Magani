@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('fonction');
             $table->string('pharmacie_nom')->nullable();
+            $table->string('pharmacie_id')->nullable();
             $table->string('num_reference')->nullable();
             $table->date('dateNaiss')->nullable();
             $table->string('pays')->nullable();

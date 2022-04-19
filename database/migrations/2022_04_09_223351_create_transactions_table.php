@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->integer('order_id');
             $table->integer('paid_amount');
-            $table->integer('balance');
+            $table->integer('balance')->nullable();
             $table->string('payment_method')->default('cash');
             $table->integer('user_id');
             $table->date('transac_date');
