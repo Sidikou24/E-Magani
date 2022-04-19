@@ -13,13 +13,13 @@ class ProduitController extends Controller
 {
     function index($pharmacie_id)
     {
-        $pharmacie = Pharmacie::find($pharmacie_id);
-        return view('dashboards.produits.index', compact('pharmacie'));
+        $produits= Produit::paginate(5);
+        return view('dashboards.produits.gestionProduits',['produits'=>$produits]);
     }
 
-    function ajouterProduit(Request $request, $pharmacie_id){
-        $pharmacie = Pharmacie::find($pharmacie_id);
-       
+    function ajouterProduit(Request $request,  $pharmacien_id){
+        $pharmacie = Pharmacie::find($pharmacie_id);//Récuperation de la pharmacie dans laquelle on souhaite faire l'ajout
+        $pharmacien_id = auth()->user()->id;
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'num_lot' => 'required',
@@ -27,6 +27,7 @@ class ProduitController extends Controller
             'prix' => 'required',
             'dateFab' => 'required',
             'datePer' => 'required',
+            'pharmacie_nom' => 'required',
         ]);
         $produit= new Produit();
         $produit->user_id = auth()->user()->id; 
@@ -58,7 +59,7 @@ class ProduitController extends Controller
     function supprimerProduit($id){
         $produit = Produit::find($id);
         $produit->delete(); 
-      return redirect()->back();
+        return back()->with('success','Produit Supprimer');
     }
 
     function modifierProduit($id){
@@ -67,23 +68,28 @@ class ProduitController extends Controller
     }
 
     function majProduit(Request $request,$id){
-        $nouvProduit = $request->all();
-        
         $produit = Produit::find($id);
-        $produit->name = $nouvProduit['name'];
-        $produit->num_lot = $nouvProduit['num_lot'];
-        $produit->quantite = $nouvProduit['quantite'];
-        $produit->prix = $nouvProduit['prix'];
-        $produit->dateFab = $nouvProduit['dateFab'];
-        $produit->datePer = $nouvProduit['datePer'];
-        $produit->save();
+        // $nouvProduit = $request->all();
+        if (! $produit) {
+            return back()->with('error','Produit introuvable');
+         }
+          $produit->update($request->all());
+         return back()->with('success','Produit Modifier');
+         
+        // $produit->name = $nouvProduit['name'];
+        // $produit->num_lot = $nouvProduit['num_lot'];
+        // $produit->quantite = $nouvProduit['quantite'];
+        // $produit->prix = $nouvProduit['prix'];
+        // $produit->dateFab = $nouvProduit['dateFab'];
+        // $produit->datePer = $nouvProduit['datePer'];
+        // $produit->save();
 
-        return redirect()->back();
-        //return redirect('pharmacien/voir_produit');
+        // return redirect('pharmacien/voir_produit');
     }
 
-    function recherche($pharmacie_id){
-        $pharmacie = Pharmacie::find($pharmacie_id);
+
+
+    function recherche(){
         $user_id = auth()->user()->id;
         $produitSaisi = $_GET['recherche'];
         $produits = DB::table('produits')

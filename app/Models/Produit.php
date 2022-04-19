@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Pharmacie;
+use App\Models\Order_details;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Produit extends Model
 {
@@ -18,6 +19,7 @@ class Produit extends Model
         'prix',
         'dateFAb',
         'datePer',
+        'alert_stock',
         'pharmacie_nom',
     ];
 
@@ -28,4 +30,8 @@ class Produit extends Model
     public function pharmacies(){
         return $this->belongsTo(Pharmacie::class);
     }
+
+    public function orderdetail(){
+        return $this->hasMany('App\Models\Order_details');
+    }      
 }

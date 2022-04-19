@@ -71,8 +71,8 @@
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="{{url('/')}}" >Home</a></li><br><br><br>
-                        <!-- <li><a href="products.html">Products</a></li>
+                        <li><a href="{{route('login')}}">Home</a></li>
+                        <li><a href="{{route('login')}}">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="contact.html">Contact</a></li> -->
