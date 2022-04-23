@@ -6,7 +6,7 @@
                 <center id="top">
                     <div class="logo">{{$pharmacie->name}}</div>
                     <div class="info"></div>
-                    <h2> E-Magani</h2>
+                    <h2> Jour</h2>
                 </center>
             </div>
 
@@ -17,6 +17,7 @@
                         Address: Laboratoire R-Lantis
                         Email: pfe@gmail.com
                         Phone: 12345678
+                        Caissier: 
                     </p>
                 </div>
 

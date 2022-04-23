@@ -1,51 +1,10 @@
-<!-- <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head> -->
+
 @extends('layouts.app')
 
 @section('title','Dasboard')
 
 @section('content')
 
-<!-- <div class="container">
-  <h3>Les employes de la pharmacie: {{$pharmacie->name}}</h3>
-  
-<form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{route('rechercheEmploye',$pharmacie->id)}}">
-      <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher un employe" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-</form><br><br>
-<a class="btn btn-success float-right mb-4" href="{{ route('ajoutEmploye',$pharmacie->id) }}">Ajouter Nouveau employe</a>
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Prénom</th>
-      <th scope="col">Fonction</th>
-      <th scope="col">Email</th>
-      <th scope="col">Lieu</th>
-      <th scope="col">Naissance</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-      @foreach ($employes as $employe)
-      <tr>
-      <th scope="row">{{ $employe->id }}</th>
-      <td>{{ $employe->name }}</td>
-      <td>{{ $employe->prenom }}</td>
-      <td>{{ $employe->fonction }}</td>
-      <td>{{ $employe->email }}</td>
-      <td>pharmacie {{ $employe->pharmacie_nom }}</td>
-      <td>{{ $employe->dateNaiss }}</td>
-      <td>
-        <a href="{{ route('suppEmploye', $employe->id) }}" class="btn btn-danger"> Retirer </a>
-      </td>
-    </tr>
-      @endforeach
-  </tbody>   
-</table> -->
-<!-- </div> -->
 <div class="container-fluid">
   <div class="col-lg-12">
     <div class="row">
@@ -58,17 +17,17 @@
               data-toggle="modal" data-target="#addUser">
               <i class="fa fa-plus"></i> Ajouter Nouveau employe</a> </div>
               @if(Session::get('success'))
-                                            <div class="alert alert-success">
-                                                {{Session::get('success')}}
-                                            </div>
-                                        @endif
-                                        @if(Session::get('error'))
-                                            <<div class="alert alert-danger">
-                                                {{Session::get('error')}}
-                                            </div>
-                                        @endif
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
+              @endif
+              @if(Session::get('error'))
+                <div class="alert alert-danger">
+                  {{Session::get('error')}}
+                </div>
+              @endif
             <div class="card-body">
-              <table class="table table-bordered table-left">
+              <table class="table table-bordered table-left" >
                 <thead>
                     <tr>
                           <th scope="col">#</th>
@@ -81,7 +40,7 @@
                           <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                     @foreach ($employes as $key =>  $employe)
                           <tr>
                               <th scope="row">{{ $key + 1 }}</th>
@@ -93,9 +52,8 @@
                               <td>{{ $employe->dateNaiss }}</td>
                               <td>
                                 <div class="btn-group">
-                                <a href="" data-toggle="modal" data-target="#editUser{{$employe->id}}" class="btn btn-info btnt-sm"><i class="fa fa-edit"></i> Modifier </a>
+                                  <a href="" data-toggle="modal" data-target="#editUser{{$employe->id}}" class="btn btn-info btnt-sm"><i class="fa fa-edit"></i> Modifier </a>
                                   <a href="" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUser{{$employe->id}}"><i class="fa fa-trash"></i> Retirer </a>
-                                  
                                 </div>
                               </td>
                             </tr>
@@ -209,20 +167,28 @@
 
 
                     @endforeach
-                    {{$employes->links()}}
+                    
                   </tbody>   
               </table>
             </div>
           </div>
+          
       </div>
       <div class="col-md-3">
-      <div class="card">
-        <div class="card-header">Rechercher un employe </div>
-        <div class="card-body">
-         ..........
+        <div class="card">
+          <div class="card-header">Rechercher un employe </div>
+              <div class="card-body">
+                <div class="row filter-row">
+                    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-8 col-12">
+                        <div class="form-group form-focus">
+                          <label for="focus-label">Entrer Nom </label>
+                          <input type="text" name="name" value="" class="form-control floating" id="myInput">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
         </div>
-      </div>
-      </div>
     </div>
   </div>
 </div>
@@ -318,6 +284,25 @@
     -webkit-transform: translate3d(25%,0,0);
     transform: translate3d(25%, , 0, 0);
   }
+
+  /* Visibilité */
+  
 </style>
 
+@endsection
+
+@section('script')
+<script>
+  // $(document).ready(function () {
+  //   alert(1);
+  // })
+  $(document).ready(function(){
+    $('#myInput').on('keyup',function () {
+      var value=$(this).val().toLowerCase();
+      $('#myTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 @endsection

@@ -146,3 +146,5 @@ Route::post('orders.store/{pharmacie_id}',[OrdersController::class,'store'])->na
 
 // Employer gerer Vente
 Route::get('vente',[EmployeController::class,'vente'])->name('vente');
+
+

@@ -26,7 +26,7 @@ class OrdersController extends Controller
         // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
         $orders = Orders::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->get();
 
-        $lastID= Order_details::where('pharmacie_nom',$pharmacie->name)
+        $lastID= Order_details::where('pharmacie_nom',$pharmacie->name AND 'user_id',$user_ids)
                                                                     ->max('order_id');
          // lats order details
          $order_receipt = Order_details::where('order_id', $lastID)->get();
@@ -87,6 +87,7 @@ class OrdersController extends Controller
             $order_details->num_lot = $request->num_lot[$i];
             $order_details->produit_name= $request->name[$i];
             $order_details->pharmacie_nom= $pharmacie->name;
+            $order_details->user_id=$user_ids;
             $order_details->save();
         }
 
