@@ -105,7 +105,7 @@
                                 </div>
                             @endif
                             @if(Session::get('error'))
-                                <<div class="alert alert-danger">
+                                <div class="alert alert-danger">
                                     {{Session::get('error')}}
                                 </div>
                             @endif
@@ -147,10 +147,7 @@
                             <label for="fonction" class="col-sm-3 offset-sm-1 col-form-label">Fonction *</label>
                             <div class="col-sm-7">
                                 <input type="text" readonly id="fonction" class="form-control" value="pharmacien" name="fonction" list="fon" required pattern="[Pp]harmacien">
-                                <datalist id="fon">
-                                    <option>pharmacien</option>
-                                    <option>Employé</option>
-                                </datalist>
+                              
                             </div>
                         </div>
                         <!-- <div class="row mb-3">
@@ -278,8 +275,6 @@
                                 <a href="{{route('login')}}" style="color: #44bd32;text-decoration: none;">Vous avez deja Un compte?</a>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PharmacieController;
+use App\Http\Controllers\ContactController;
 use App\Models\Produit;
 use App\Models\Pharmacie;
 use Illuminate\Http\Request;
@@ -57,15 +58,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin','auth', 'empecherR
     Route::get('dashboard', [AdminController::class,'index'])->name('admin.dashboard');
     Route::get('profile', [AdminController::class,'profile'])->name('admin.profile');
     Route::get('settings', [AdminController::class,'settings'])->name('admin.settings');
-
-
-
-
+   
     Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
     Route::post('changer-image-profile',[AdminController::class,'updateImage'])->name('adminImageUpdate');
     Route::post('changer-password',[AdminController::class,'changepassword'])->name('adminChangePassword');
 
-    Route::get('search_pharmacien', [PharmacienController::class,'search_pharmacien'])->name('search_pharmacien');
+    Route::get('search_pharmacien/{id}/{status_code}', [PharmacienController::class,'search_pharmacien'])->name('search_pharmacien');
     Route::get('recherchePharmacien', [AdminController::class,'recherchePharmacien'])->name('recherchePharmacien');
 
 });
@@ -79,8 +77,6 @@ Route::group(['prefix' => 'pharmacien', 'middleware' => ['isPharmacien','auth', 
 
     // le pharmacien modifie le profil de son employer
     Route::post('update-profile-Employe/{id}',[PharmacienController::class,'updateE'])->name('users.update');
-
-
 
     Route::post('update-profile-info',[PharmacienController::class,'updateInfo'])->name('pharmacienUpdateInfo');
     Route::post('changer-image-profile',[PharmacienController::class,'updateImage'])->name('pharmacienImageUpdate');
@@ -100,7 +96,6 @@ Route::group(['prefix' => 'pharmacien', 'middleware' => ['isPharmacien','auth', 
     Route::get('modifierPharmacie/{id}', [PharmacieController::class,'modifierPharmacie'])->name('modifierpharmacie');
     Route::get('recherchePharmacie', [PharmacieController::class,'recherchePharmacie'])->name('recherchePharmacie');
     Route::get('majPharmacie/{id}', [PharmacieController::class,'majPharmacie'])->name('majPharmacie');
-
 });
 
 

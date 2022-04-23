@@ -89,7 +89,8 @@ class ProduitController extends Controller
 
 
 
-    function recherche(){
+    function recherche($pharmacie_id){
+        $pharmacie=Pharmacie::find($pharmacie_id);
         $user_id = auth()->user()->id;
         $produitSaisi = $_GET['recherche'];
         $produits = DB::table('produits')
@@ -97,7 +98,7 @@ class ProduitController extends Controller
                                         ->where('pharmacie_nom',$pharmacie->name)
                                         ->where('user_id',$user_id)
                                         ->get();
-        return view('dashboards.produits.rechercheProduit', compact('produits','pharmacie'));
+        return view('dashboards.produits.gestionProduits', compact('produits','pharmacie'));
     }
 
 }

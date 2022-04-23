@@ -24,6 +24,7 @@ class User extends Authenticatable
         'prenom',
         'email',
         'fonction',
+        'statut',
         'pharmacie_nom',
         'pharmacie_id',
         'num_reference',

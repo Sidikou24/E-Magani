@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-9">
           <div class="card">
-          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Produit de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
+          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la Gestion des Produit de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
             <div class="card-header">
               <h4 style="float: left"> Ajouter Nouveau Produits</h4>
               <a href="#" style="float: right" class="btn btn-dark" 
@@ -110,7 +110,7 @@
                                                         <input type="number" class="form-control" id="alert_stock" name="alert_stock" value="{{ $produit->alert_stock }}" placeholder="alert_stock du produit">
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button class="btn btn-warning btn-block">Modifier Employé</button>
+                                                        <button class="btn btn-warning btn-block">Modifier produit</button>
                                                       </div>
                                               </form>
                                           </div>
@@ -133,9 +133,9 @@
                                           <div class="modal-body">
                                           <form action="{{ route('suppProduit', $produit->id) }}" method="get">
                                           {{ csrf_field() }}
-                                          <p>Etes-vous sure de Supprimier L'employer {{$produit->name}} ?</p>
+                                          <p>Etes-vous sure de Supprimier Le produit? {{$produit->name}} ?</p>
                                           <div class="modal-footer">
-                                            <button class="btn btn-info" data-dismiss="modal ">Annuler</button>
+                                            <!-- <button class="btn btn-info" data-dismiss="modal ">Annuler</button> -->
                                             <button type="submit" class="btn btn-danger">Supprimer</button>
                                           </div>
                                           </form>
@@ -157,7 +157,10 @@
       <div class="card">
         <div class="card-header">Rechercher un produits </div>
         <div class="card-body">
-         ..........
+        <form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('rechercheProduit',$pharmacie->id)}}">
+      <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher un produit" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+      </form>
         </div>
       </div>
       </div>
@@ -210,7 +213,7 @@
                 <input type="number" class="form-control" id="alert_stock" name="alert_stock" value="{{ old('alert_stock') }}" placeholder="alert_stock du produit" required>
               </div>
               <div class="modal-footer">
-              <button class="btn btn-primary btn-block">Inscrire Produits</button>
+              <button class="btn btn-success btn-block">Ajouter Produits</button>
             </div>
        </form>
       </div>

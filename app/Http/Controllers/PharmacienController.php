@@ -156,10 +156,15 @@ class PharmacienController extends Controller
 
 
 
-    function search_pharmacien(){
+    function search_pharmacien($pharmacien_id, $status_code){
+        $Pharmacien = User::whereId($pharmacien_id)->update([
+            'statut' => $status_code
+        ]);
+
         $pharmaciens = DB::table('users')->where('fonction', 'pharmacien')->get();
         return view('dashboards.admins.gestionPharmaciens', compact('pharmaciens'));
     }
+    
 
     function ajoutEmploye($pharmacie_id){
         $pharma = Pharmacie::find($pharmacie_id);//Récuperation de la pharmacie dans laquelle on souhaite faire l'ajout
@@ -250,20 +255,6 @@ function ajouterProduit(Request $request, $pharmacie_id){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function voir_employe($pharmacie_id){
         $user_id = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
@@ -271,9 +262,6 @@ function ajouterProduit(Request $request, $pharmacie_id){
                                         ->where('pharmacien_id',$user_id)->paginate(5);
        return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
     }
-
-
-
 
     function voir_produits($pharmacie_id){
         $user_ids = auth()->user()->id;
@@ -284,9 +272,6 @@ function ajouterProduit(Request $request, $pharmacie_id){
         
         return view('dashboards.produits.gestionProduits',compact('produits','pharmacie'));
     }
-
-
-
 
 
     function rechercheEmploye($pharmacie_id){
@@ -319,7 +304,6 @@ function ajouterProduit(Request $request, $pharmacie_id){
     //     $employe->delete();
     //     return back()->with('success','Employer Supprimer');
     // }
-
 
 
     function supprimerEmploye($id){
