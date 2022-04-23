@@ -14,7 +14,9 @@ class AdminController extends Controller
 {
     function index()
     {
-        return view('dashboards.admins.index');
+        $pharmaciens = DB::table('users')->where('fonction', 'pharmacien')->get();
+       
+        return view('dashboards.admins.index',compact('pharmaciens'));
     }
 
     function profile()
@@ -148,9 +150,6 @@ class AdminController extends Controller
         }
     }
 
-
-
-    
     function recherchePharmacien(){
         $nomSaisi = $_GET['recherche'];
         $pharmaciens = DB::table('users')

@@ -21,7 +21,7 @@
       <th scope="col">Prénom</th>
       <th scope="col">Mail</th>
       <th scope="col">Fonction</th>
-      <th scope="col">Numéro de reférence</th>
+      <th scope="col">Reférence</th>
       <th scope="col">Sexe</th>
       <th scope="col">Action</th>
     </tr>
@@ -37,9 +37,12 @@
       <td>{{ $pharmacien->num_reference }}</td>
       <td>{{ $pharmacien->sexe }}</td>
       <td>
-        <a href="#" class="btn btn-danger"> Bloquer </a>
-        <a href="#" class="btn btn-success">Débloquer</a>
-      </td>
+        @if ($pharmacien->statut == 1)
+        <a href="{{route('search_pharmacien', ['id' => $pharmacien->id, 'status_code' => 0]) }}" class="btn btn-success"> <i class="fa fa-unlock"></i> </a>
+        @else
+        <a href="{{route('search_pharmacien',['id' => $pharmacien->id, 'status_code' => 1]) }}" class="btn btn-danger"> <i class="fa fa-lock"></i> </a> 
+        @endif
+        </td>
     </tr>
       @endforeach
   </tbody>   

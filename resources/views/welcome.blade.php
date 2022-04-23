@@ -124,7 +124,6 @@
       </div>
     </div>
     @yield('contenu')
-
       
 
       <!-- Modal -->

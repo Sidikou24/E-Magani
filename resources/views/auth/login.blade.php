@@ -71,11 +71,8 @@
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="{{route('login')}}">Home</a></li>
-                        <li><a href="{{route('login')}}">Products</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="contact.html">Contact</a></li> -->
+                        <li><a href="{{route('rechercheProd')}}">Home</a></li>
+                        <li><a href="{{url('/contact-form')}}">Contact</a></li> 
                     </ul>
                 </div>
             </div>
@@ -86,6 +83,10 @@
         <div class="col-md-8 offset-md-2 px-3 py-3 pt-md-4 pb-md-4">
             <div class="card">
                 <div class="card-header">Connexion</div>
+                
+                @if (session('error'))
+                    <span class="text-danger">{{session('error')}}</span>
+                @endif
 
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
