@@ -176,7 +176,7 @@
           </div>
         </div>
       </div>
-
+      <h4 class="card-header" style="background:white; color:black "><marquee behavior="" direction=""><strong>Ici apparaitra le resultat de vos recherches</strong></marquee></h4><br>
       <!-- affichage resultat aprés recherche des produits -->
       <div  id="resultP">
           <table class="table">

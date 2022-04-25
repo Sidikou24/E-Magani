@@ -132,7 +132,7 @@ class RegisterController extends Controller
             $user->image= $picture;
             $user->password = Hash::make($request->password );
             if ($user->save()) {
-                return redirect()->back()->with('success','vous avez été enregistrer');
+                return redirect()->back()->with('success','Votre compte a bien été enregistré, veuillez attendre sa validation par l\'administrateur');
             }else {
                 return redirect()->back()->with('error','l\'enregistrement a echouée');
             }

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('fonction');
-            $table->tinyInteger('statut')->default(1);
+            $table->tinyInteger('statut')->default(0);
             $table->string('pharmacie_nom')->nullable();
             $table->string('pharmacie_id')->nullable();
             $table->string('num_reference')->nullable();

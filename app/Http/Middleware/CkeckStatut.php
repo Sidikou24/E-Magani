@@ -23,7 +23,7 @@ class CkeckStatut
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route('login')->with('error','Votre compte a été suspendu veuillez contactez l\'administrateur!');
+            return redirect()->route('login')->with('error','Votre compte n\'est pas actif pour le moment, veuillez contactez l\'administrateur pour l\'activer!');
         }
         return $next($request);
     }

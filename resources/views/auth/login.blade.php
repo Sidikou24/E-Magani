@@ -85,7 +85,9 @@
                 <div class="card-header">Connexion</div>
                 
                 @if (session('error'))
+                <div class="alert alert-danger">
                     <span class="text-danger">{{session('error')}}</span>
+                </div>
                 @endif
 
                 <div class="card-body">
