@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>E-Magani</title>
     <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
 
@@ -22,45 +22,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prospera Free - New Amazing HTML5 Template</title>
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/responsee.css">
-    <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="owl-carousel/owl.theme.css">
-    <!-- CUSTOM STYLE -->
-    <link rel="stylesheet" href="css/template-style.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/validation.js"></script>
-</head>
 <!-- PREMIUM FEATURES BUTTON -->
 
 <!-- HEADER -->
 <header role="banner">
-    <!-- Top Bar -->
-    <!-- <div class="top-bar background-white">
-        <div class="line">
-            <div class="s-12 m-6 l-6">
-                <div class="top-bar-contact">
-                    <p class="text-size-12">Contact Us: 0800 200 200 | <a class="text-orange-hover" href="mailto:admin@gmail.com">admin@gmail.com</a></p>
-                </div>
-            </div> -->
-            <!-- <div class="s-12 m-6 l-6">
-                <div class="right">
-                    <ul class="top-bar-social right">
-                        <li><a href="/"><i class="icon-facebook_circle text-orange-hover"></i></a></li>
-                        <li><a href="/"><i class="icon-twitter_circle text-orange-hover"></i></a> </li>
-                        <li><a href="/"><i class="icon-google_plus_circle text-orange-hover"></i></a></li>
-                        <li><a href="/"><i class="icon-instagram_circle text-orange-hover"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>     reseaux sociaux-->
         </div>
 
         <!-- Top Navigation -->
@@ -89,15 +54,9 @@
             <div class="card">
                 <div class="card-header">Ajouter une Pharmacie</div>
 
-                <div class="card-body">
-                    <!-- @if(!empty($message))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{$message}}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif -->              
+                <div class="card-body">        
                         
-                    <form class="form-horizontal" method="GET" action="{{ route('enregistrer') }}"> 
+                    <form class="form-horizontal" method="post" action="{{ route('enregistrer') }}"  enctype="multipart/form-data" id="form"> 
                     {{ csrf_field() }}
                             @if(Session::get('success'))
                                 <div class="alert alert-success">
@@ -109,61 +68,48 @@
                                     {{Session::get('error')}}
                                 </div>
                             @endif
-                        <div class="row mb-3">
-                            <label for="name" class="col-sm-3 offset-sm-1 col-form-label">Nom: </label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nom de la pharmacie">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-2 col-form-label">name</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Entrer Current password" name="name" >
+                                <span class="text-danger error-text name_error"></span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <label for="localite" class="col-sm-3 offset-sm-1 col-form-label">Localité: </label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control @error('localite') is-invalid @enderror" id="localite" name="localite" value="{{ old('localite') }}" required autocomplete="localite" placeholder="localite">
-                                @error('localite')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <div class="form-group row">
+                                <label for="localite" class="col-sm-2 col-form-label">localite</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="localite" placeholder="Entrer localite" name="localite" >
+                                <span class="text-danger error-text localite_error"></span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="dateCrea" class="col-sm-3 offset-sm-1 col-form-label">Date de creation: </label>
-                            <div class="col-sm-7"> 
-                                <input type="date" class="form-control" id="dateCrea" name="dateCrea" value="{{ old('dateCrea') }}" placeholder="date de Création de la pharmacie">
-
-                                @error('dateCrea')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="form-group row">
+                                <label for="dateCrea" class="col-sm-2 col-form-label">dateCrea</label>
+                                <div class="col-sm-10">
+                                <input type="date" class="form-control" id="dateCrea" placeholder="ReEntrer new password" name="dateCrea" >
+                                <span class="text-danger error-text dateCrea_error"></span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="nbrAgent" class="col-sm-3 offset-sm-1 col-form-label">Nombre d'agents: </label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control @error('nbrAgent') is-invalid @enderror" id="nbrAgent" name="nbrAgent" value="{{ old('nbrAgent') }}" required autocomplete="nbrAgent" autofocus placeholder="Nombre d'agents de la pharmacie">
-                                @error('nbrAgent')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <div class="form-group row">
+                                <label for="nbrAgent" class="col-sm-2 col-form-label">nbrAgent</label>
+                                <div class="col-sm-10">
+                                <input type="number" class="form-control" id="nbrAgent" placeholder="ReEntrer new password" name="nbrAgent" >
+                                <span class="text-danger error-text nbrAgent_error"></span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="offset-sm-4 col-sm-7">
-                                <button type="submit" class="btn btn-success"> Ajouter </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="form-group row">
+                                <label for="pharmacie_image" class="col-sm-2 col-form-label">pharmacie_image</label>
+                                <div class="col-sm-10">
+                                <input type="file" class="form-control" id="pharmacie_image" placeholder="Entrer pharmacie_image" name="pharmacie_image" >
+                                <span class="text-danger error-text pharmacie_image_error"></span>
+                                </div>
+                            </div>
+                            <div class="img-holder"></div>
+                            <div class="form-group row">
+                                <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Update Password</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="{{route ('voir_pharmacie')}}" type="reset" class="btn btn-danger">Annuler</a>
+                                </div>
                             </div>
-                        </div>
 
                     </form>
                 </div>
@@ -171,3 +117,63 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+      }
+    });
+
+      $(function(){
+       $('#form').on('submit',function (e) {
+           e.preventDefault();
+           var form=this;
+           $.ajax({
+               url:$(form).attr('action'),
+               method:$(form).attr('method'),
+               data:new FormData(form),
+               processData: false,
+               dataType: 'json',
+               contentType: false,
+               beforeSend: function () {
+                   $(form).find('span.error-text').text('');
+               },
+               success: function (data) {
+                   if (data.code == 0) {
+                       $.each(data.error, function (prefix, val) {
+                           $(form).find('span.'+prefix+'_error').text(val[0]);
+                       })
+                   } else {
+                       $(form)[0].reset();
+                       alert(data.msg);
+                   }
+               }
+           });
+       });
+
+       //voir l'image selectionner
+       $('input[type="file"][name="pharmacie_image"]').val('');
+
+       $('input[type="file"][name="pharmacie_image"]').on('change',function () {
+           var img_path= $(this)[0].value;
+           var img_holder= $('.img-holder');
+           var extension = img_path.substring(img_path.lastIndexOf('.')+1).toLowerCase();
+           if (extension == 'jpeg' || extension == 'jpg' || extension == 'png' ) {
+              if (typeof(FileReader) != 'undefined') {
+                  img_holder.empty();
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      $('<img/>',{'src':e.target.result,'class':'img-fluid','style':'max-width:100px;margin-bottom:10px;'}).appendTo(img_holder);
+                  }
+                  img_holder.show();
+                  reader.readAsDataURL($(this)[0].files[0]);
+              } else {
+                  $(img_holder).html('Le navigateur ne supporte pas FileReader');
+              }
+           } else {
+               $(img_holder).empty();
+           }
+       })
+    });
+</script>
