@@ -23,7 +23,6 @@
       <th scope="col">Fonction</th>
       <th scope="col">Reférence</th>
       <th scope="col">Sexe</th>
-      <th scope="col">statut</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -37,7 +36,6 @@
       <td>{{ $pharmacien->fonction }}</td>
       <td>{{ $pharmacien->num_reference }}</td>
       <td>{{ $pharmacien->sexe }}</td>
-      <td>{{ $pharmacien->statut }}</td>
       <td>
         @if ($pharmacien->statut == 0)
         <a href="{{route('search_pharmacien', ['id' => $pharmacien->id, 'status_code' => 1]) }}" class="btn btn-success"><i class="fa fa-unlock"></i>  </a>
