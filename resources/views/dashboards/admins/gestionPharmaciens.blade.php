@@ -40,9 +40,10 @@
         @if ($pharmacien->statut == 0)
         <a href="{{route('search_pharmacien', ['id' => $pharmacien->id, 'status_code' => 1]) }}" class="btn btn-success"><i class="fa fa-unlock"></i>  </a>
         @else
-        <a href="{{route('search_pharmacien',['id' => $pharmacien->id, 'status_code' => 0]) }}" class="btn btn-danger"><i class="fa fa-lock"></i></a> 
+        <a href="{{route('search_pharmacien',['id' => $pharmacien->id, 'status_code' => 0]) }}" class="btn btn-warning"><i class="fa fa-lock"></i></a> 
         @endif
-        </td>
+        <a href="{{route('suppPharmacien',$pharmacien->id)}}" class="btn btn-danger"><i class="fa fa-trash" ></i></a>
+      </td>
     </tr>
       @endforeach
   </tbody>   

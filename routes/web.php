@@ -63,6 +63,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin','auth', 'empecherR
     Route::post('changer-image-profile',[AdminController::class,'updateImage'])->name('adminImageUpdate');
     Route::post('changer-password',[AdminController::class,'changepassword'])->name('adminChangePassword');
 
+    Route::get('supprimerPharmacien/{id}', [AdminController::class,'supprimerPharmacien'])->name('suppPharmacien');
     Route::get('search_pharmacien/{id}/{status_code}', [PharmacienController::class,'search_pharmacien'])->name('search_pharmacien');
     Route::get('recherchePharmacien', [AdminController::class,'recherchePharmacien'])->name('recherchePharmacien');
 

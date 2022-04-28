@@ -71,8 +71,6 @@ class AdminController extends Controller
         
     }
 
-
-
     function updateImage(Request $request){
         $path='users/images/';
         $file=$request->file('admin_image');
@@ -104,7 +102,6 @@ class AdminController extends Controller
              
         }
     }
-
 
 
     function changepassword(Request $request){
@@ -157,6 +154,12 @@ class AdminController extends Controller
                                         ->where('fonction','pharmacien')
                                         ->get();
         return view('dashboards.admins.gestionPharmaciens', compact('pharmaciens'));
+    }
+
+    function supprimerPharmacien($id){
+        $pharmacien = User::find($id);
+        $pharmacien->delete(); 
+        return back()->with('success','Employer Supprimer');
     }
 
 }
