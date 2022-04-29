@@ -19,6 +19,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('plugins/ijaboCropTool/ijaboCropTool.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+<!-- nouvel Ajout -->
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}">
+  
+  <!-- fin -->
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -70,17 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <!-- <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>        BARRE DE RECHERCHE
-            </button>
-          </div>
-        </div>
-      </div> -->
+      
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -156,6 +152,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/ijaboCropTool/ijaboCropTool.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
 
 <script>
   $.ajaxSetup({

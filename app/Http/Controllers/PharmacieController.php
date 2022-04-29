@@ -52,7 +52,7 @@ class PharmacieController extends Controller
                    'dateCrea' => $request->dateCrea,
                    'nom_proprio' => auth()->user()->prenom,
                     'nbrAgent' => $request->nbrAgent,
-                    'pharmacie_image' => $request->pharmacie_image,
+                    'pharmacie_image' => $file_name,
 
                 ]);
                 return response()->json(['code'=>1,'msg'=>'nouvel pharmacie']);
@@ -107,14 +107,11 @@ class PharmacieController extends Controller
 
     function majPharmacie(Request $request,$id){
         $pharmacie = Pharmacie::find($id);
-
-        $nouvPharmacie = $request->all();
-        //$pharmacie->name = $nouvPharmacie['name'];
-        $pharmacie->localite = $nouvPharmacie['localite'];
-       // $pharmacie->dateCrea = $nouvPharmacie['dateCrea'];
-        $pharmacie->nbrAgent = $nouvPharmacie['nbrAgent'];
-        $pharmacie->save();
-        return redirect('pharmacien/voir_pharmacie');
+        if (!$pharmacie) {
+           return back()->with('error','Employer introuvable');
+        }
+        $pharmacie->update($request->all());
+        return back()->with('success','Employer Modifier');
     }
 
     function listeDesPharmacies(){
