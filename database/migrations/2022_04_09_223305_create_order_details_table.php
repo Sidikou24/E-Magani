@@ -25,6 +25,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('pharmacie_nom')->nullable();
             $table->string('produit_name')->nullable();
             $table->integer('user_id');
+            $table->string('user_name');
             $table->timestamps();
         });
     }

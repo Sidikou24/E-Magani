@@ -27,6 +27,9 @@
                     <table>
                         <tr class="tabletitle">
                             <td class="item">
+                                <h2>Nom du Vendeur</h2>
+                            </td>
+                            <td class="item">
                                 <h2>Article</h2>
                             </td>
                             <td class="Hours">
@@ -42,8 +45,11 @@
                                 <h2>Total</h2>
                             </td>
                         </tr>
-                    @foreach($order_receipt as $receipt)
+                    @foreach($order_Mois as $receipt)
                         <tr class="service">
+                            <td class="tableitem">
+                                <p class="itemtext">{{$receipt->user_name}}</p>
+                            </td>
                             <td class="tableitem">
                                 <p class="itemtext">{{$receipt->produit_name}}</p>
                             </td>
@@ -78,7 +84,7 @@
                             <td></td>
                             <td class="Rate">Total</td>
                             <td class="Payment">
-                                <h2>$  {{number_format($order_receipt->sum('amount'),2)}}</h2>
+                                <h2>$  {{number_format($order_Mois->sum('amount'),2)}}</h2>
                             </td>
                         </tr>
                     </table>

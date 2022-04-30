@@ -42,7 +42,7 @@
                                 <h2>Total</h2>
                             </td>
                         </tr>
-                    @foreach($order_receipt as $receipt)
+                    @foreach($order_receipts as $receipt)
                         <tr class="service">
                             <td class="tableitem">
                                 <p class="itemtext">{{$receipt->produit_name}}</p>
@@ -78,7 +78,7 @@
                             <td></td>
                             <td class="Rate">Total</td>
                             <td class="Payment">
-                                <h2>$  {{number_format($order_receipt->sum('amount'),2)}}</h2>
+                                <h2>$  {{number_format($order_receipts->sum('amount'),2)}}</h2>
                             </td>
                         </tr>
                     </table>

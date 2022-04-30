@@ -405,9 +405,6 @@
                   myReceipt.document.write(data);
                   myReceipt.document.title= "Recettes Journaliere";
                   myReceipt.focus();
-                  setTimeout(() => {
-                    myReceipt.close();
-                  }, 10000);
             }
 
           // Semaine
@@ -420,9 +417,6 @@
                   myReceipt.document.write(data);
                   myReceipt.document.title= "Recettes Hebdomadere";
                   myReceipt.focus();
-                  setTimeout(() => {
-                    myReceipt.close();
-                  }, 10000);
             }
 
             // Mois
@@ -435,9 +429,6 @@
                   myReceipt.document.write(data);
                   myReceipt.document.title= "Recettes Mensuelle";
                   myReceipt.focus();
-                  setTimeout(() => {
-                    myReceipt.close();
-                  }, 10000);
             }
             
             // Annee
@@ -450,9 +441,6 @@
                   myReceipt.document.write(data);
                   myReceipt.document.title= "Recettes Annuelle";
                   myReceipt.focus();
-                  setTimeout(() => {
-                    myReceipt.close();
-                  }, 10000);
             }
     </script>
 @endsection
