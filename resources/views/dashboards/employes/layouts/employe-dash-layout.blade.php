@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
+  <link rel="icon" href="pharmacie256.png">
   <base href="{{URL::to('/')}}">
 
   <!-- Google Font: Source Sans Pro -->
@@ -97,11 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                 </li>
                <li class="nav-item">
-<<<<<<< HEAD
-                        <a href="{{route('employe.profile')}}" class="nav-link">
-=======
                         <a href="{{route('employe.profile')}}" class="nav-link {{ (request()->is('employe/profile*')) ? 'active': ''}}">
->>>>>>> bcf7e4f90324b1aef525de1e2ced5c73c04233c9
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Profile
@@ -109,11 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                 </li>
                 <li class="nav-item">
-<<<<<<< HEAD
-                        <a href="{{route('employe.settings')}}" class="nav-link">
-=======
                         <a href="{{route('employe.settings')}}" class="nav-link {{ (request()->is('employe/settings*')) ? 'active': ''}}">
->>>>>>> bcf7e4f90324b1aef525de1e2ced5c73c04233c9
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
                                 Settings
