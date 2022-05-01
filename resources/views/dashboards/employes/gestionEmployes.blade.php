@@ -193,7 +193,7 @@
                                                 <div class="modal-body">
                                                     <form action="{{ route('suppEmploye', $employe->id) }}" method="get">
                                                         {{ csrf_field() }}
-                                                        <p>Etes-vous sure de Supprimier L'employer {{ $employe->name }} ?
+                                                        <p>Etes-vous sure de Supprimer L'employer {{ $employe->name }} ?
                                                         </p>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-info"
