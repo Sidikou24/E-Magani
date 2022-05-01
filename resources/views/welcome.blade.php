@@ -179,48 +179,61 @@
       <h4 class="card-header" style="background:white; color:black "><marquee behavior="" direction=""><strong>Ici apparaitra le resultat de vos recherches</strong></marquee></h4><br>
       <!-- affichage resultat aprés recherche des produits -->
       <div  id="resultP">
-          <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Produit </th>
-              <th scope="col">Disponible </th>
-            </tr>
-          </thead>
-          <tbody>
-              @foreach ($produits as $produit)
-              <tr>
-              <td>{{ $produit->name }}</td>
-              <td>pharmacie {{ $produit->pharmacie_nom }}</td>
-              </tr>
-              @endforeach
-          </tbody>   
-        </table>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Produit </th>
+                    <th scope="col">Disponible </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($produits as $produit)
+                    <tr>
+                    <td>{{ $produit->name }}</td>
+                    <td>pharmacie {{ $produit->pharmacie_nom }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>   
+          </table>
       </div>
 
       <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
-      <div id="resultPharmacie">
+      <div id="resultPharmacie" style="display: none">
           <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Pharmacie </th>
-              <th scope="col">Localité </th>
-              <th scope="col">Pharmacien responsable </th>
-              <th scope="col">Date de création </th>
-              <th scope="col">Nombre d'agent </th>
-            </tr>
-          </thead>
-          <tbody>
-              @foreach ($pharmacies as $pharmacie)
-              <tr>
-              <td>{{ $pharmacie->name }}</td>
-              <td> {{ $pharmacie->localite }}</td>
-              <td>Dr {{ $pharmacie->nom_proprio }}</td>
-              <td> {{ $pharmacie->dateCrea }}</td>
-              <td> {{ $pharmacie->nbrAgent }}</td>
-              </tr>
-              @endforeach
-          </tbody>   
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Pharmacie </th>
+                  <th scope="col">Localité </th>
+                  <th scope="col">Pharmacien responsable </th>
+                  <th scope="col">Date de création </th>
+                  <th scope="col">Nombre d'agent </th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach ($pharmacies as $pharmacie)
+                  <tr>
+                  <td>{{ $pharmacie->name }}</td>
+                  <td> {{ $pharmacie->localite }}</td>
+                  <td>Dr {{ $pharmacie->nom_proprio }}</td>
+                  <td> {{ $pharmacie->dateCrea }}</td>
+                  <td> {{ $pharmacie->nbrAgent }}</td>
+                  </tr>
+                  @endforeach
+              </tbody>   
         </table>
+        <div class="row staff-grid-row">
+                @foreach ($pharmacies as $lists )
+                <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+                    <div class="profile-widget">
+                        <div class="text-center">
+                        <a href="{{URL::to('/')}}" class="brand-link"> <img class="img-fluid" src="{{ URL::to('storage/files/'. $lists->pharmacie_image) }}" alt="User profile picture" style="max-width:200px;margin-bottom:10px;"></a>
+                          <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">{{ $lists->name }}</a></h4>
+                        <div class="small text-muted">{{ $lists->localite }}</div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
       </div>
 
 

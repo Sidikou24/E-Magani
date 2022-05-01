@@ -259,8 +259,9 @@ function ajouterProduit(Request $request, $pharmacie_id){
         $user_id = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
         $employes = DB::table('users')
-                                        ->where('pharmacien_id',$user_id)->paginate(5);
+                                        ->where('pharmacien_id',$user_id)->get();
        return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
+    //    ->paginate(5)
     }
 
     function voir_produits($pharmacie_id){
@@ -268,9 +269,10 @@ function ajouterProduit(Request $request, $pharmacie_id){
         $pharmacie = Pharmacie::find($pharmacie_id);
         $produits = DB::table('produits')
                                         ->where('user_id',$user_ids)
-                                        ->where('pharmacie_nom',$pharmacie->name)->paginate(5);
+                                        ->where('pharmacie_nom',$pharmacie->name)->get();
         
         return view('dashboards.produits.gestionProduits',compact('produits','pharmacie'));
+        // ->paginate(5)
     }
 
 

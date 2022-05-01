@@ -15,9 +15,7 @@
           <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Ventes de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
             <div class="card-header">
               <h4 style="float: left"> Faire Une Vente</h4>
-              <a href="#" style="float: right" class="btn btn-dark" 
-              data-toggle="modal" data-target="#addProduit">
-              <i class="fa fa-plus"></i> Faire Une Vente</a> </div>
+            </div>
               @if(Session::get('success'))
                                             <div class="alert alert-success">
                                                 {{Session::get('success')}}
@@ -98,7 +96,7 @@
                               class="btn btn-primary"><i class="fa fa-print"></i> Historique
                           </button>
                           <button type="button" 
-                              onclick="PrintReceiptContent('print')" 
+                          data-toggle="modal" data-target="#historique"
                               class="btn btn-danger"><i class="fa fa-print"></i> Rapport
                           </button>
                         </div>
@@ -167,64 +165,70 @@
 
 
 <!-- Modal d'ajout d'un nouveau produits -->
-<div class="modal right fade" id="addProduit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal right fade" id="historique" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="staticBackdropLabel">Ajouter Nouveau produits</h4>
+        <h4 class="modal-title" id="staticBackdropLabel">Report</h4>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-        <!-- <span aria-hidden="true">&times;</span> -->
         </button>
       </div>
       <div class="modal-body">
-       <form action="{{ route('ajouterProduits',$pharmacie->id) }}" method="post">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="name" class="">Nom: </label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nom du produit">
-              </div>
-              <div class="form-group">
-                <label for="num_lot" class="">Numéro de lot: </label>
-                <input type="text" class="form-control" id="num_lot" name="num_lot" value="{{ old('num_lot') }}" required autocomplete="num_lot" autofocus placeholder="Numéro de lot">
-              </div>
-              <div class="form-group">
-                <label for="quantite" class="">Quantité</label>
-                <input type="number" class="form-control" id="quantite" name="quantite" value="{{ old('quantite') }}" required autocomplete="quantite" placeholder="quantite">
-              </div>
-              <div class="form-group">
-                <label for="prix" class="">Prix: </label>
-                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix') }}" placeholder="prix du produit" required>
-              </div>
-              <div class="form-group">
-                <label for="dateFab" class="">Date de Fabrication: </label>
-                <input type="date" class="form-control" id="dateFab" name="dateFab" value="{{ old('dateFab') }}" required autocomplete="dateFab" autofocus>
-              </div>
-              <div class="form-group">
-                <label for="datePer" class="">Date de Péremption: </label>
-                <input type="date" class="form-control " id="datePer" name="datePer" value="{{ old('datePer') }}" required autocomplete="datePer" autofocus>
-              </div>
-              <div class="form-group">
-                <label for="alert_stock" class="">Alert_Stock: </label>
-                <input type="number" class="form-control" id="alert_stock" name="alert_stock" value="{{ old('alert_stock') }}" placeholder="alert_stock du produit">
-              </div>
-              <div class="modal-footer">
-              <button class="btn btn-primary btn-block">Inscrire Produits</button>
-            </div>
-       </form>
-      </div>
+        <div class="btn-group">
+          <button type="button" 
+            onclick="PrintReceiptJour('jour')" 
+            class="btn btn-outline rounded-pill"><i class="fa fa-print"></i> Journaliere 
+          </button>
+          <button type="button" 
+            onclick="PrintReceiptSemaine('semaine')" 
+            class="btn btn-outline rounded-pill"><i class="fa fa-print"></i> Hebdomadere
+          </button>
+          <button type="button" 
+              onclick="PrintReceiptMois('mois')" 
+              class="btn btn-outline rounded-pill"><i class="fa fa-print"></i> Mensuelle
+          </button>
+          <button type="button" 
+              onclick="PrintReceiptAnnee('annee')" 
+              class="btn btn-outline rounded-pill"><i class="fa fa-print"></i> Annuelle
+          </button>
+        </div>
     </div>
   </div>
 </div>
-
+<!-- Vente -->
 <div class="modal">
     <div id="print">
       @include('dashboards.reports.recu')
     </div>
 </div>
 
+<!-- Recette Jour -->
+<div class="modal">
+    <div id="jour">
+      @include('dashboards.reports.jour')
+    </div>
+</div>
 
+<!-- Recette Semaine -->
+<div class="modal">
+    <div id="semaine">
+      @include('dashboards.reports.semaine')
+    </div>
+</div>
 
+<!-- Recette Mois -->
+<div class="modal">
+    <div id="mois">
+      @include('dashboards.reports.mois')
+    </div>
+</div>
 
+<!-- Recette Annee -->
+<div class="modal">
+    <div id="annee">
+      @include('dashboards.reports.annee')
+    </div>
+</div>
 
 
 
@@ -387,6 +391,56 @@
                   setTimeout(() => {
                     myReceipt.close();
                   }, 10000);
+            }
+           
+    </script>
+    <script>
+       // Jour
+       function PrintReceiptJour(el) {
+              var data = '<input type="button" id="printPageButton" class="printPageButton" style="display: block;width:100%; border: none; background-color: #2ecc71; color: #fff ;padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center;" value="Recettes Journaliere" onClick="window.jour()"  >';
+                  data += document.getElementById(el).innerHTML;
+                  myReceipt = window.open("", "myWin", "left=150, top=130, width=400, height=400");
+                  myReceipt.screnX = 0;
+                  myReceipt.screnY= 0;
+                  myReceipt.document.write(data);
+                  myReceipt.document.title= "Recettes Journaliere";
+                  myReceipt.focus();
+            }
+
+          // Semaine
+          function PrintReceiptSemaine(el) {
+              var data = '<input type="button" id="printPageButton" class="printPageButton" style="display: block;width:100%; border: none; background-color: #2ecc71; color: #fff ;padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center;" value="Recettes Hebdomadere" onClick="window.semaine()"  >';
+                  data += document.getElementById(el).innerHTML;
+                  myReceipt = window.open("", "myWin", "left=150, top=130, width=400, height=400");
+                  myReceipt.screnX = 0;
+                  myReceipt.screnY= 0;
+                  myReceipt.document.write(data);
+                  myReceipt.document.title= "Recettes Hebdomadere";
+                  myReceipt.focus();
+            }
+
+            // Mois
+            function PrintReceiptMois(el) {
+              var data = '<input type="button" id="printPageButton" class="printPageButton" style="display: block;width:100%; border: none; background-color: #2ecc71; color: #fff ;padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center;" value="Recettes Mensuelle" onClick="window.mois()"  >';
+                  data += document.getElementById(el).innerHTML;
+                  myReceipt = window.open("", "myWin", "left=150, top=130, width=400, height=400");
+                  myReceipt.screnX = 0;
+                  myReceipt.screnY= 0;
+                  myReceipt.document.write(data);
+                  myReceipt.document.title= "Recettes Mensuelle";
+                  myReceipt.focus();
+            }
+            
+            // Annee
+            function PrintReceiptAnnee(el) {
+              var data = '<input type="button" id="printPageButton" class="printPageButton" style="display: block;width:100%; border: none; background-color: #2ecc71; color: #fff ;padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center;" value="Recettes Annuelle" onClick="window.annee()"  >';
+                  data += document.getElementById(el).innerHTML;
+                  myReceipt = window.open("", "myWin", "left=150, top=130, width=400, height=400");
+                  myReceipt.screnX = 0;
+                  myReceipt.screnY= 0;
+                  myReceipt.document.write(data);
+                  myReceipt.document.title= "Recettes Annuelle";
+                  myReceipt.focus();
             }
     </script>
 @endsection

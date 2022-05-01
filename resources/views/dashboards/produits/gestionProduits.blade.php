@@ -17,17 +17,18 @@
               <h4 style="float: left"> Ajouter Nouveau Produits</h4>
               <a href="#" style="float: right" class="btn btn-dark" 
               data-toggle="modal" data-target="#addProduit">
-              <i class="fa fa-plus"></i> Ajouter Nouveau Produits</a> </div>
+              <i class="fa fa-plus"></i> Ajouter Nouveau Produits</a> 
+            </div>
               @if(Session::get('success'))
-                                            <div class="alert alert-success">
-                                                {{Session::get('success')}}
-                                            </div>
-                                        @endif
-                                        @if(Session::get('error'))
-                                            <<div class="alert alert-danger">
-                                                {{Session::get('error')}}
-                                            </div>
-                                        @endif
+                  <div class="alert alert-success">
+                    {{Session::get('success')}}
+                  </div>
+                @endif
+              @if(Session::get('error'))
+                  <div class="alert alert-danger">
+                    {{Session::get('error')}}
+                  </div>
+                @endif
             <div class="card-body">
               <table class="table table-bordered table-left">
                   <thead>
@@ -42,7 +43,7 @@
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="myTable">
                     @foreach ($produits as $key => $produit)
                                 <tr>
                                     <th scope="row">{{ $key +1 }}</th>
@@ -147,13 +148,14 @@
 
 
                     @endforeach
-                    {{$produits->links()}}
+                    
                   </tbody>
               </table>
             </div>
           </div>
       </div>
       <div class="col-md-3">
+<<<<<<< HEAD
       <div class="card">
         <div class="card-header">Rechercher un produits </div>
         <div class="card-body">
@@ -161,9 +163,23 @@
       <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher un produit" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
       </form>
+=======
+        <div class="card">
+          <div class="card-header">Rechercher un employe </div>
+              <div class="card-body">
+                <div class="row filter-row">
+                    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-8 col-12">
+                        <div class="form-group form-focus">
+                          <label for="focus-label">Entrer Nom </label>
+                          <input type="text" name="name" value="" class="form-control floating" id="myInput">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+>>>>>>> pharmacie
         </div>
-      </div>
-      </div>
+    </div>
     </div>
   </div>
 </div>
@@ -241,4 +257,21 @@
   }
 </style>
 
+@endsection
+
+
+@section('script')
+<script>
+  // $(document).ready(function () {
+  //   alert(1);
+  // })
+  $(document).ready(function(){
+    $('#myInput').on('keyup',function () {
+      var value=$(this).val().toLowerCase();
+      $('#myTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 @endsection

@@ -31,7 +31,7 @@ Route::get('/', function (Request $request) {
     $produit2 = $request->input('produit2');
     $produit3 = $request->input('produit3');
     $produit4 = $request->input('produit4');
-
+    
         $produits = DB::table('produits')
                                  ->whereIn('name',[$produit1,$produit2,$produit3,$produit4])
                                  ->get();
@@ -123,7 +123,7 @@ Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'emp
 
 Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
     Route::get('dashboard', [PharmacieController::class,'index'])->name('pharmacie.dashboard');
-    Route::get('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
+    Route::post('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
    // Route::get('listeDesPharmacies', [PharmacieController::class,'listeDesPharmacies'])->name('listeDesPharmacies');
 
 });
@@ -141,3 +141,5 @@ Route::post('orders.store/{pharmacie_id}',[OrdersController::class,'store'])->na
 
 // Employer gerer Vente
 Route::get('vente',[EmployeController::class,'vente'])->name('vente');
+
+

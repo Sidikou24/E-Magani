@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
+use Carbon\Carbon;
 use App\Models\Orders;
 use App\Models\Produit;
 use App\Models\Pharmacie;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Order_details;
-use Auth;
 
 class OrdersController extends Controller
 {
@@ -26,10 +27,34 @@ class OrdersController extends Controller
         // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
         $orders = Orders::where('user_id',$user_ids AND 'pharmacie_nom',$pharmacie->name)->get();
 
+        // Les ventes Journaliere
+        $order_Jour= Order_details::where('created_at', '>=', Carbon::now()->subDay())
+                                ->where('pharmacie_nom',$pharmacie->name)
+                                ->get();
+
+        // Les ventes Hebdomadaires 
+        $order_Semaine =Order_details::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                                        ->where('pharmacie_nom',$pharmacie->name)
+                                        ->get();
+
+        // Les ventes Du mois 
+        $order_Mois= Order_details::where('pharmacie_nom',$pharmacie->name)
+                                    ->whereMonth('created_at', date('m'))
+                                    ->whereYear('created_at', date('Y'))
+                                    ->get();
+
+        // Les ventes de L'Annee
+        $order_Annee = Order_details::where('pharmacie_nom',$pharmacie->name)
+                                    ->whereYear('created_at', date('Y'))
+                                    ->get();
+
+
+
         $lastID= Order_details::where('pharmacie_nom',$pharmacie->name)
-                                                                    ->max('order_id');
+                                ->max('order_id');
+                            
          // lats order details
-         $order_receipt = Order_details::where('order_id', $lastID)->get();
+         $order_receipts = Order_details::where('order_id', $lastID)->get();
         $produits = DB::table('produits')
                                         ->where('user_id',$user_ids)
                                         ->where('pharmacie_nom',$pharmacie->name)
@@ -38,7 +63,12 @@ class OrdersController extends Controller
             'produits'=>$produits,
             'pharmacie'=>$pharmacie,
             'orders'=>$orders,
-            'order_receipt'=>$order_receipt,
+            'order_receipts'=>$order_receipts,
+            'order_Jour' => $order_Jour,
+            
+            'order_Semaine' => $order_Semaine,
+            'order_Mois'  => $order_Mois,
+            'order_Annee'  => $order_Annee,
         ]);
         // ,compact('produits','pharmacie','orders')
     }
@@ -65,6 +95,7 @@ class OrdersController extends Controller
        
       DB::transaction(function() use($request,$pharmacie_id){
         $user_ids = auth()->user()->id;
+        $user_name = auth()->user()->name;
         $pharmacie = Pharmacie::find($pharmacie_id);
         //   Order Modal
         $orders = new Orders;
@@ -87,6 +118,8 @@ class OrdersController extends Controller
             $order_details->num_lot = $request->num_lot[$i];
             $order_details->produit_name= $request->name[$i];
             $order_details->pharmacie_nom= $pharmacie->name;
+            $order_details->user_id=$user_ids;
+            $order_details->user_name= $user_name;
             $order_details->save();
         }
 

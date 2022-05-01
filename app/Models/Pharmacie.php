@@ -17,6 +17,7 @@ class Pharmacie extends Model
         'localite',
         'dateCrea',
         'nbrAgent',
+        'pharmacie_image',
     ];
 
     public function user(){

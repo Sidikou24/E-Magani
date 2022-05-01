@@ -2,7 +2,7 @@
     <ul class="list-unstyled lead">
     @if(auth()->user()->fonction == 'pharmacien')
         <li class="active">
-            <a href=""><i class="fa fa-home fa-lg"></i> Home </a>
+            <a href="{{route('voir_pharmacie')}}"><i class="fa fa-home fa-lg"></i> Home </a>
         </li>
 
         <li>
@@ -17,7 +17,7 @@
         </li>
     @else
         <li class="active">
-            <a href=""><i class="fa fa-home fa-lg"></i> Home </a>
+            <a href="employe.profile"><i class="fa fa-home fa-lg"></i> Home </a>
         </li>
 
         <li>

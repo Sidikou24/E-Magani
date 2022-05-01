@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Pharmacie;
-use App\Models\User;
 use DB;
+use App\Models\User;
+use App\Models\Pharmacie;
 use Illuminate\Http\File;
+use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PharmacieController extends Controller
@@ -18,31 +19,81 @@ class PharmacieController extends Controller
     }
 
     function enregistrer(Request $request){
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'localite' => 'required',
-            'dateCrea' => 'required',
-            'nbrAgent' => 'required',
+
+        $validator = Validator::make($request->all(),[
+                'name' => 'required|string',
+                'localite' => 'required|string',
+                'dateCrea' => 'required',
+                'pharmacie_image' => 'required|image',//|mimes:jpeg,bmp,png
+        ],[
+            'name.required'=>'Le nom de la Pharmacie est obligatoire',
+            'name.string'=>'Le Nom de la Pharmacie doit etre une chaine',
+            'localite.required'=>'la localite est obligatoire',
+            'localite.string'=>'la localite doit etre une chaine',
+            'pharmacie_image.required'=>'Pharmacie Image est Obligatoire',
+            'pharmacie_image.image'=>'Le fichier doit etre une image',
         ]);
-        $pharmacie = new Pharmacie();
-        $pharmacie->pharmacien_id = auth()->user()->id;
-        $pharmacie->name = $request->name;
-        $pharmacie->nom_proprio = auth()->user()->prenom;
-        $pharmacie->localite = $request->localite;
-        $pharmacie->dateCrea = $request->dateCrea;
-        $pharmacie->nbrAgent = $request->nbrAgent;
-        
-        if ($pharmacie->save()) {
-            return redirect()->back()->with('success','pharmacie ajouté avec succés');
-        }else {
-            return redirect()->back()->with('error','l\'enregistrement a echouée');
+
+        if (!$validator->passes()) {
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        } else {
+            $path = 'files/';
+            $file = $request->file('pharmacie_image');
+            $file_name = time().'_'.$file->getClientOriginalName();
+            // $upload = $file->storeAs($path, $file_name);
+            $upload = $file->storeAs($path, $file_name, 'public');
+            
+            if ($upload) {
+                Pharmacie::insert([
+                    'pharmacien_id' => auth()->user()->id,
+                   'name' => $request->name,
+                   'localite' => $request->localite,
+                   'dateCrea' => $request->dateCrea,
+                   'nom_proprio' => auth()->user()->prenom,
+                    'pharmacie_image' => $file_name,
+
+                ]);
+                return response()->json(['code'=>1,'msg'=>'nouvel pharmacie']);
+            }
         }
+        
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'localite' => 'required',
+        //     'dateCrea' => 'required',
+        //     'nbrAgent' => 'required',
+        // ]);
+
+        // if () {
+        //     # code...
+        // } else {
+        //     # code...
+        // }
+        
+        // $pharmacie = new Pharmacie();
+        // $pharmacie->pharmacien_id = auth()->user()->id;
+        // $pharmacie->name = $request->name;
+        // $pharmacie->nom_proprio = auth()->user()->prenom;
+        // $pharmacie->localite = $request->localite;
+        // $pharmacie->dateCrea = $request->dateCrea;
+        // $pharmacie->nbrAgent = $request->nbrAgent;
+        
+        // if ($pharmacie->save()) {
+        //     return redirect()->back()->with('success','pharmacie ajouté avec succés');
+        // }else {
+        //     return redirect()->back()->with('error','l\'enregistrement a echouée');
+        // }
+        
     }    
 
     function voir_pharmacie(){
         $pharmacien_id = auth()->user()->id;
+        $employer = DB::table('users')->get();
         $pharmacies = DB::table('pharmacies')->where('pharmacien_id',$pharmacien_id)->get(); //relation One to Many;
-        return view('dashboards.pharmacies.gestionPharmacies',compact('pharmacies'));
+        return view('dashboards.pharmacies.gestionPharmacies',[
+            'pharmacies' => $pharmacies,
+            'employer' => $employer,
+        ]);
     }
 
     function supprimerPharmacie($id){
@@ -58,14 +109,11 @@ class PharmacieController extends Controller
 
     function majPharmacie(Request $request,$id){
         $pharmacie = Pharmacie::find($id);
-
-        $nouvPharmacie = $request->all();
-        //$pharmacie->name = $nouvPharmacie['name'];
-        $pharmacie->localite = $nouvPharmacie['localite'];
-       // $pharmacie->dateCrea = $nouvPharmacie['dateCrea'];
-        $pharmacie->nbrAgent = $nouvPharmacie['nbrAgent'];
-        $pharmacie->save();
-        return redirect('pharmacien/voir_pharmacie');
+        if (!$pharmacie) {
+           return back()->with('error','Employer introuvable');
+        }
+        $pharmacie->update($request->all());
+        return back()->with('success','Employer Modifier');
     }
 
     function listeDesPharmacies(){

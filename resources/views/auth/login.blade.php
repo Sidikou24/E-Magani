@@ -7,7 +7,7 @@
     <meta name="description" content="">
 
     <title>E-Magani</title>
-    <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
+    <link rel="icon" href="img/logo-EMagani.jpg">
 
 
 

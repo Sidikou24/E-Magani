@@ -12,7 +12,7 @@ class Order_details extends Model
     use HasFactory;
     protected $fillable=['order_id', 'product_id',
                         'unitprice', 'quantity',
-                        'amount', 'discount','num_lot','pharmacie_nom','produit_name'];
+                        'amount', 'discount','num_lot','pharmacie_nom','produit_name','user_id','user_name'];
 
     public function produit(){
         return $this->belongsToMany('App\Models\Produit');
