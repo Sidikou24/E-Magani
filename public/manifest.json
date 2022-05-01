@@ -1,0 +1,28 @@
+{
+    "name": "E-Magani",
+    "short_name": "eMagani",
+    "start_url": "http://127.0.0.1:8000/",
+    "background_color": "white",
+    "description": "Trouver rapidement vos produits avec l'application EMagani",
+    "display": "standalone",
+    "theme_color": "green",
+    "orientation": "portrait-primary",
+    "icons": [{
+            "src": "pharmacie.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pharmacie256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+
+        },
+        {
+            "src": "icon128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }
+    ]
+}
