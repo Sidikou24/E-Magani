@@ -89,13 +89,13 @@
                                 <span class="text-danger error-text dateCrea_error"></span>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label for="nbrAgent" class="col-sm-2 col-form-label">nbrAgent</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="nbrAgent" placeholder="ReEntrer new password" name="nbrAgent" >
                                 <span class="text-danger error-text nbrAgent_error"></span>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group row">
                                 <label for="pharmacie_image" class="col-sm-2 col-form-label">pharmacie_image</label>
                                 <div class="col-sm-10">
@@ -106,7 +106,7 @@
                             <div class="img-holder"></div>
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Update Password</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-success">Ajouter Pharmacie</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="{{route ('voir_pharmacie')}}" type="reset" class="btn btn-danger">Annuler</a>
                                 </div>
                             </div>

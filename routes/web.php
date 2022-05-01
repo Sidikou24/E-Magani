@@ -30,7 +30,7 @@ Route::get('/', function (Request $request) {
     $produit2 = $request->input('produit2');
     $produit3 = $request->input('produit3');
     $produit4 = $request->input('produit4');
-
+    
         $produits = DB::table('produits')
                                  ->whereIn('name',[$produit1,$produit2,$produit3,$produit4])
                                  ->get();
@@ -146,3 +146,5 @@ Route::post('orders.store/{pharmacie_id}',[OrdersController::class,'store'])->na
 
 // Employer gerer Vente
 Route::get('vente',[EmployeController::class,'vente'])->name('vente');
+
+

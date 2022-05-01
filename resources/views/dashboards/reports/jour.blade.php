@@ -6,7 +6,7 @@
                 <center id="top">
                     <div class="logo">{{$pharmacie->name}}</div>
                     <div class="info"></div>
-                    <h2> E-Magani</h2>
+                    <h2> Jour</h2>
                 </center>
             </div>
 
@@ -17,6 +17,7 @@
                         Address: Laboratoire R-Lantis
                         Email: pfe@gmail.com
                         Phone: 12345678
+                        Caissier: 
                     </p>
                 </div>
 
@@ -26,6 +27,9 @@
                 <div class="table">
                     <table>
                         <tr class="tabletitle">
+                            <td class="item">
+                                <h2>Nom du Vendeur</h2>
+                            </td>
                             <td class="item">
                                 <h2>Article</h2>
                             </td>
@@ -42,8 +46,11 @@
                                 <h2>Total</h2>
                             </td>
                         </tr>
-                    @foreach($order_receipts as $receipt)
+                    @foreach($order_Jour as $receipt)
                         <tr class="service">
+                            <td class="tableitem">
+                                <p class="itemtext">{{$receipt->user_name}}</p>
+                            </td>
                             <td class="tableitem">
                                 <p class="itemtext">{{$receipt->produit_name}}</p>
                             </td>
@@ -78,7 +85,7 @@
                             <td></td>
                             <td class="Rate">Total</td>
                             <td class="Payment">
-                                <h2>$  {{number_format($order_receipts->sum('amount'),2)}}</h2>
+                                <h2>$  {{number_format($order_Jour->sum('amount'),2)}}</h2>
                             </td>
                         </tr>
                     </table>

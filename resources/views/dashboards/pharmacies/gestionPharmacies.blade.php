@@ -67,6 +67,10 @@
                                             <label for="dateCrea">dateCrea</label>
                                             <input type="date" class="form-control" id="dateCrea" placeholder="dateCrea" value="{{$pharmacie->dateCrea}}" name="dateCrea" >
                                       </div>
+                                      <div class="form-group">
+                                          <label for="nbrAgent" class="">nbrAgent *</label>
+                                          <input type="number" class="form-control" id="nbrAgent" placeholder="Nombre D'Agents" name="nbrAgent" >
+                                      </div>
                                       <div class="modal-footer">
                                         <button class="btn btn-warning btn-block">Modifier Employé</button>
                                       </div>
@@ -136,21 +140,21 @@
        </div>
        <div class="form-group">
             <label for="dateCrea" class="">dateCrea *</label>
-            <input type="date" class="form-control" id="dateCrea" placeholder="ReEntrer new password" name="dateCrea" >
+            <input type="date" class="form-control" id="dateCrea" placeholder="Date de Creation" name="dateCrea" >
             <span class="text-danger error-text dateCrea_error"></span>
        </div>
        <div class="form-group">
           <label for="nbrAgent" class="">nbrAgent *</label>
-          <input type="number" class="form-control" id="nbrAgent" placeholder="ReEntrer new password" name="nbrAgent" >
+          <input type="number" class="form-control" id="nbrAgent" placeholder="Nombre D'Agents" name="nbrAgent" >
           <span class="text-danger error-text nbrAgent_error"></span>
        </div>
        <div class="form-group">
             <label for="pharmacie_image" class="">Image de la pharmacie</label>
-            <input type="file" class="form-control" id="pharmacie_image" placeholder="Entrer pharmacie_image" name="pharmacie_image" >
+            <input type="file" class="form-control" id="pharmacie_image" placeholder="Entrer pharmacie image" name="pharmacie_image" >
             <span class="text-danger error-text pharmacie_image_error"></span>
         </div>
        <div class="modal-footer">
-         <button class="btn btn-primary">Inscrire Employé</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <button class="btn btn-primary">Inscrire Pharmacie</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <a href="{{route ('voir_pharmacie')}}" type="reset" class="btn btn-danger">Annuler</a>
        </div>
 

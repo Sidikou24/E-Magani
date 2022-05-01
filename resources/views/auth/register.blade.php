@@ -232,7 +232,7 @@
                         <div class="row mb-3">
                             <label for="sexe" class="col-sm-3 offset-sm-1 col-form-label">Sexe :</label>
                             <div class="col-sm-7">
-                                <input type="radio" id="masculin" name="sexe" value="masculin" required>
+                                <input type="radio" id="masculin" name="sexe" value="masculin" required checked>
                                 <label for="masculin">Masculin</label>
                                 <input type="radio" id="feminin" name="sexe" value="feminin" required>
                                 <label for="feminin">Feminin</label>

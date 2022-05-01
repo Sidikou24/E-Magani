@@ -5,7 +5,6 @@
 
 @section('content')
 
-<!-- </div> -->
 <div class="container-fluid">
   <div class="col-lg-12">
     <div class="row">
@@ -18,17 +17,17 @@
               data-toggle="modal" data-target="#addUser">
               <i class="fa fa-plus"></i> Ajouter Nouveau employe</a> </div>
               @if(Session::get('success'))
-                                            <div class="alert alert-success">
-                                                {{Session::get('success')}}
-                                            </div>
-                                        @endif
-                                        @if(Session::get('error'))
-                                            <<div class="alert alert-danger">
-                                                {{Session::get('error')}}
-                                            </div>
-                                        @endif
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
+              @endif
+              @if(Session::get('error'))
+                <div class="alert alert-danger">
+                  {{Session::get('error')}}
+                </div>
+              @endif
             <div class="card-body">
-              <table class="table table-bordered table-left">
+              <table class="table table-bordered table-left" >
                 <thead>
                     <tr>
                           <th scope="col">#</th>
@@ -41,7 +40,7 @@
                           <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                     @foreach ($employes as $key =>  $employe)
                           <tr>
                               <th scope="row">{{ $key + 1 }}</th>
@@ -53,9 +52,8 @@
                               <td>{{ $employe->dateNaiss }}</td>
                               <td>
                                 <div class="btn-group">
-                                <a href="" data-toggle="modal" data-target="#editUser{{$employe->id}}" class="btn btn-info btnt-sm"><i class="fa fa-edit"></i> Modifier </a>
+                                  <a href="" data-toggle="modal" data-target="#editUser{{$employe->id}}" class="btn btn-info btnt-sm"><i class="fa fa-edit"></i> Modifier </a>
                                   <a href="" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUser{{$employe->id}}"><i class="fa fa-trash"></i> Retirer </a>
-                                  
                                 </div>
                               </td>
                             </tr>
@@ -169,20 +167,28 @@
 
 
                     @endforeach
-                    {{$employes->links()}}
+                    
                   </tbody>   
               </table>
             </div>
           </div>
+          
       </div>
       <div class="col-md-3">
-      <div class="card">
-        <div class="card-header">Rechercher un employe </div>
-        <div class="card-body">
-         ..........
+        <div class="card">
+          <div class="card-header">Rechercher un employe </div>
+              <div class="card-body">
+                <div class="row filter-row">
+                    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-8 col-12">
+                        <div class="form-group form-focus">
+                          <label for="focus-label">Entrer Nom </label>
+                          <input type="text" name="name" value="" class="form-control floating" id="myInput">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
         </div>
-      </div>
-      </div>
     </div>
   </div>
 </div>
@@ -278,8 +284,25 @@
     -webkit-transform: translate3d(25%,0,0);
     transform: translate3d(25%, , 0, 0);
   }
+
+  /* Visibilité */
+  
 </style>
 
+@endsection
 
-
+@section('script')
+<script>
+  // $(document).ready(function () {
+  //   alert(1);
+  // })
+  $(document).ready(function(){
+    $('#myInput').on('keyup',function () {
+      var value=$(this).val().toLowerCase();
+      $('#myTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 @endsection

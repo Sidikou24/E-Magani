@@ -7,7 +7,7 @@
     <meta name="description" content="">
 
     <title>E-Magani</title>
-    <link rel="icon" href="https://www.jsdelivr.com/img/icon_256x256.png">
+    <link rel="icon" href="img/logo-EMagani.jpg">
 
 
 
@@ -71,11 +71,11 @@
                 <div class="top-nav s-12 l-10">
                     <p class="nav-text"></p>
                     <ul class="right chevron">
-                        <li><a href="{{route('login')}}">Home</a></li>
+                        <li><a href="{{url('/')}}">Home</a></li>
                         <li><a href="{{route('login')}}">Products</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="contact.html">Contact</a></li> -->
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>

@@ -24,7 +24,6 @@ class PharmacieController extends Controller
                 'name' => 'required|string',
                 'localite' => 'required|string',
                 'dateCrea' => 'required',
-                'nbrAgent' => 'required',
                 'pharmacie_image' => 'required|image',//|mimes:jpeg,bmp,png
         ],[
             'name.required'=>'Le nom de la Pharmacie est obligatoire',
@@ -51,7 +50,6 @@ class PharmacieController extends Controller
                    'localite' => $request->localite,
                    'dateCrea' => $request->dateCrea,
                    'nom_proprio' => auth()->user()->prenom,
-                    'nbrAgent' => $request->nbrAgent,
                     'pharmacie_image' => $file_name,
 
                 ]);
@@ -90,8 +88,12 @@ class PharmacieController extends Controller
 
     function voir_pharmacie(){
         $pharmacien_id = auth()->user()->id;
+        $employer = DB::table('users')->get();
         $pharmacies = DB::table('pharmacies')->where('pharmacien_id',$pharmacien_id)->get(); //relation One to Many;
-        return view('dashboards.pharmacies.gestionPharmacies',compact('pharmacies'));
+        return view('dashboards.pharmacies.gestionPharmacies',[
+            'pharmacies' => $pharmacies,
+            'employer' => $employer,
+        ]);
     }
 
     function supprimerPharmacie($id){
