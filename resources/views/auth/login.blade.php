@@ -7,7 +7,11 @@
     <meta name="description" content="">
 
     <title>E-Magani</title>
+<<<<<<< HEAD
     <link rel="icon" href="img/logo-EMagani.jpg">
+=======
+    <link rel="icon" href="pharmacie256.png">
+>>>>>>> 902bf81bd0b5b80add160c203a7c9f69ff3e56d5
 
 
 
