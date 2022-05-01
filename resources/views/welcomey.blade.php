@@ -3,7 +3,6 @@
 
 <head>
     <title>E-Magani &mdash;</title>
-    <link rel="icon" href="pharmacie256.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,22 +33,13 @@
             display: none;
         }
 
-        .site-blocks-cover {
-            max-width: 100%;
-            display: block;
-        }
-
     </style>
-
-    <!-- PWA  -->
-    <meta name="theme-color" content="green" />
-    <link rel="apple-tuch-icon" href="pharmacie.png">
-    <meta name="apple-mobile-web-app-status-bar" content="green">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="apple-touch-icon" href="pharmacie.png'">
-    <link rel="manifest" href="manifest.json">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+     <!-- PWA  -->
+     <meta name="theme-color" content="green" />
+     <link rel="apple-touch-icon" href="pharmacie.png'">
+     <link rel="manifest" href="{{ asset('/manifest.json') }}">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
 
 </head>
 
@@ -74,24 +64,25 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="{{ url('/') }}" class="js-logo-clone">E<strong class="text-primary">Magani</strong></a>
-                            {{-- <a href="{{ url('/') }}" class="logo"><img src="img/logo-EMagani.jpg"
-                                    alt=""></a> --}}
+                            <div class="s-12 l-2">
+                                <a href="{{ url('/') }}" class="logo"><img src="img/logo-EMagani.jpg"
+                                        alt=""></a>
+                            </div>
+                            <!-- <a href="index.html" class="js-logo-clone">E<strong class="text-primary">Magani</strong></a> -->
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li class="active"><a href="{{ url('/') }}">Accueil</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#" class="icons-btn d-inline-block js-search-open"><span
-                                            class="icon-search"></span></a>
-                                </li>
+                                <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="icons">
+                        <a href="#" class="icons-btn d-inline-block js-search-open"><span
+                                class="icon-search"></span></a> &nbsp;&nbsp;&nbsp;&nbsp;
                         @if (Route::has('login'))
                             @auth
                                 <a href="{{ route('login') }}"
@@ -108,7 +99,7 @@
                             @endauth
                         @endif
                         <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                            class="icon-menu"></span></a>
+                                class="icon-menu"></span></a>
                     </div>
                 </div>
             </div>
@@ -116,7 +107,7 @@
 
 
         <div id="imgAccueil" class="owl-carousel owl-single px-0">
-            <div class="site-blocks-cover overlay" style="background-image: url('img/hero_bg_2.jpg'); max-width: 100%">
+            <div class="site-blocks-cover overlay" style="background-image: url('img/hero_bg_2.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 mx-auto align-self-center">
@@ -139,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg'); max-width: 100%">
+            <div class="site-blocks-cover overlay" style="background-image: url('img/bg_2.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 mx-auto align-self-center">
@@ -158,18 +149,17 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        @yield('contenu')
 
-        {{-- <div class="site-section"> --}}
-        {{-- modal --}}
+
+        <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Saisir le(s) produits que vous recherchez
-                        </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Saisir le(s) produits que vous recherchez</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -223,8 +213,7 @@
             </div>
         </div>
         <h4 class="card-header" style="background:white; color:black ">
-            <marquee behavior="" direction=""><strong>Ici apparaitra le resultat de vos recherches</strong>
-            </marquee>
+            <marquee behavior="" direction=""><strong>Ici apparaitra le resultat de vos recherches</strong></marquee>
         </h4><br>
         <!-- affichage resultat aprés recherche des produits -->
         <div id="resultP">
@@ -272,20 +261,17 @@
             </table>
         </div>
 
-        {{-- </div> --}}
 
         <footer class="site-footer bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-
                         <div class="block-7">
                             <h3 class="footer-heading mb-4">A propos de <strong class="text-primary">E-Magani</strong>
                             </h3>
                             <p>E-Magani est une plateforme qui vous permet de trouver les produits dont vous avez besoin
                                 dans le plus bref délai.</p>
                         </div>
-
                     </div>
                     <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
                         <h3 class="footer-heading mb-4">Informez-vous</h3>
@@ -339,16 +325,6 @@
 
     <script src="js/main.js"></script>
 
-   
-    <script src="sw.js"></script>
-     <script>
-        if (!navigator.serviceWorker.controller) {
-            navigator.serviceWorker.register("\sw.js").then(function(reg) {
-                console.log("Service worker has been registered for scope: " + reg.scope);
-            });
-        }
-    </script>
-
     <script>
         function affich() {
             document.getElementById("resultP").style.display = "block";
@@ -361,7 +337,6 @@
             document.getElementById("resultP").style.display = "none";
         }
     </script>
-
 
 </body>
 
