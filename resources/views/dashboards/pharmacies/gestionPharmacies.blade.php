@@ -124,7 +124,7 @@
         </button>
       </div>
       <div class="modal-body">
-       <form class="form-horizontal" method="get" action="{{ route('enregistrer') }}"  enctype="multipart/form-data" id="form">
+       <form class="form-horizontal" method="post" action="{{ route('enregistrer') }}"  enctype="multipart/form-data" id="form">
        {{ csrf_field() }}
        <div class="form-group">
           <label for="name" >Nom de La Pharmacie</label>

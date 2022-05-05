@@ -124,7 +124,7 @@ Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'emp
 
 Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
     Route::get('dashboard', [PharmacieController::class,'index'])->name('pharmacie.dashboard');
-    Route::get('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
+    Route::post('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
    // Route::get('listeDesPharmacies', [PharmacieController::class,'listeDesPharmacies'])->name('listeDesPharmacies');
 
 });
