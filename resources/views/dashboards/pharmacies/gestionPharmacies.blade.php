@@ -113,9 +113,6 @@
   </div>
 </div><br><br>
 
-
-
-
 <!-- Modal d'ajout d'un Ajouter une Pharmacie -->
 <div class="modal right fade" id="ajouterPharmacie" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -217,7 +214,31 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
      }
 });
-
+// $('#form').on('submit', function(e) {
+//         e.preventDefault();
+//         var form=this;
+//         $.ajax({
+//           url: $(this).attr('action'),
+//           method: $(this).attr('method'),
+//           data: new FormData(this),
+//           processData: false,
+//           dataType: 'json',
+//           contentType: false,
+//           beforeSend: function() {
+//             $(form).find('span.error-text').text('');
+//           },
+//           success: function(data) {
+//             if (data.code == 0) {
+//                        $.each(data.error, function (prefix, val) {
+//                            $(form).find('span.'+prefix+'_error').text(val[0]);
+//                        })
+//             } else {
+//                       $(form)[0].reset();
+//                        alert(data.msg);
+//             }
+//           }
+//         });
+//       });
       $(function(){
        $('#form').on('submit',function (e) {
            e.preventDefault();

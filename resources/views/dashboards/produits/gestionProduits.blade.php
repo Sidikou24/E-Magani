@@ -144,9 +144,6 @@
                                         </div>
                                       </div>
                                     </div>
-
-
-
                     @endforeach
                     
                   </tbody>
@@ -155,15 +152,6 @@
           </div>
       </div>
       <div class="col-md-3">
-<<<<<<< HEAD
-      <div class="card">
-        <div class="card-header">Rechercher un produits </div>
-        <div class="card-body">
-        <form class="form-inline my-2 my-lg-0 float-right mb-4" type="get" action="{{ route('rechercheProduit',$pharmacie->id)}}">
-      <input class="form-control mr-sm-2" type="search" name="recherche" placeholder="Rechercher un produit" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-      </form>
-=======
         <div class="card">
           <div class="card-header">Rechercher un employe </div>
               <div class="card-body">
@@ -177,7 +165,6 @@
                   </div>
               </div>
             </div>
->>>>>>> pharmacie
         </div>
     </div>
     </div>

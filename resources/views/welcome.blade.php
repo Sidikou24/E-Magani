@@ -195,6 +195,22 @@
                     @endforeach
                 </tbody>   
           </table>
+           @foreach ($pharmacies as $pharmacie)
+                          @foreach ($produits as $produit)
+                            @if($pharmacie->name == $produit->pharmacie_nom)
+                              <p>Produit {{ $produit->name }} Disponible dans :</p>
+                                <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+                                    <div class="profile-widget">
+                                        <div class="text-center">
+                                        <a href="{{URL::to('/')}}" class="brand-link"> <img class="img-fluid" src="{{ URL::to('storage/files/'. $pharmacie->pharmacie_image) }}" alt="Image de la pharmacie" style="max-width:200px;margin-bottom:10px;"></a>
+                                          <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">{{ $pharmacie->name }}</a></h4>
+                                        <div class="small text-muted">{{ $pharmacie->localite }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                              @endif
+                            @endforeach
+                        @endforeach
       </div>
 
       <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
@@ -264,7 +280,11 @@
       </div>
     </footer>
   </div>
-
+<style>
+  .resultP{
+  display : "none";
+}
+</style>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/popper.min.js"></script>
