@@ -24,6 +24,7 @@ class PharmacieController extends Controller
                 'name' => 'required|string',
                 'localite' => 'required|string',
                 'dateCrea' => 'required',
+                'nbrAgent' => 'required',
                 'pharmacie_image' => 'required|image',//|mimes:jpeg,bmp,png
         ],[
             'name.required'=>'Le nom de la Pharmacie est obligatoire',
@@ -49,6 +50,7 @@ class PharmacieController extends Controller
                    'name' => $request->name,
                    'localite' => $request->localite,
                    'dateCrea' => $request->dateCrea,
+                   'nbrAgent' => $request->nbrAgent,
                    'nom_proprio' => auth()->user()->prenom,
                     'pharmacie_image' => $file_name,
 
@@ -57,32 +59,6 @@ class PharmacieController extends Controller
             }
         }
         
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'localite' => 'required',
-        //     'dateCrea' => 'required',
-        //     'nbrAgent' => 'required',
-        // ]);
-
-        // if () {
-        //     # code...
-        // } else {
-        //     # code...
-        // }
-        
-        // $pharmacie = new Pharmacie();
-        // $pharmacie->pharmacien_id = auth()->user()->id;
-        // $pharmacie->name = $request->name;
-        // $pharmacie->nom_proprio = auth()->user()->prenom;
-        // $pharmacie->localite = $request->localite;
-        // $pharmacie->dateCrea = $request->dateCrea;
-        // $pharmacie->nbrAgent = $request->nbrAgent;
-        
-        // if ($pharmacie->save()) {
-        //     return redirect()->back()->with('success','pharmacie ajouté avec succés');
-        // }else {
-        //     return redirect()->back()->with('error','l\'enregistrement a echouée');
-        // }
         
     }    
 
