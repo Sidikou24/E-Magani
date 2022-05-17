@@ -18,6 +18,8 @@ class Pharmacie extends Model
         'dateCrea',
         'nbrAgent',
         'pharmacie_image',
+        'longitude',
+        'latitude',
     ];
 
     public function user(){

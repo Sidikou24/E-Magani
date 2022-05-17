@@ -18,6 +18,11 @@ class PharmacieController extends Controller
         return view('dashboards.pharmacies.index');
     }
 
+    function map($pharmacie_id){
+        $pharmacies = Pharmacie::find($pharmacie_id);//Récuperation de la pharmacie dans laquelle on souhaite faire l'ajout
+        return view('googlemap',compact('pharmacies'));
+    }
+
     function enregistrer(Request $request){
 
         $validator = Validator::make($request->all(),[
@@ -53,6 +58,8 @@ class PharmacieController extends Controller
                    'nbrAgent' => $request->nbrAgent,
                    'nom_proprio' => auth()->user()->prenom,
                     'pharmacie_image' => $file_name,
+                    'longitude' => $request->longitude,
+                    'latitude'  => $request->latitude,
 
                 ]);
                 return response()->json(['code'=>1,'msg'=>'nouvel pharmacie']);

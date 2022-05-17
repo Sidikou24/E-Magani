@@ -1,16 +1,17 @@
 <?php
+use App\Models\Produit;
+use App\Models\Pharmacie;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrdersController;
+// use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ProduitController;
-use App\Http\Controllers\PharmacieController;
-use App\Http\Controllers\ContactController;
-use App\Models\Produit;
-use App\Models\Pharmacie;
-use Illuminate\Http\Request;
+use App\Http\Controllers\contactsController;
 
+use App\Http\Controllers\PharmacieController;
 use App\Http\Controllers\PharmacienController;
 
 /*
@@ -124,7 +125,7 @@ Route::group(['prefix' => 'produit', /*'middleware' => ['isEmploye','auth', 'emp
 
 Route::group(['prefix' => 'pharmacie', /*'middleware' => ['isEmploye','auth', 'empecherRetourEnArriere']*/], function(){
     Route::get('dashboard', [PharmacieController::class,'index'])->name('pharmacie.dashboard');
-    Route::get('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
+    Route::post('ajouterPharmacie', [PharmacieController::class,'enregistrer'])->name('enregistrer');
    // Route::get('listeDesPharmacies', [PharmacieController::class,'listeDesPharmacies'])->name('listeDesPharmacies');
 
 });
@@ -144,3 +145,7 @@ Route::post('orders.store/{pharmacie_id}',[OrdersController::class,'store'])->na
 Route::get('vente',[EmployeController::class,'vente'])->name('vente');
 
 
+//Contatcs
+Route::get('/googlemap/{pharmacie_id}', [App\Http\Controllers\PharmacieController::class, 'map'])->name('googlemap');
+Route::view('/contacts','contacts')->name('contatcts');
+Route::post('/send',[contactsController::class,'send'])->name('send.email');

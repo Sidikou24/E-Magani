@@ -124,11 +124,7 @@ class OrdersController extends Controller
         }
 
 
-        for ($i=0; $i <count($request->produit_id) ; $i++) { 
-            $produits=Produit::find($request->produit_id[$i]);
-            $qty= $produits->quantite - $request->quantite[$i];
-            $produits->update(['quantite' => $qty]);
-        }
+        
 
             // 'order_id', 'paid_amount',
             //             'balance', 'payment_method',
@@ -162,8 +158,17 @@ class OrdersController extends Controller
             ]);
       });
 
-      return back()->with("L'insertion de produits a echouers");
-
+      for ($i=0; $i <count($request->produit_id) ; $i++) { 
+            $produits=Produit::find($request->produit_id[$i]);
+            if ($produits->quantite > $request->quantite[$i]) {
+                $qty= $produits->quantite - $request->quantite[$i];
+                $produits->update(['quantite' => $qty]);
+                return redirect()->back()->with('success','La vente a bien été effectuer');
+            } else {
+                return redirect()->back()->with('error','La quantite est insuffisant');
+            }
+            
+        }
     }
 
     /**

@@ -16,13 +16,13 @@
             <div class="card-header">
               <h4 style="float: left"> Faire Une Vente</h4>
             </div>
-              @if(Session::get('success'))
+                                          @if(Session::get('success'))
                                             <div class="alert alert-success">
                                                 {{Session::get('success')}}
                                             </div>
                                         @endif
                                         @if(Session::get('error'))
-                                            <<div class="alert alert-danger">
+                                            <div class="alert alert-danger">
                                                 {{Session::get('error')}}
                                             </div>
                                         @endif
