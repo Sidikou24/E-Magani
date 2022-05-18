@@ -22,6 +22,8 @@ class CreatePharmaciesTable extends Migration
             $table->date('dateCrea');
             $table->integer('nbrAgent');
             $table->string('pharmacie_image');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title">Reset Password</h4>
+							<h4 class="card-title">Réinitialiser Votre Password</h4>
 							<form method="POST" class="my-login-validation" novalidate="" action="{{ route('password.update')}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="token" value="{{ $token }}">
@@ -29,7 +29,7 @@
                                         <span class="text-danger">@error('email'){{ $message }} @enderror</span>
 							    </div>
 								<div class="form-group">
-									<label for="password">New Password</label>
+									<label for="password">Nouveau Password</label>
 									<input id="password" type="password" class="form-control" name="password" required autofocus data-eye>
                                     <span class="text-danger">@error('password'){{ $message }} @enderror</span>
 									<div class="invalid-feedback">
@@ -40,21 +40,21 @@
 									</div>
 								</div>
                                 <div class="form-group">
-									    <label for="password-confirm">password-confirm</label>
+									    <label for="password-confirm">Confirmer Nouveau Password</label>
 									    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autofocus placeholder="Entrer Le mot de passe de confirmation">
                                         <span class="text-danger">@error('password_confirmation'){{ $message }} @enderror</span>
 							    </div>
 
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-primary btn-block">
-										Reset Password
+									Réinitialiser Votre Password
 									</button>
 								</div>
 							</form>
 						</div>
 					</div>
 					<div class="footer">
-						Copyright &copy; 2017 &mdash; Your Company 
+						Copyright &copy; 2022 &mdash; E-Magani
 					</div>
 				</div>
 			</div>

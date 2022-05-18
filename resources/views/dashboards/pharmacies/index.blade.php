@@ -47,6 +47,8 @@
             </div>
         </nav>
 </header>
+<body onload = "getLocation();">
+    
 
 <div class="container-fluid">
     <div class="row">
@@ -56,7 +58,7 @@
 
                 <div class="card-body">        
                         
-                    <form class="form-horizontal" method="post" action="{{ route('enregistrer') }}"  enctype="multipart/form-data" id="form"> 
+                    <form class="myForm" method="post" action="{{ route('enregistrer') }}"  enctype="multipart/form-data" id="form"> 
                     {{ csrf_field() }}
                             @if(Session::get('success'))
                                 <div class="alert alert-success">
@@ -89,13 +91,13 @@
                                 <span class="text-danger error-text dateCrea_error"></span>
                                 </div>
                             </div>
-                            <!-- <div class="form-group row">
+                            <div class="form-group row">
                                 <label for="nbrAgent" class="col-sm-2 col-form-label">nbrAgent</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="nbrAgent" placeholder="ReEntrer new password" name="nbrAgent" >
                                 <span class="text-danger error-text nbrAgent_error"></span>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="form-group row">
                                 <label for="pharmacie_image" class="col-sm-2 col-form-label">pharmacie_image</label>
                                 <div class="col-sm-10">
@@ -104,6 +106,8 @@
                                 </div>
                             </div>
                             <div class="img-holder"></div>
+                            <input type="text" class="form-control" id="latitude" placeholder="Entrer pharmacie image" name="latitude" >        
+                            <input type="text" class="form-control" id="longitude" placeholder="Entrer pharmacie image" name="longitude" >
                             <div class="form-group row">
                                 <div class="offset-sm-2 col-sm-10">
                                 <button type="submit" class="btn btn-success">Ajouter Pharmacie</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -118,6 +122,18 @@
     </div>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        }
+      }
+      function showPosition(position) {
+        document.querySelector('.myForm input[name = "latitude"]').value = position.coords.latitude;
+        document.querySelector('.myForm input[name = "longitude"]').value = position.coords.longitude;
+      }
+    </script>
 <script>
 $.ajaxSetup({
     headers: {
@@ -177,3 +193,4 @@ $.ajaxSetup({
        })
     });
 </script>
+</body>
