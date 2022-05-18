@@ -160,7 +160,6 @@
             <button class="btn btn-primary">Inscrire Pharmacie</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{{route ('voir_pharmacie')}}" type="reset" class="btn btn-danger">Annuler</a>
           </div>
-
           </form>
           </div>
         </div>
