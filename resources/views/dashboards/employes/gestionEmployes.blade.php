@@ -42,7 +42,7 @@
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                                 @foreach ($employes as $key => $employe)
                                     <tr>
                                         <th scope="row">{{ $key + 1 }}</th>
@@ -115,11 +115,10 @@
                                                             </datalist>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="pharmacie_nom" class="">Inscrire dans
+                                                            <label for="pharmacie_noms" class="">Inscrire dans
                                                                 la pharmacie? *</label>
                                                             <select class="form-control" name="pharmacie_nom"
-                                                                id="pharmacie_nom">
-                                                                <!-- <option selected disabled value="">Choisir...</option> -->
+                                                                id="pharmacie_noms">
                                                                 <option>{{ $pharmacie->name }}</option>
                                                             </select>
                                                         </div>
@@ -275,7 +274,6 @@
                         <div class="form-group">
                             <label for="pharmacie_nom" class="">Inscrire dans quelle pharmacie? *</label>
                             <select class="form-control" name="pharmacie_nom" id="pharmacie_nom" required>
-                                <!-- <option selected disabled value="">Choisir...</option> -->
                                 <option readonly>{{ $pharmacie->name }}</option>
                             </select>
                         </div>
@@ -304,13 +302,6 @@
                         <div class="modal-footer">
                             <button class="btn btn-primary btn-block">Inscrire Employé</button>
                         </div>
-                        <div class="form-group">
-
-                        </div>
-                        <div class="form-group">
-
-                        </div>
-
                     </form>
                 </div>
             </div>
@@ -344,9 +335,9 @@
 
 @section('script')
 <script>
-  // $(document).ready(function () {
-  //   alert(1);
-  // })
+//   $(document).ready(function () {
+//     alert(1);
+//   })
   $(document).ready(function(){
     $('#myInput').on('keyup',function () {
       var value=$(this).val().toLowerCase();

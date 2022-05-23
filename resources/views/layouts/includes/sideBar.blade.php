@@ -4,16 +4,14 @@
         <li class="active">
             <a href="{{route('voir_pharmacie')}}"><i class="fa fa-home fa-lg"></i> Home </a>
         </li>
-
         <li>
-            <a href="{{ route('ventes',$pharmacie)}}"><i class="fa fa-box fa-lg"></i>Orders</a>
-        </li>
-
-        <li>
-            <a href=""><i class="fa fa-money-bill fa-lg"></i>Transaction</a>
+            <a href="{{ route('voir_employe',$pharmacie) }}"><i class="fa fa-user"></i>Gerer Employer</a>
         </li>
         <li>
-            <a href="{{ route('voir_produits',$pharmacie)}}"><i class="fa fa-truck fa-lg"></i>Produits</a>
+            <a href="{{ route('ventes',$pharmacie)}}"><i class="fa fa-box fa-lg"></i>Gerer Ventes</a>
+        </li>
+        <li>
+            <a href="{{ route('voir_produits',$pharmacie)}}"><i class="fa fa-truck fa-lg"></i>Gerer Produits</a>
         </li>
     @else
         <li class="active">
@@ -21,11 +19,7 @@
         </li>
 
         <li>
-            <a href="{{ route('vente')}}"><i class="fa fa-box fa-lg"></i>Orders</a>
-        </li>
-
-        <li>
-            <a href=""><i class="fa fa-money-bill fa-lg"></i>Transaction</a>
+            <a href="{{ route('vente')}}"><i class="fa fa-box fa-lg"></i>Gerer Ventes</a>
         </li>
     @endif
 
