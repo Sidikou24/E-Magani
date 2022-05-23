@@ -20,19 +20,26 @@
     </style>
   </head>
   <body onload = "getLocation();">
-    <div id='map'></div>
+    <div id="map"style="width: 100%; height:100%;">
+     <!-- <iframe src='https://www.google.com/maps?q={{$pharmacies->latitude}},{{$pharmacies->longitude}}&hl=es;z=14&output=embed' ></iframe> -->
+    </div>
+      <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN2H0x1f9r8pCM2y3IWIE-1qje5RTa7M4&callback=initMap&v=weekly"
+      defer
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-      function getLocation() {
+     function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition,showError);
         }
       }
       function showPosition(position) {
         getArrayItineraireFromMapBox(
-          alert('ok');
             position.coords.latitude,
             position.coords.longitude,
             "{{$pharmacies->latitude}}",
@@ -49,9 +56,18 @@
     </script>
 <!-- getArrayItineraireFromMapBox(startLocationLatitude,startLocationLongitude,{{$pharmacies->latitude}},{{$pharmacies->longitude}} -->
 <script>
-  
+            let map;
 
-        let keyMapBox = "pk.eyJ1Ijoicmlkb3VhbmUiLCJhIjoiY2wzNG5hbHBtMDJuNDNrcXJzNHdpMnJ3MSJ9.PNO5jmWVMTqpjgRmnADzgA"; // pk.eyJ1IjoibG1pajIxIiwiYSI6ImNsMzF2aWp2YTEwemszcHBzNWFjbGpuazkifQ.JYhts2hRovC2gSRfcWcDUA
+          function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: {{$pharmacies->latitude}}, lng: {{$pharmacies->longitude}} },
+              zoom: 8,
+            });
+          }
+
+          window.initMap = initMap;
+
+        let keyMapBox = "AIzaSyAN2H0x1f9r8pCM2y3IWIE-1qje5RTa7M4"; // pk.eyJ1IjoibG1pajIxIiwiYSI6ImNsMzF2aWp2YTEwemszcHBzNWFjbGpuazkifQ.JYhts2hRovC2gSRfcWcDUA
 
 
         //startLocation = [ longitude , latitude ] => coordonnée du depart
@@ -60,10 +76,16 @@
 
             //faire une requete à MapBoxApi pour avoir l'itineraire entre les locations
             const query = await fetch(
-                https://api.mapbox.com/directions/v5/mapbox/driving/${startLocationLongitude},${startLocationLatitude};${endLocationLongitude},${endLocationLatitude}?steps=true&geometries=geojson&access_token=${keyMapBox},
-                { method: 'GET' }
+                `http://api.mapbox.com/directions/v5/mapbox/driving/${startLocationLongitude},${startLocationLatitude};${endLocationLongitude},${endLocationLatitude}?steps=true&geometries=geojson&access_token=${keyMapBox}`,
+                { method: 'GET',
+                  mode: 'no-cors'}
             );
             const json = await query.json();
+            console.log(json);
+            console.log(startLocationLongitude);
+            console.log(startLocationLatitude);
+            console.log(endLocationLongitude);
+            console.log(endLocationLatitude);
             const data = json.routes[0];
             const route = data.geometry.coordinates;
             const geojson = {
@@ -111,4 +133,3 @@
 
   </body>
 </html>
-

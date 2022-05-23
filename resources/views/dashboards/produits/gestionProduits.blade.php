@@ -250,9 +250,10 @@
 @section('script')
 <script>
   // $(document).ready(function () {
-  //   alert(1);
+  //   alert("ok");
   // })
   $(document).ready(function(){
+    alert('ok');
     $('#myInput').on('keyup',function () {
       var value=$(this).val().toLowerCase();
       $('#myTable tr').filter(function () {
