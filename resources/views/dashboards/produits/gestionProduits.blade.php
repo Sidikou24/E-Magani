@@ -153,7 +153,7 @@
       </div>
       <div class="col-md-3">
         <div class="card">
-          <div class="card-header">Rechercher un employe </div>
+          <div class="card-header">Rechercher un produit </div>
               <div class="card-body">
                 <div class="row filter-row">
                     <div class="col-sm-6 col-md-3 col-lg-3 col-xl-8 col-12">
