@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'E-magani') }}</title>
     <link rel="icon" href="pharmacie256.png">
 
     <!-- Scripts -->
