@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-9">
           <div class="card">
-          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la Gestion des Produit de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
+          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} {{ Auth::user()->prenom }} dans la Gestion des Produit de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
             <div class="card-header">
               <h4 style="float: left"> Ajouter Nouveau Produits</h4>
               <a href="#" style="float: right" class="btn btn-dark" 
