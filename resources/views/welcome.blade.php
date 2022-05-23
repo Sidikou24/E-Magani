@@ -292,14 +292,15 @@
       <div id="resultPharmacie" style="display: none">
         <div class="row staff-grid-row">
                 @foreach ($pharmacies as $lists )
-                <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-                    <div class="profile-widget">
-                        <div class="text-center">
-                        <a href="{{URL::to('/')}}" class="brand-link"> <img class="img-fluid" src="{{ URL::to('storage/files/'. $lists->pharmacie_image) }}" alt="User profile picture" style="max-width:200px;margin-bottom:10px;"></a>
-                          <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="">Nom: {{ $lists->name }}</a></h4>
-                          <h5 class="user-name m-t-10 mb-0 text-ellipsis">Localite: {{ $lists->localite }}</h5>
-                        <div class="small text-muted">NbrA: {{ $lists->nbrAgent }}</div>
-                </tbody>
+                    <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+                        <div class="profile-widget">
+                            <div class="text-center">
+                            <a href="{{URL::to('/')}}" class="brand-link"> <img class="img-fluid" src="{{ URL::to('storage/files/'. $lists->pharmacie_image) }}" alt="User profile picture" style="max-width:200px;margin-bottom:10px;"></a>
+                            <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="">Nom: {{ $lists->name }}</a></h4>
+                            <h5 class="user-name m-t-10 mb-0 text-ellipsis">Localite: {{ $lists->localite }}</h5>
+                            <div class="small text-muted">NbrA: {{ $lists->nbrAgent }}</div>
+                    </tbody>
+                @endforeach
             </table>
         </div>
 
