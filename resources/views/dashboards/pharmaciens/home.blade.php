@@ -10,9 +10,9 @@
             <div class="card">
                 <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">
                 @if(auth()->user()->fonction == 'pharmacien')
-                    Bienvenue Pharmacien: {{ Auth::user()->name }} dans la pharmacie: {{ $pharmacie->name }}
+                    Bienvenue Pharmacien: {{ Auth::user()->name }} {{ Auth::user()->prenom }} dans la pharmacie: {{ $pharmacie->name }}
                 @else
-                    Bienvenue Employer: {{ Auth::user()->name }} dans la pharmacie: {{Auth::user()->pharmacie_nom }}
+                    Bienvenue Employer: {{ Auth::user()->name }} {{ Auth::user()->prenom }} dans la pharmacie: {{Auth::user()->pharmacie_nom }}
                 @endif
                 </marquee></h4>
                 <div class="card-body">

@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <h4>Bienvenue Pharmacien: {{ Auth::user()->name }} </h4>
+                <h4>Bienvenue Pharmacien: {{ Auth::user()->name }} {{ Auth::user()->prenom }} </h4>
                 <h4>dans la pharmacie: {{ $pharmacie->name }}</h4>
                 <hr>
                 <div>
