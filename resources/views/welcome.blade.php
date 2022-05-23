@@ -304,7 +304,7 @@
             </table>
         </div>
 
-        {{-- </div> --}}
+        
 
         <footer class="site-footer bg-light">
             <div class="container">
