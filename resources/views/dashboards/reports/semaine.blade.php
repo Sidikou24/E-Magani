@@ -6,7 +6,7 @@
                 <center id="top">
                     <div class="logo">{{$pharmacie->name}}</div>
                     <div class="info"></div>
-                    <h2> E-Magani</h2>
+                    <h2> Semaine</h2>
                 </center>
             </div>
 

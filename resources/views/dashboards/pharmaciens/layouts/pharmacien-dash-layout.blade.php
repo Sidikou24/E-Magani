@@ -236,11 +236,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   });
 </script>
 <script>
-  // $(document).ready(function () {
-  //   alert("ok");
-  // })
+
   $(document).ready(function(){
-    // alert('ok');
     $('#myInput').on('keyup',function () {
       var value=$(this).val().toLowerCase();
       $('#myTable tr').filter(function () {

@@ -32,7 +32,7 @@ class ResetPasswordController extends Controller
 
     protected function redirectTo(){
         if (Auth()->user()->fonction == 'pharmacien') {
-            return route('pharmacien.dashboard');
+            return route("{{route('voir_pharmacie')}}");
         }elseif (Auth()->user()->fonction == 'administrateur') {
             return route('admin.dashboard');
         }elseif (Auth()->user()->fonction == 'employé') {

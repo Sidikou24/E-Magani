@@ -72,7 +72,7 @@
                     <p class="nav-text"></p>
                     <ul class="right chevron">
                         <li><a href="{{route('rechercheProd')}}">Home</a></li>
-                        <li><a href="{{url('/contact-form')}}">Contact</a></li> 
+                        <li><a href="{{route('contacts')}}">Contact</a></li> 
                     </ul>
                 </div>
             </div>

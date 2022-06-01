@@ -84,7 +84,7 @@
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li class="active"><a href="{{ url('/') }}">Accueil</a></li>
                                 <li><a href="#">About</a></li>
-                                <li><a href="{{route('send.email')}}">Contact</a></li>
+                                <li><a href="{{route('contacts')}}">Contact</a></li>
                                 <li><a href="#" class="icons-btn d-inline-block js-search-open"><span
                                             class="icon-search"></span></a>
                                 </li>
@@ -249,7 +249,7 @@
 
         <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
         <div id="resultPharmacie">
-        @foreach ($pharmacies as $pharmacie)
+                    @foreach ($pharmacies as $pharmacie)
                                 <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                                     <div class="profile-widget">
                                         <div class="text-center">

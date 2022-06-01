@@ -147,7 +147,7 @@ Route::get('vente',[EmployeController::class,'vente'])->name('vente');
 
 //Contatcs
 Route::get('/googlemap/{pharmacie_id}', [App\Http\Controllers\PharmacieController::class, 'map'])->name('googlemap');
-Route::view('/contacts','contacts')->name('contatcts');
+Route::view('/contacts','contacts')->name('contacts');
 Route::post('/send',[contactsController::class,'send'])->name('send.email');
 
 

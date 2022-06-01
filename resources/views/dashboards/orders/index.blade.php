@@ -96,7 +96,7 @@
                               class="btn btn-dark"><i class="fa fa-print"></i> Print
                           </button>
                           <button type="button" 
-                              onclick="PrintReceiptContent('print')" 
+                              href="#"
                               class="btn btn-primary"><i class="fa fa-print"></i> Historique
                           </button>
                           <button type="button" 
@@ -149,9 +149,9 @@
                             <td>
                                 <button class="btn-primary btn-lg btn-block mt-3"> Sauvegarder</button>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <button class="btn-danger btn-lg btn-block mt-2"> Calculer</button>
-                            </td>
+                            </td> -->
                             <div class="text-center" style="text-align: center !important">
                                 <a href="#" class="text-danger" ><i class="fa fa-sign-out-alt"> </i> logout</a>
                             </div> 
