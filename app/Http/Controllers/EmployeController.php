@@ -9,6 +9,7 @@ use App\Models\Orders;
 use App\Models\Pharmacie;
 use Illuminate\Http\Request;
 use App\Models\Order_details;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -159,6 +160,7 @@ class EmployeController extends Controller
     public function vente()
     {
         $user_ids = auth()->user()->pharmacien_id;
+        $user_id= auth()->user()->id;
         $pharmacie = Pharmacie::find(auth()->user()->pharmacie_id);
         // $pharmacien = auth()->user();
         // $produits = $pharmacien->produits; //DB::table('produits')->where('user_id',$user_id)->get();
@@ -167,7 +169,27 @@ class EmployeController extends Controller
         $lastID= Order_details::where('pharmacie_nom',$pharmacie->name)
                                                                     ->max('order_id');
          // lats order details
-         $order_receipt = Order_details::where('order_id', $lastID)->get();
+         $order_receipts = Order_details::where('order_id', $lastID)->get();
+         $order_Jour= Order_details::where('created_at', '>=', Carbon::now()->subDay())
+                                ->where('pharmacie_nom',$pharmacie->name)
+                                ->where('user_id', $user_id)
+                                ->get();
+         // Les ventes Hebdomadaires 
+         $order_Semaine =Order_details::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                                                        ->where('pharmacie_nom',$pharmacie->name)
+                                                        ->where('user_id', $user_id)
+                                                        ->get();
+                        // Les ventes Du mois 
+        $order_Mois= Order_details::where('pharmacie_nom',$pharmacie->name)
+                                    ->whereMonth('created_at', date('m'))
+                                    ->whereYear('created_at', date('Y'))
+                                    ->where('user_id', $user_id)
+                                    ->get();
+                                     // Les ventes de L'Annee
+        $order_Annee = Order_details::where('pharmacie_nom',$pharmacie->name)
+                                        ->whereYear('created_at', date('Y'))
+                                        ->where('user_id', $user_id)
+                                        ->get();
         $produits = DB::table('produits')
                                         ->where('user_id',$user_ids)
                                         ->where('pharmacie_nom',$pharmacie->name)
@@ -176,9 +198,25 @@ class EmployeController extends Controller
             'produits'=>$produits,
             'pharmacie'=>$pharmacie,
             'orders'=>$orders,
-            'order_receipt'=>$order_receipt,
+            'order_Jour'=>$order_Jour,
+            'order_Semaine'=>$order_Semaine,
+            'order_Mois'=>$order_Mois,
+            'order_Annee'=>$order_Annee,
+            'order_receipts'=>$order_receipts,
         ]);
         // ,compact('produits','pharmacie','orders')
+    }
+
+
+    function search_employer($pharmacien_id, $status_code){
+        $Pharmacien = User::whereId($pharmacien_id)->update([
+            'statut' => $status_code
+        ]);
+        $user_id = auth()->user()->id;
+        $employes = DB::table('users')
+                                        ->where('pharmacien_id',$user_id)
+                                        ->get();
+        return view('dashboards.pharmaciens.settings', compact('employes'));
     }
 
 

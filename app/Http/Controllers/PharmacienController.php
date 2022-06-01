@@ -28,9 +28,13 @@ class PharmacienController extends Controller
         return view('dashboards.pharmaciens.profile');
     }
 
-    function settings()
+    function employers()
     {
-        return view('dashboards.pharmaciens.settings');
+        $user_id = auth()->user()->id;
+        $employes = DB::table('users')
+                                        ->where('pharmacien_id',$user_id)
+                                        ->get();
+        return view('dashboards.pharmaciens.settings', compact('employes'));
     }
 
 
@@ -259,7 +263,9 @@ function ajouterProduit(Request $request, $pharmacie_id){
         $user_id = auth()->user()->id;
         $pharmacie = Pharmacie::find($pharmacie_id);
         $employes = DB::table('users')
-                                        ->where('pharmacien_id',$user_id)->get();
+                                        ->where('pharmacien_id',$user_id)
+                                        ->where('pharmacie_nom',$pharmacie->name)
+                                        ->get();
        return view('dashboards.employes.gestionEmployes',compact('employes','pharmacie'));
     //    ->paginate(5)
     }

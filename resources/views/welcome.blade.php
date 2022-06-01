@@ -84,7 +84,7 @@
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li class="active"><a href="{{ url('/') }}">Accueil</a></li>
                                 <li><a href="#">About</a></li>
-                                <li><a href="/contacts">Contact</a></li>
+                                <li><a href="{{route('send.email')}}">Contact</a></li>
                                 <li><a href="#" class="icons-btn d-inline-block js-search-open"><span
                                             class="icon-search"></span></a>
                                 </li>
@@ -228,49 +228,7 @@
         </h4><br>
         <!-- affichage resultat aprés recherche des produits -->
         <div id="resultP">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Produit </th>
-                        <th scope="col">Disponible </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($produits as $produit)
-                        <tr>
-                            <td>{{ $produit->name }}</td>
-                            <td>pharmacie {{ $produit->pharmacie_nom }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
-        <div id="resultPharmacie">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Pharmacie </th>
-                        <th scope="col">Localité </th>
-                        <th scope="col">Pharmacien responsable </th>
-                        <th scope="col">Date de création </th>
-                        <th scope="col">Nombre d'agent </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($pharmacies as $pharmacie)
-                        <tr>
-                            <td>{{ $pharmacie->name }}</td>
-                            <td> {{ $pharmacie->localite }}</td>
-                            <td>Dr {{ $pharmacie->nom_proprio }}</td>
-                            <td> {{ $pharmacie->dateCrea }}</td>
-                            <td> {{ $pharmacie->nbrAgent }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>   
-          </table>
-           @foreach ($pharmacies as $pharmacie)
+        @foreach ($pharmacies as $pharmacie)
                           @foreach ($produits as $produit)
                             @if($pharmacie->name == $produit->pharmacie_nom)
                               <p>Produit {{ $produit->name }} Disponible dans :</p>
@@ -286,13 +244,13 @@
                               @endif
                             @endforeach
                         @endforeach
-      </div>
+        </div>
 
-      <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
-      <div id="resultPharmacie" style="display: none">
-        <div class="row staff-grid-row">
-                @foreach ($pharmacies as $lists )
-                            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+
+        <!-- affichage resultat pour afficher la liste des pharmacies inscrites sur le site -->
+        <div id="resultPharmacie">
+        @foreach ($pharmacies as $pharmacie)
+                                <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                                     <div class="profile-widget">
                                         <div class="text-center">
                                         <a href="{{ route('googlemap',$pharmacie->id) }}" class="brand-link"> <img class="img-fluid" src="{{ URL::to('storage/files/'. $pharmacie->pharmacie_image) }}" alt="Image de la pharmacie" style="max-width:200px;margin-bottom:10px;"></a>
@@ -301,7 +259,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                        @endforeach
         </div>
 
         
