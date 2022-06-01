@@ -12,7 +12,11 @@
     <div class="row">
       <div class="col-md-8">
           <div class="card">
-          <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Ventes de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
+            @if(auth()->user()->fonction == 'pharmacien')
+              <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Pharmacien: {{ Auth::user()->name }} dans la La Gestions des Ventes de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
+            @else 
+              <h4 class="card-header" style="background:#2ecc71; color:#fff "><marquee behavior="" direction="">Bienvenue Employer: {{ Auth::user()->name }} dans la La Gestions des Ventes de la Pharmacie: {{ $pharmacie->name }}</marquee></h4><br>
+            @endif
             <div class="card-header">
               <h4 style="float: left"> Faire Une Vente</h4>
             </div>

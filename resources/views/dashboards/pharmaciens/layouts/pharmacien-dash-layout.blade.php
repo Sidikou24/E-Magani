@@ -95,10 +95,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('pharmacien.settings')}}" class="nav-link {{ (request()->is('pharmacien/settings*')) ? 'active': ''}}">
-                <i class="nav-icon fas fa-cog"></i>
+              <a href="{{route('pharmacien.employers')}}" class="nav-link {{ (request()->is('pharmacien/employers*')) ? 'active': ''}}">
+              <i class="nav-icon fas fa-user"></i>
                 <p>
-                  Settings
+                  Mes employer
                 </p>
               </a>
             </li>
@@ -233,6 +233,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
           }
         });
       });
+  });
+</script>
+<script>
+  // $(document).ready(function () {
+  //   alert("ok");
+  // })
+  $(document).ready(function(){
+    // alert('ok');
+    $('#myInput').on('keyup',function () {
+      var value=$(this).val().toLowerCase();
+      $('#myTable tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
   });
 </script>
 </body>

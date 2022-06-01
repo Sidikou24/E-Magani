@@ -75,7 +75,7 @@ Route::group(['prefix' => 'pharmacien', 'middleware' => ['isPharmacien','auth', 
     // Route::get('dashboard', [PharmacienController::class,'indexs'])->name('pharmacien.dashboards');
     Route::get('dashboard/{id}', [PharmacienController::class,'index'])->name('pharmacien.dashboard');
     Route::get('profile', [PharmacienController::class,'profile'])->name('pharmacien.profile');
-    Route::get('settings', [PharmacienController::class,'settings'])->name('pharmacien.settings');
+    Route::get('employers', [PharmacienController::class,'employers'])->name('pharmacien.employers');
 
     // le pharmacien modifie le profil de son employer
     Route::post('update-profile-Employe/{id}',[PharmacienController::class,'updateE'])->name('users.update');
@@ -149,3 +149,6 @@ Route::get('vente',[EmployeController::class,'vente'])->name('vente');
 Route::get('/googlemap/{pharmacie_id}', [App\Http\Controllers\PharmacieController::class, 'map'])->name('googlemap');
 Route::view('/contacts','contacts')->name('contatcts');
 Route::post('/send',[contactsController::class,'send'])->name('send.email');
+
+
+Route::get('search_employer/{id}/{status_code}', [EmployeController::class,'search_employer'])->name('search_employer');
